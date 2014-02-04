@@ -1,8 +1,9 @@
 
 #define HOURSPIN 0
-#define MINUTESPIN 4
-#define KNOBPIN 0  // read analog port 0, which on the digispark, is P5
+#define MINUTESPIN 1
 #define SWITCHPIN 1  // read analog port 1, which on the digispark is P2
+#define QUAD_A 4  //interupt pin on pin4
+#define QUAD_B 5  //interupt pin on pin5
 
 #define SF_SECS .2553
 #define SF_TENSECS .0255
