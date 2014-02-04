@@ -25,7 +25,6 @@
 
 
 //<<<   inputs   >>>
-int valKnob=0;
 int valSwitch=0;
 
 //<<<   outputs   >>>
@@ -38,18 +37,22 @@ long time = 0;
 int maxHRange = 240;
 int maxMRange = 240;
 
+volatile long enc_count = 0;
 
 // the setup routine runs once when you press reset:
 void setup() {                
   // initialize the digital pin as an output.
  // pinMode(HOURSPIN, OUTPUT); //LED on Model B
- // pinMode(minutesPin, OUTPUT); //LED on Model A   
+ // pinMode(minutesPin, OUTPUT); //LED on Model A
+ 
+    attachInterrupt(QUAD_A,encoder_isr,CHANGE);
+    attachInterrupt(QUAD_B,encoder_isr,CHANGE);
 }
 
 // the loop routine runs over and over again forever:
 void loop() {
   
-  valKnob = analogRead(KNOBPIN); //read is 0-1023, while write is 0-255
+//  valKnob = analogRead(KNOBPIN); //read is 0-1023, while write is 0-255
   valSwitch = analogRead(SWITCHPIN);
   
   if (valSwitch > BAND6){ // this will eventually be a series of if statements for each Switch State
@@ -62,11 +65,9 @@ void loop() {
   }
   else if (BAND5 < valSwitch && valSwitch <= BAND6){
     // this mode is to calibate the maximum hours output
-    if (valKnob > BAND4 && maxHRange < 255){
-      maxHRange = maxHRange + 1;
-    }
-    else if (valKnob < BAND2 && maxHRange > 0){
-      maxHRange = maxHRange - 1;
+    if (enc_count != 0){
+      maxHRange = maxHRange + enc_count;
+      enc_count=0;
     }
     
     hValDisplay = maxHRange;
@@ -75,11 +76,10 @@ void loop() {
   }
   else if (BAND4 < valSwitch && valSwitch <= BAND5){
     // this mode is to calibate the maximum minutes output
-    if (valKnob > BAND4 && maxMRange < 255){
-      maxMRange = maxMRange + 1;
-    }
-    else if (valKnob < BAND2 && maxHRange > 0){
-      maxMRange = maxMRange - 1;
+     
+    if (enc_count != 0){
+      maxMRange = maxMRange + enc_count;
+      enc_count=0;
     }
 
     hValDisplay = 0;
@@ -87,12 +87,10 @@ void loop() {
     delay(100);   
   }
   else if (valSwitch <= BAND4){
-    if (valKnob > BAND4){
-      time = time + 60000; //1 min = 60 sec * 1000 ms
-    }
-    else if (valKnob < BAND2 && maxHRange > 0){
-      time = time - 60000; //1 min = 60 sec * 1000 ms
-    }
+    if (enc_count != 0){
+      time = time + 60000 * enc_count;
+      enc_count=0;
+    }    
     
     delay(100);   
 
@@ -111,5 +109,21 @@ void loop() {
   analogWrite(HOURSPIN, hValDisplay);
   analogWrite(MINUTESPIN, mValDisplay);
  
- 
 }
+
+
+void encoder_isr() {
+    static int8_t lookup_table[] = {0,-1,1,0,1,0,0,-1,-1,0,0,1,0,1,-1,0};
+    static uint8_t enc_val = 0;
+    
+    enc_val = enc_val << 1;
+    enc_val = enc_val + digitalRead(QUAD_A); 
+    enc_val = enc_val << 1;
+    enc_val = enc_val + digitalRead(QUAD_B);
+
+    
+//    enc_val = enc_val | ((PIND & 0b1100) >> 2) leftover from makeatronics.blogspot.com
+ 
+    enc_count = enc_count + lookup_table[enc_val & 0b1111];
+}
+
