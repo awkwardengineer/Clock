@@ -1,6 +1,6 @@
 #An Intro To Microcontroller Selection From Someone Who's Only Selected One or Two Before
 
->**Executive Summary: I selected an ATtiny84 microchip. It's the next bump up in terms of I/O from Atmel. The decision was based on experience with the prototype clock, which was built on a Digispark Board/ATtiny85, and didn't have enough I/O**
+>**Executive Summary:** I selected an ATtiny84 microchip. It's the next bump up in terms of I/O from Atmel. The decision was based on experience with the prototype clock, which was built on a Digispark Board/ATtiny85, and didn't have enough I/O
 
 Selecting a microcontroller can be overwhelming. The general idea is to pick something powerful enough (but not too powerful, and therefore wasteful!) for your application. Sounds good in theory, but when each major chipmaker has literally HUNDREDS of chips to do from, where do you start?
 
