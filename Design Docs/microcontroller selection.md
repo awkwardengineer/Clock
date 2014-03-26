@@ -1,12 +1,19 @@
 #An Intro To Microcontroller Selection From Someone Who's Only Selected One or Two Before
 
+>**Executive Summary: I selected an ATtiny84 microchip. It's the next bump up in terms of I/O from Atmel. The decision was based on experience with the prototype clock, which was built on a Digispark Board/ATtiny85, and didn't have enough I/O**
+
 Selecting a microcontroller can be overwhelming. The general idea is to pick something powerful enough (but not too powerful, and therefore wasteful!) for your application. Sounds good in theory, but when each major chipmaker has literally HUNDREDS of chips to do from, where do you start?
 
 The process we followed used a mixture of general knowledge that had come from experience hanging out with electrical engineers (@AwkwardEngineer has a college degree that says mechanical engineer), blind luck, and some prototyping.
 
-> If you're wondering what makes a microcontroller different than a microprocessor: What makes a micro special is that it has a lot of built in circuitry for helping it interact with the rest of the world, and well.. control things. There are internal timers, analog to digital converters, analog outputs, digit communication, and special inputs called interrupts that redirect the normal program flow in response to an event. All pretty cool stuff in a package that's smaller than your pinkie fingernail.
+##The Process
 
- I'm aware of a few families of microchips, (Microchip, TI, and Atmel), and each maker produces a gazillion varieties of chips with different inputs, memory sizes, speeds, temperature ratings, and so on. To pick the right chip for production is a mix of art and engineering.
+1.  Prototype with a Digispark board based around the 6 I/O pin ATtiny85
+2.  Clock functioned but was missing features
+3.  Estimate program size based on prototype code, and count required pins.
+4.  Decide to stay with Atmel chips (mostly by default)
+5.  Use Atmel's selection tool to pick chip based on I/O, memory, and cost.
+
 
 As a starting point, the prototype uses a Digispark, which is built around an Atmel ATtiny85 chip, which has 6 free pins available, and even gets double duty out of the pins, using a  burnt-in program called a bootloader to switch some of the pins from programming inputs to whatever the end user wants to use them for.
 
