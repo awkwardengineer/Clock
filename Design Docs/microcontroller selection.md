@@ -31,9 +31,15 @@ Quoting from the digispark [website](https://digistump.com/wiki/digispark/tutori
 >As ISP connection needs the enabled RESET function (and therefore disabled GPIO function of the shared physical pin), there is no way, to program an off-the-shelf digispark with any ISP device, because the digispark has disabled the reset function.
 
 ##Pin out check on the ATtiny84
+The proposed pinouts are below. Note that there were enough pins to be able to leave the reset pin clear.
+
+![pinouts](proposed pinouts.png)
 
 8kB memory [check!]  
 Interrupts galore [check!]  
 2 PWM channels [check!]  
 Digital channels galore [check!]  
 External clock pins [check!]  
+
+##Conclusion
+The **ATtiny84** is an appropriate chip for this project.
