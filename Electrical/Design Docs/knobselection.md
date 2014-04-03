@@ -1,4 +1,4 @@
->**Executive Summary:** Browsing digikey found no appropriate SMT encoders or pots. Of the through-hole connectors, the "right angle" style are $.10-.20 more expensive, but I believe that is justified by the fact a single board can connect the knobs and dials, reducing assembly complexity, and eliminating the need for flying leads or jumpers to the dials. Quantities may necessitate a special order through a distributor. [Bourns](http://www.bourns.com/Products.aspx) was the company picked to select encoders and pots from. I picked the Bourns **PEC12R-2025F-N0024** encoder, and the Bourns **PTV11-2425A-A4503** potentiometer.
+>**Executive Summary:** Browsing digikey found no appropriate SMT encoders or pots. Of the through-hole connectors, the "right angle" style are $.10-.20 more expensive, but I believe that is justified by the fact a single board can connect the knobs and dials, reducing assembly complexity, and eliminating the need for flying leads or jumpers to the dials. Quantities may necessitate a special order through a distributor. [Bourns](http://www.bourns.com/Products.aspx) was the company picked to select encoders and pots from. I picked the Bourns **PEC12R-2020F-N0024** encoder, and the Bourns **PTV11-2420A-A4503** potentiometer.
 
 ##Intro
 The Clock has two control knobs, one to select the mode of operation, and one to make adjustments to time or calibration, depending on the mode. The mode select knob uses a pot to measure absolute position and the adjustment knob uses a quadrature encoder to allow the knob to rotate 360 degrees and to measure relative motion.
@@ -16,7 +16,7 @@ The electronics assembly absolutely needs to be cleaned up so that assembly proc
 I had two ideas:
 
 1. Use panel mount switches to hold the PCBA underneath the clock. The flying leads running to the dials would be replaced with a jumper kit, with a plug on one end of the harness running to the board and ring terminal crimps on the other that would screw onto the dial leads. I figured the overall board size would be smaller (and therefore cheaper), and the cable, if I could source it, would be easy for an unskilled laborer to install. The nuts on "panel mount" style knobs would secure the PCBA and eliminate the need for standoffs in the housing.<br>![jumper](/Photos/Blog Post Material/jumper.png)![panel mount](/Photos/Blog Post Material/panelmount.png)
-2. I had a second idea to use the board itself to run traces to a through hole. The area around the hole would be plated so that screwing the board to the dial leads would make electrical contact and mechanically mount the board. This would require a "right angle" style encoder and pot. <br>![single](/Photos/Blog Post Material/singleboard.png)
+2. I had a second idea to use the board itself to run traces to a through hole. The area around the hole would be plated so that screwing the board to the dial leads would make electrical contact and mechanically mount the board. This would require a "right angle" style encoder and pot. <br>![single](/Photos/Blog Post Material/singleboard_CAD.png)
 
 ##Searching Digikey
 Much like microcontroller selection, browsing the zillions of components on Digikey can be overwhelming. Here's what drove selection:
@@ -43,8 +43,8 @@ Finally, after picking Bourns's catalog, I used the parts I found using the "sor
 
 Within each series, you can pick from a range of options like mounting style, shaft length, encoder counts per revolution, press on / press off switch, and so on.  I picked
 
-encoder: PEC12R-2025F-N0024
-potentiometer: PTV11-2425A-A4503
+encoder: PEC12R-2020F-N0024
+potentiometer: PTV11-2420A-A4503
 
 When it comes time to go to fab, I may work with the board house to come up with a list of alternate components that would be acceptable. (For example, a 20K pot would be just as good as a 50K pot for my purposes).
 
