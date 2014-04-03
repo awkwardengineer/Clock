@@ -48,5 +48,8 @@ potentiometer: PTV11-2420A-A4503
 
 When it comes time to go to fab, I may work with the board house to come up with a list of alternate components that would be acceptable. (For example, a 20K pot would be just as good as a 50K pot for my purposes).
 
+##Physical Check
+I modeled the components in CAD to physically check them. It looks like the single board idea will work, but I'll either need to stand it off from the screw terminals, or move the control knobs forward. (I know which way is cheaper, but also which way affects the look of the finished part)
 
+![CAD Check](/Photos/Blog Post Material/component_check.png)
 
