@@ -15,8 +15,8 @@ Other than the need to conserve power, the next challege is that the battery vol
 
 There are a few ways I'm considering to deal with this problem:
 
-|                                                                                                                   | Pros                         | Cons                         |   |   |
-|-------------------------------------------------------------------------------------------------------------------|------------------------------|------------------------------|---|---|
-| Linear regulator on battery                                                                                       | simple                       | less efficient               |   |   |
-| Buck (and/or) Boost converter on battery                                                                          | more expensive               | more efficient               |   |   |
-| Leave the battery unregulated, but use a voltage reference to make a constant current source to drive the meters. | unsure of cost or efficiency | unsure of cost or efficiency |   |   |
+|Method                                                                                                             | Pros                         | Cons                         |
+|-------------------------------------------------------------------------------------------------------------------|------------------------------|------------------------------|
+| Linear regulator on battery                                                                                       | simple                       | less efficient               |
+| Buck (and/or) Boost converter on battery                                                                          | more expensive               | more efficient               |
+| Leave the battery unregulated, but use a voltage reference to make a constant current source to drive the meters. | unsure of cost or efficiency | unsure of cost or efficiency |
