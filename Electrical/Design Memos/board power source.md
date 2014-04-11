@@ -24,6 +24,10 @@ There are a few ways I'm considering to deal with this problem:
 
 The ATtiny84 can run on anything from 1.8V to 5V, so it means 2 or 3 AA batteries in series off the bat. According to [this source](http://www.powerstream.com/AA-tests.htm), an AA alkaline battery will slowly droop from 1.5V to 1V over the course of it's life before really crashing.
 
+I started looking into various ways to power the clock, and figured I'd have to actually price it out to make a decision. Here are the various circuit diagrams I'll refer to:
+
+![circuit diagram](https://raw.githubusercontent.com/awkwardengineer/Clock/master/Photos/Blog%20Post%20Material/board%20power%20estimates.png)
+
 
 
 ##Linear Regulator
