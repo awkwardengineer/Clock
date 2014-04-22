@@ -88,14 +88,40 @@ void timer_init()
 // NOTE: during the ISR, the compiler adds code that masks other interrupts (so I don't need to mask them manually)
 ISR (TIM1_COMPB_vect){
 	
-	OCR0A += 1; // increase the duty cycle of the PWM on TIMER0 by 1. this should overflow and cycle through.
-	OCR0B += 1;
+	//OCR0A += 1; // increase the duty cycle of the PWM on TIMER0 by 1. this should overflow and cycle through.
+	//OCR0B += 1;
 	
 }
 
 ISR (TIM1_COMPA_vect){
 	
 	PORTB ^= (1 << PB0);  //toggles LED on PB0/pin2
+	
+	// starts AtoD conversion by flipping ADC Start Conversion bit in AD Control and Status Register A
+	ADCSRA |= (1<<ADSC);
+	
+	// loops while waiting for ADC to finish
+	while(ADCSRA & (1<<ADSC));
+	
+	OCR0A = ADCH; //sets the PWM output compare (duty cycle) to high register from AtoD
+	OCR0B = ADCH;
+}
+
+void analog_init(){
+	
+	//Voltage Reference is already set to Vcc by default (pg 145)
+	
+	// set PORTA3 as the input to the ADC (Pin #10) by setting MUX5:0 to 0b00011
+	//ADC Multiplexer Selection Register
+	ADMUX |= (1<<MUX1)|(1<<MUX0);
+	
+	//ADC Control and Status Register A
+	ADCSRA |= (1<<ADEN); // enables the ADC
+	ADCSRA |= (1<<ADPS1)|(1<<ADPS0); //prescaler divides clock by 8, ADPS2:0 = 0b011
+	
+	//ADC Control and Status Register B
+	ADCSRB |= (1 <<ADLAR); //left adjust result, so of the 10 bits, the high 8 bit register has the data I need.
+	
 }
 
 int main (void)
@@ -103,6 +129,7 @@ int main (void)
 	
 	pwm_init();
 	timer_init();
+	analog_init();
 		
 	while(1)
     {
