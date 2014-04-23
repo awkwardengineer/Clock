@@ -59,7 +59,6 @@ void timer_init()
 	// Sets the TOP of the register to OCR1A
 	
 		OCR1A = 25; // will trigger Timer1A every __ sec or so. 1A needs to be the larger number, as that does the actual Clear Timer on Compare
-		OCR1B = 25; // see notes below about period. This will trigger Timer1B every __ sec or so
 		
 		TCCR1B = (1<<WGM12);  //only need to set WGM12 to achieve 0b0100
 		
@@ -74,23 +73,12 @@ void timer_init()
 	//  1Mhz / 1024 = 976 Hz
 	//  976 Hz / 65536 = .014 Hz = 67s period
 
-		
 		TCCR1B |= (1 << CS12)|(1 << CS10);
 		
 	// ENABLE INTERRUPT
 	// Output Compare A Match Interrupt Enable
 	
-		TIMSK1 = (1 << OCIE1A)|(1<<OCIE1B);  // trigger interrupt when TIMER1 reaches the TOP of A or B
-		sei(); // enables interrupts
-}
-
-//Interrupt Service Routine for TIMER1 Compare Match A
-// NOTE: during the ISR, the compiler adds code that masks other interrupts (so I don't need to mask them manually)
-ISR (TIM1_COMPB_vect){
-	
-	//OCR0A += 1; // increase the duty cycle of the PWM on TIMER0 by 1. this should overflow and cycle through.
-	//OCR0B += 1;
-	
+		TIMSK1 = (1 << OCIE1A);  // trigger interrupt when TIMER1 reaches the TOP of A (I previously had it trigger on B as well, but turned that off)
 }
 
 ISR (TIM1_COMPA_vect){
@@ -104,7 +92,6 @@ ISR (TIM1_COMPA_vect){
 	while(ADCSRA & (1<<ADSC));
 	
 	OCR0A = ADCH; //sets the PWM output compare (duty cycle) to high register from AtoD
-	OCR0B = ADCH;
 }
 
 void analog_init(){
@@ -124,12 +111,48 @@ void analog_init(){
 	
 }
 
+void pinchange_init(){
+	
+	// General Interrupt Mask Register
+	GIMSK |= (1<<PCIE0);  //Pin Change Interrupt Enable 0, turns on interrupts for Pin Change bits 7:0 
+	
+	//Pin Change Mask Register
+	PCMSK0 |= (1<<PCINT2)|(1<<PCINT1);  //turns on Pin Change 1 & 2 on pins 12 and 11
+}
+
+ISR (PCINT0_vect){
+	//much of this code is modified from makeatronics.blogspot.com
+	//the idea was to create a clever sort of "grey code" lookup table
+	//wherethe previous state is left shifted two bits and added to the most recent
+	//state, creating a 4 bit grey code. the code then shows the encoder direction,
+	//or 0, if it was an illegal "grey code" state.
+
+	//the static keyword allows the table to persist within the scope of the ISR
+	//from one ISR call to the next
+    static int8_t lookup_table[] = {0,-1,1,0,1,0,0,-1,-1,0,0,1,0,1,-1,0};
+	static uint8_t grey_code = 0;
+	
+	uint8_t input_status;
+	
+	//the inputs were on PA1 and PA2, so we mask off the other inputs and then shift
+	//the bits to the right
+	input_status = (PINA & 0b00000110) >> 1;   //PINA is Port Input A register
+
+	grey_code = grey_code << 2 ;  //move the old grey code over two bits
+	grey_code = grey_code | input_status ; //concatenates the current input status onto the old grey code
+	grey_code = grey_code & 0b00001111; // masks off the high bits to throw the old grey shifted over grey code away
+
+	OCR0B = OCR0B + lookup_table[grey_code];  //changes the PWM duty cycle register
+}
+
 int main (void)
 {
 	
 	pwm_init();
 	timer_init();
 	analog_init();
+	pinchange_init();
+	sei(); // global enables interrupts
 		
 	while(1)
     {
