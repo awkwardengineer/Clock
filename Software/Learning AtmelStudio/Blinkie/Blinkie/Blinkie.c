@@ -12,6 +12,65 @@
 
 #define F_CPU 8000000
 
+volatile long timer_ticks = 0;
+volatile uint8_t calibration_1 = 240;
+volatile uint8_t calibration_2 = 240;
+
+volatile int rotation_accumulator = 0;
+
+void (*mode_pointer)(void);  //declares the pointer
+void mode_test(void);		//the compiler is pretty dumb and needs to know about the other functions for the function pointer to work
+void mode_cal1(void);
+void mode_cal2(void);
+void mode_warble(void);
+void mode_time(void);
+
+void mode_test(){
+	
+	rotation_accumulator = 0; // dump the contents of the quadrature input accumulator, it is not used in this mode
+	
+	uint8_t low_bound = 0;
+	uint8_t high_bound = 127;
+	
+	if (ADCH > high_bound){
+		mode_pointer = &mode_cal1;
+		mode_cal1();
+	}
+	else{
+		OCR0A +=1 ; // cycles the registers
+		OCR0B +=1 ;
+	}
+}
+
+void mode_cal1(){
+	uint8_t low_bound = 128;
+	uint8_t high_bound = 255;
+	
+	if (ADCH < low_bound){
+		mode_pointer = &mode_test;
+		mode_test();
+	}
+	else{
+		OCR0A += rotation_accumulator;
+		OCR0B -= rotation_accumulator;
+		
+		rotation_accumulator = 0;
+	}
+}
+
+void mode_cal2(){
+	
+}
+
+void mode_warble(){
+	
+}
+
+void mode_time(){
+	
+}
+
+
 // initialize PWM
 void pwm_init()
 {
@@ -26,14 +85,13 @@ void pwm_init()
 	//  ***********************************************************
 	//  Timer/Counter Control Register 0
 	//  Setting only Compare Output Mode bit A1 (COM0A1) clears the counter when up-counting on a match and sets it
-	//  when down-counting. Kinda like inverted mode. (See page 81/82). I put OC0B in non-inverting mode
-	//  so it will have the opposite duty cycle. 
+	//  when down-counting. Kinda like inverted mode. (See page 81/82). 
 	TCCR0A |= (1<<COM0A1);  
-	TCCR0A |= (1<<COM0B1)|(1<<COM0B0);   // I find the mishmash of output compare for Timer0/ChannelB being on register A slightly confusing
+	TCCR0A |= (1<<COM0B1);   // I find the mishmash of output compare for Timer0/ChannelB being on register A slightly confusing
 	
 	// SET CLOCK SOURCE
 	// Speed = 1Mhz / 256 bits / 2 (count up and down in phase correct mode) = 1953Hz
-	// The smallest prescaler is 8, which would give a PWM freq of 244
+	// The smallest prescaler is 8, which would give a PWM freq of 244Hz
 	// corresponds to Clock Select bits CS02:00 of 0b010
 	
 	TCCR0B |= (1 << CS01);
@@ -41,7 +99,7 @@ void pwm_init()
 	//  SET DATA DIRECTION REGISTERS
 	//  ***********************************************************
 	// the Output Compare 0A register (OC0A) is PortB2, and OC0B is on PortA7
-	// set the Data Direction Register (either DDRA or DDRB) 
+	// set the Data Direction Register
 	DDRB |= (1<<PB2);
 	DDRA |= (1<<PA7);
 }
@@ -83,6 +141,9 @@ void timer_init()
 
 ISR (TIM1_COMPA_vect){
 	
+	//volatile variable was defined in main()
+	timer_ticks += OCR1A;  //in Compare Timer and Clear Mode, the register should have the number of Timer ticks
+	
 	PORTB ^= (1 << PB0);  //toggles LED on PB0/pin2
 	
 	// starts AtoD conversion by flipping ADC Start Conversion bit in AD Control and Status Register A
@@ -91,7 +152,10 @@ ISR (TIM1_COMPA_vect){
 	// loops while waiting for ADC to finish
 	while(ADCSRA & (1<<ADSC));
 	
-	OCR0A = ADCH; //sets the PWM output compare (duty cycle) to high register from AtoD
+	//line removed and moved into specific mode functions
+	//OCR0A = ADCH; //sets the PWM output compare (duty cycle) to high register from AtoD
+	
+	(*mode_pointer)();  //uses a pointer to call the function for the specific mode
 }
 
 void analog_init(){
@@ -142,12 +206,17 @@ ISR (PCINT0_vect){
 	grey_code = grey_code | input_status ; //concatenates the current input status onto the old grey code
 	grey_code = grey_code & 0b00001111; // masks off the high bits to throw the old grey shifted over grey code away
 
-	OCR0B = OCR0B + lookup_table[grey_code];  //changes the PWM duty cycle register
+	rotation_accumulator += lookup_table[grey_code];  //changes the PWM duty cycle register
+	
+	(*mode_pointer)();  //uses a pointer to call the function for the specific mode
 }
+
+
 
 int main (void)
 {
-	
+	mode_pointer = &mode_test; //assigns the mode_pointer initially to test mode
+		
 	pwm_init();
 	timer_init();
 	analog_init();
@@ -161,3 +230,4 @@ int main (void)
 	
 	return 1;
 }
+
