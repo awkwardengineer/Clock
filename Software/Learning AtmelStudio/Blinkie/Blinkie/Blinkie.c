@@ -7,67 +7,155 @@
 
 
 #include <avr/io.h>
-#include <util/delay.h>
 #include <avr/interrupt.h>
 
-#define F_CPU 8000000
+#define F_CPU 1000000 //default
+#define TIMER_PRESCALER 1024
+#define TIMER_TICKS_PER_INTERRUPT 25
 
-volatile long timer_ticks = 0;
-volatile uint8_t calibration_1 = 240;
-volatile uint8_t calibration_2 = 240;
+// conversion = 1Mhz / TIMER_PRESCALER / TIMER_TICKS_PER_INTERRUPT = 39.0625 timer interrupts/sec
+
+
+#define MINS_CONVERSION 2344  //  39.0625 timer_ints/sec * 60 secs/min = 2343.75 timer_ints/minute
+#define SECONDS_CONVERSION 39 
+
+
+volatile unsigned long timer_interrupts = 0;
+volatile uint8_t cal_hours = 240;
+volatile uint8_t cal_minutes = 240;
 
 volatile int rotation_accumulator = 0;
 
+
+
 void (*mode_pointer)(void);  //declares the pointer
 void mode_test(void);		//the compiler is pretty dumb and needs to know about the other functions for the function pointer to work
-void mode_cal1(void);
-void mode_cal2(void);
+void mode_cal_hours(void);
+void mode_cal_minutes(void);
 void mode_warble(void);
 void mode_time(void);
+
+#define test_low 0
+#define test_high 49
+
+#define cal_hours_low 50
+#define cal_hours_high 99
+
+#define cal_minutes_low 100
+#define cal_minutes_high 149
+
+#define warble_low 150
+#define warble_high 199
+
+#define time_low 200
+#define time_high 255
 
 void mode_test(){
 	
 	rotation_accumulator = 0; // dump the contents of the quadrature input accumulator, it is not used in this mode
-	
-	uint8_t low_bound = 0;
-	uint8_t high_bound = 127;
-	
-	if (ADCH > high_bound){
-		mode_pointer = &mode_cal1;
-		mode_cal1();
+		
+	if (ADCH > test_high){
+		mode_pointer = &mode_cal_hours;
+		mode_cal_hours();
 	}
 	else{
 		OCR0A +=1 ; // cycles the registers
 		OCR0B +=1 ;
 	}
+	
+	return;
 }
 
-void mode_cal1(){
-	uint8_t low_bound = 128;
-	uint8_t high_bound = 255;
-	
-	if (ADCH < low_bound){
+void mode_cal_hours(){
+		
+	if (ADCH < cal_hours_low){
 		mode_pointer = &mode_test;
 		mode_test();
 	}
+	else if (ADCH > cal_hours_high){
+		mode_pointer = &mode_cal_minutes;
+		mode_cal_minutes();
+	}
 	else{
-		OCR0A += rotation_accumulator;
-		OCR0B -= rotation_accumulator;
+		OCR0A = cal_hours;
+		OCR0B = 0;
+		
+		cal_hours += rotation_accumulator;
 		
 		rotation_accumulator = 0;
 	}
+	
+	return;
 }
 
-void mode_cal2(){
+void mode_cal_minutes(){
+		
+	if (ADCH < cal_minutes_low){
+		mode_pointer = &mode_cal_hours;
+		mode_cal_hours();
+	}
+	else if (ADCH > cal_minutes_high){
+		mode_pointer = &mode_warble;
+		mode_warble();
+	}
+	else{
+		OCR0A = 0;
+		OCR0B = cal_minutes;
+		
+		cal_minutes += rotation_accumulator;
+		
+		rotation_accumulator = 0;
+	}
 	
+	return;
 }
 
 void mode_warble(){
+	if (ADCH < warble_low){
+		mode_pointer = &mode_cal_minutes;
+		mode_cal_minutes();
+	}
+	else if (ADCH > warble_high){
+		mode_pointer = &mode_time;
+		mode_time();
+	}
+	else{
+		rotation_accumulator = 0;
+	}
 	
+	return;
 }
 
 void mode_time(){
+	if (ADCH < time_low){
+		mode_pointer = &mode_warble;
+		mode_warble();
+	}
+	else{
+		
+		unsigned long hours;
+		unsigned long minutes;
+		
+		//hours = (timer_interrupts * cal_hours) / HOURS_CONVERSION ; //order of operations matters to avoid rounding errors
+		//OCR0A = (uint8_t)(hours );  //get the low byte of hours
+		
+		//hours = ( ((timer_interrupts / 39) % 60)  * cal_hours) / 60 ;
+		//OCR0A = (uint8_t)(hours );  //get the low byte of hours
+		
+		
+		hours = (((timer_interrupts / MINS_CONVERSION) % 720) * cal_hours) / 720 ; //order of operations matters to avoid rounding errors
+		OCR0A = (uint8_t)(hours );  //get the low byte of hours
+		
+		minutes = (((timer_interrupts / SECONDS_CONVERSION) % 3600) * cal_minutes) / 3600;
+		OCR0B = (uint8_t)(minutes); //get the low byte of minutes
+		
+		timer_interrupts += rotation_accumulator * 2000; //scales the rotation accumulator so it changes time faster
+		
+		rotation_accumulator = 0;
+	}
+
 	
+	return;
 }
 
 
@@ -116,7 +204,7 @@ void timer_init()
 	// to put the timer in Clear Timer on Compare mode.
 	// Sets the TOP of the register to OCR1A
 	
-		OCR1A = 25; // will trigger Timer1A every __ sec or so. 1A needs to be the larger number, as that does the actual Clear Timer on Compare
+		OCR1A = TIMER_TICKS_PER_INTERRUPT; // will trigger Timer1A every __ sec or so. 1A needs to be the larger number, as that does the actual Clear Timer on Compare
 		
 		TCCR1B = (1<<WGM12);  //only need to set WGM12 to achieve 0b0100
 		
@@ -140,9 +228,10 @@ void timer_init()
 }
 
 ISR (TIM1_COMPA_vect){
+	//THIS ISR IS CALLLED WHEN THE 16 BIT TIMER HITS IT'S MATCH POINT
 	
 	//volatile variable was defined in main()
-	timer_ticks += OCR1A;  //in Compare Timer and Clear Mode, the register should have the number of Timer ticks
+	timer_interrupts += 1;  //in Compare Timer and Clear Mode, the register should have the number of Timer ticks
 	
 	PORTB ^= (1 << PB0);  //toggles LED on PB0/pin2
 	
@@ -150,11 +239,7 @@ ISR (TIM1_COMPA_vect){
 	ADCSRA |= (1<<ADSC);
 	
 	// loops while waiting for ADC to finish
-	while(ADCSRA & (1<<ADSC));
-	
-	//line removed and moved into specific mode functions
-	//OCR0A = ADCH; //sets the PWM output compare (duty cycle) to high register from AtoD
-	
+	while(ADCSRA & (1<<ADSC));	
 	(*mode_pointer)();  //uses a pointer to call the function for the specific mode
 }
 
@@ -221,10 +306,17 @@ int main (void)
 	timer_init();
 	analog_init();
 	pinchange_init();
-	sei(); // global enables interrupts
+	sei(); // global set enable interrupts
+	
+	//uint8_t a = 0;
 		
 	while(1)
     {
+	   // crap for the debugger/simulator that won't get optimized away
+	  // a = a + 1;
+	   //PORTB |= a & (1 << PB0);
+	   
+	   
 	   // code is interrupt driven. so just hang out.
     }
 	
