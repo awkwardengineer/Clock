@@ -8,19 +8,20 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <avr/sleep.h>
 
 #define F_CPU 1000000 //default
-#define TIMER_PRESCALER 1024
-#define TIMER_TICKS_PER_INTERRUPT 25
+#define TIMER_PRESCALER 1
+#define TIMER_TICKS_PER_INTERRUPT 1000
 
-// conversion = 1Mhz / TIMER_PRESCALER / TIMER_TICKS_PER_INTERRUPT = 39.0625 timer interrupts/sec
-
-
-#define MINS_CONVERSION 2344  //  39.0625 timer_ints/sec * 60 secs/min = 2343.75 timer_ints/minute
-#define SECONDS_CONVERSION 39 
+// conversion = 32768hz / TIMER_PRESCALER / TIMER_TICKS_PER_INTERRUPT = 1 timer interrupts/sec
 
 
-volatile unsigned long timer_interrupts = 0;
+#define MINS_CONVERSION 60  //  1 timer_ints/sec * 60 secs/min = 60 timer_ints/minute
+#define SECONDS_CONVERSION 1 
+
+
+volatile unsigned long timer_interrupts = 18000;
 volatile uint8_t cal_hours = 240;
 volatile uint8_t cal_minutes = 240;
 
@@ -34,6 +35,7 @@ void mode_cal_hours(void);
 void mode_cal_minutes(void);
 void mode_warble(void);
 void mode_time(void);
+void tell_time(void);
 
 #define test_low 0
 #define test_high 49
@@ -59,8 +61,8 @@ void mode_test(){
 		mode_cal_hours();
 	}
 	else{
-		OCR0A +=1 ; // cycles the registers
-		OCR0B +=1 ;
+		OCR0A +=10 ; // cycles the registers
+		OCR0B +=10 ;
 	}
 	
 	return;
@@ -111,16 +113,85 @@ void mode_cal_minutes(){
 }
 
 void mode_warble(){
+	
+	static uint8_t prime_table[] = {53, 67, 197, 43, 157, 97, 83, 179};
+	
+	// {197, 179, 157, 97, 83, 59, 29, 17 }
+	
+	static int8_t max_warble_level = 1;
+	static uint8_t warble_count = 0;
+	static int8_t warbling = 0;
+	static uint8_t warble_randomizer = 0;
+		
+	
 	if (ADCH < warble_low){
+		rotation_accumulator = 0;
 		mode_pointer = &mode_cal_minutes;
 		mode_cal_minutes();
 	}
 	else if (ADCH > warble_high){
+		rotation_accumulator = 0;
 		mode_pointer = &mode_time;
 		mode_time();
 	}
 	else{
-		rotation_accumulator = 0;
+		if (warbling==0){
+			tell_time();
+		}
+		else{
+			warble_randomizer++;			//rotates the warble randomizer
+		}
+		
+		
+		if (timer_interrupts % prime_table[warble_randomizer & 0b00000111] == 0){
+			warbling = 1;
+			warble_count = max_warble_level;
+			OCR0A = 0;
+			
+		}
+		if (timer_interrupts % prime_table[(warble_randomizer + 1) & 0b00000111] == 0){
+			warbling = 1;
+			warble_count = max_warble_level;
+			OCR0A = 255;
+			
+		}
+		if (timer_interrupts % prime_table[(warble_randomizer + 2) & 0b00000111] == 0){
+			warbling = 1;
+			warble_count = max_warble_level;
+			OCR0B = 0;
+			
+		}
+		if (timer_interrupts % prime_table[(warble_randomizer + 3) & 0b00000111] == 0){
+			warbling = 1;
+			warble_count = max_warble_level;
+			OCR0B = 255;
+			
+			
+		}
+		
+		
+		if (warble_count > 0){
+			warble_count--;	
+		}
+		else{
+			warbling = 0;
+		}
+		
+		
+ 		
+		if (rotation_accumulator > 5 || rotation_accumulator < -5){
+			max_warble_level += rotation_accumulator / 5;
+			
+			if (max_warble_level < 0){
+				max_warble_level = 0;
+			}
+			else if (max_warble_level > 30){
+				max_warble_level = 30;
+			}
+			
+			rotation_accumulator = 0; // only clears the accumulator if had a large enough value
+		}
+		
 	}
 	
 	return;
@@ -133,31 +204,30 @@ void mode_time(){
 	}
 	else{
 		
-		unsigned long hours;
-		unsigned long minutes;
-		
-		//hours = (timer_interrupts * cal_hours) / HOURS_CONVERSION ; //order of operations matters to avoid rounding errors
-		//OCR0A = (uint8_t)(hours );  //get the low byte of hours
-		
-		//hours = ( ((timer_interrupts / 39) % 60)  * cal_hours) / 60 ;
-		//OCR0A = (uint8_t)(hours );  //get the low byte of hours
-		
-		
-		hours = (((timer_interrupts / MINS_CONVERSION) % 720) * cal_hours) / 720 ; //order of operations matters to avoid rounding errors
-		OCR0A = (uint8_t)(hours );  //get the low byte of hours
-		
-		minutes = (((timer_interrupts / SECONDS_CONVERSION) % 3600) * cal_minutes) / 3600;
-		OCR0B = (uint8_t)(minutes); //get the low byte of minutes
-		
-		timer_interrupts += rotation_accumulator * 2000; //scales the rotation accumulator so it changes time faster
-		
+		timer_interrupts += rotation_accumulator * 32; //scales the rotation accumulator so it changes time faster
 		rotation_accumulator = 0;
+		
+		tell_time();	
+		
+		
+		
+		
 	}
 
 	
 	return;
 }
 
+void tell_time(){
+	unsigned long hours;
+	unsigned long minutes;
+	
+	hours = (((timer_interrupts / MINS_CONVERSION) % 720) * cal_hours) / 720 ; //order of operations matters to avoid rounding errors
+	OCR0A = (uint8_t)(hours );  //get the low byte of hours
+	
+	minutes = (((timer_interrupts / SECONDS_CONVERSION) % 3600) * cal_minutes) / 3600;
+	OCR0B = (uint8_t)(minutes); //get the low byte of minutes
+}
 
 // initialize PWM
 void pwm_init()
@@ -178,11 +248,11 @@ void pwm_init()
 	TCCR0A |= (1<<COM0B1);   // I find the mishmash of output compare for Timer0/ChannelB being on register A slightly confusing
 	
 	// SET CLOCK SOURCE
-	// Speed = 1Mhz / 256 bits / 2 (count up and down in phase correct mode) = 1953Hz
-	// The smallest prescaler is 8, which would give a PWM freq of 244Hz
-	// corresponds to Clock Select bits CS02:00 of 0b010
-	
-	TCCR0B |= (1 << CS01);
+	// No Clock prescaler will be necessary for the PWM
+	// System clock is at 32khz
+	// 32khz / 256bits*2 for counting up AAAND down = 64Hz
+	 	
+	TCCR0B |= (1 << CS00); // set clock source to 0b001 for on with no prescaler
 	
 	//  SET DATA DIRECTION REGISTERS
 	//  ***********************************************************
@@ -194,8 +264,8 @@ void pwm_init()
 
 void timer_init()
 {
-	// Connect LED to PB0 on pin 2
-	DDRB |= (1<<PB0);
+	// Connect LED to PA0 on pin 13
+	DDRA |= (1<<PA0);
 	
 	//  SET WAVE GENERATION MODE
 	//  ***********************************************************
@@ -214,12 +284,9 @@ void timer_init()
 	
 	// SET CLOCK SOURCE
 	//  ***********************************************************
-	//  Clock source bits CS10:12 are set to 0b101 to get a prescaler of 1024.
-	//  NOTE: The default factory setting for the clock/clock prescaler is 1 Mhz
-	//  1Mhz / 1024 = 976 Hz
-	//  976 Hz / 65536 = .014 Hz = 67s period
-
-		TCCR1B |= (1 << CS12)|(1 << CS10);
+		
+		
+		TCCR1B |= (1 << CS10);  //Set Clock Source Bits CS12:10 to 0b001 to turn timer on with no prescaler 
 		
 	// ENABLE INTERRUPT
 	// Output Compare A Match Interrupt Enable
@@ -233,7 +300,7 @@ ISR (TIM1_COMPA_vect){
 	//volatile variable was defined in main()
 	timer_interrupts += 1;  //in Compare Timer and Clear Mode, the register should have the number of Timer ticks
 	
-	PORTB ^= (1 << PB0);  //toggles LED on PB0/pin2
+	PORTA ^= (1 << PA0);  //toggles LED on PBA/pin13
 	
 	// starts AtoD conversion by flipping ADC Start Conversion bit in AD Control and Status Register A
 	ADCSRA |= (1<<ADSC);
@@ -253,7 +320,7 @@ void analog_init(){
 	
 	//ADC Control and Status Register A
 	ADCSRA |= (1<<ADEN); // enables the ADC
-	ADCSRA |= (1<<ADPS1)|(1<<ADPS0); //prescaler divides clock by 8, ADPS2:0 = 0b011
+	ADCSRA |= (1<<ADPS0); //prescaler divides clock by 1, ADPS2:0 = 0b001
 	
 	//ADC Control and Status Register B
 	ADCSRB |= (1 <<ADLAR); //left adjust result, so of the 10 bits, the high 8 bit register has the data I need.
@@ -291,33 +358,47 @@ ISR (PCINT0_vect){
 	grey_code = grey_code | input_status ; //concatenates the current input status onto the old grey code
 	grey_code = grey_code & 0b00001111; // masks off the high bits to throw the old grey shifted over grey code away
 
-	rotation_accumulator += lookup_table[grey_code];  //changes the PWM duty cycle register
+	rotation_accumulator += lookup_table[grey_code];  
 	
-	(*mode_pointer)();  //uses a pointer to call the function for the specific mode
+	//if (mode_pointer != &mode_warble)
+	//{
+	//	(*mode_pointer)();  //uses a pointer to call the function for the specific mode
+	//}
+	
 }
 
-
+void power_register_init(){
+	
+	//MCUCR: MCU Control Register
+	
+	MCUCR |= (1<<BODS); //disable brown out detector
+	MCUCR |= (1<<SE); //sleep enable
+	
+	MCUCR |= (0<<SM1)|(0<<SM0); //sleepmode select 0b00; will enter IDLE mode with CPU shut down
+	//MCUCR |= (1<<SM1)|(1<<SM0);//sleepmode select 0b11, will enter STANDBY mode with CPU shutdown and crystal still on
+	
+	//PRR: Power Reduction Register
+	
+	PRR |= (1<<PRUSI); // shuts down the USI clock
+	//PRR |= (1<<PRADC); //shuts down the ADC and comparator
+}
 
 int main (void)
 {
-	mode_pointer = &mode_test; //assigns the mode_pointer initially to test mode
+	mode_pointer = &mode_time; //assigns the mode_pointer initially to time mode
 		
 	pwm_init();
 	timer_init();
 	analog_init();
 	pinchange_init();
+	power_register_init();
 	sei(); // global set enable interrupts
-	
-	//uint8_t a = 0;
 		
 	while(1)
     {
-	   // crap for the debugger/simulator that won't get optimized away
-	  // a = a + 1;
-	   //PORTB |= a & (1 << PB0);
-	   
-	   
-	   // code is interrupt driven. so just hang out.
+		sleep_cpu();
+		//just hang out and wait for interrupts
+		
     }
 	
 	return 1;
