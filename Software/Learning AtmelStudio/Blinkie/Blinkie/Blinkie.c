@@ -12,7 +12,7 @@
 
 #define F_CPU 1000000 //default
 #define TIMER_PRESCALER 1
-#define TIMER_TICKS_PER_INTERRUPT 1000
+#define TIMER_TICKS_PER_INTERRUPT 32000
 
 // conversion = 32768hz / TIMER_PRESCALER / TIMER_TICKS_PER_INTERRUPT = 1 timer interrupts/sec
 
@@ -302,12 +302,6 @@ ISR (TIM1_COMPA_vect){
 	
 	PORTA ^= (1 << PA0);  //toggles LED on PBA/pin13
 	
-	// starts AtoD conversion by flipping ADC Start Conversion bit in AD Control and Status Register A
-	ADCSRA |= (1<<ADSC);
-	
-	// loops while waiting for ADC to finish
-	while(ADCSRA & (1<<ADSC));	
-	(*mode_pointer)();  //uses a pointer to call the function for the specific mode
 }
 
 void analog_init(){
@@ -325,6 +319,8 @@ void analog_init(){
 	//ADC Control and Status Register B
 	ADCSRB |= (1 <<ADLAR); //left adjust result, so of the 10 bits, the high 8 bit register has the data I need.
 	
+	DDRA |= (1<<PA6); //PA6 (pin 7) is used to turn on and off the potentiometer
+	PORTA &= ~(1<<PA6); //turn PA6 (pin 7) off
 }
 
 void pinchange_init(){
@@ -380,7 +376,7 @@ void power_register_init(){
 	//PRR: Power Reduction Register
 	
 	PRR |= (1<<PRUSI); // shuts down the USI clock
-	//PRR |= (1<<PRADC); //shuts down the ADC and comparator
+	
 }
 
 int main (void)
@@ -396,6 +392,17 @@ int main (void)
 		
 	while(1)
     {
+		PRR &= ~(1<<PRADC); //turns on the ADC comparator
+		PORTA |= (1<<PA6); //turn PA6 (pin 7) on to power pot
+		ADCSRA |= (1<<ADSC); // starts AtoD conversion by flipping ADC Start Conversion bit in AD Control and Status Register A
+		while(ADCSRA & (1<<ADSC));  // loops while waiting for ADC to finish
+		PORTA &= ~(1<<PA6); //turn PA6 back off to conserve power
+		PRR |= (1<<PRADC); //shuts down the ADC and comparator
+		
+		
+		
+		(*mode_pointer)();  //uses a pointer to call the function for the specific mode
+		
 		sleep_cpu();
 		//just hang out and wait for interrupts
 		
