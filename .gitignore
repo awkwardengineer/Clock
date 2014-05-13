@@ -14,3 +14,17 @@ Software/Learning AtmelStudio/Blinkie/Blinkie/Debug/Blinkie.srec
 Software/Learning AtmelStudio/Blinkie/Blinkie/Debug/Makefile
 Software/Learning AtmelStudio/Blinkie/Blinkie/Debug/makedep.mk
 Software/Learning AtmelStudio/Blinkie/Blinkie/Blinkie.cproj
+Software/Learning AtmelStudio/Blinkie/Blinkie/Release/Blinkie.d
+Software/Learning AtmelStudio/Blinkie/Blinkie/Release/Blinkie.elf
+Software/Learning AtmelStudio/Blinkie/Blinkie/Release/Blinkie.eep
+Software/Learning AtmelStudio/Blinkie/Blinkie/Release/Blinkie.hex
+Software/Learning AtmelStudio/Blinkie/Blinkie/Release/Blinkie.lss
+Software/Learning AtmelStudio/Blinkie/Blinkie/Release/Blinkie.map
+Software/Learning AtmelStudio/Blinkie/Blinkie/Release/Blinkie.o
+Software/Learning AtmelStudio/Blinkie/Blinkie/Release/Blinkie.srec
+Software/Learning AtmelStudio/Blinkie/Blinkie/Release/Makefile
+Software/Learning AtmelStudio/Blinkie/Blinkie/Release/makedep.mk
+Electrical/Board Design/clock-cache.lib
+Electrical/Board Design/clock-cache.lib
+Electrical/Board Design/clock.bak
+Electrical/Board Design/clock.sch
