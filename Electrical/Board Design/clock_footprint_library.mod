@@ -1,0 +1,222 @@
+PCBNEW-LibModule-V1  5/18/2014 11:03:02 PM
+# encoding utf-8
+Units mm
+$INDEX
+SOT23
+ammeter
+bourns_encoder
+bourns_knob
+bourns_potentiometer
+$EndINDEX
+$MODULE SOT23
+Po 0 0 0 15 53797464 00000000 ~~
+Li SOT23
+Kw SOT23
+Sc 0
+AR /53750C83
+Op 0 0 0
+T0 1.99898 -0.09906 0.762 0.762 900 0.11938 N V 21 N "Q2"
+T1 0.0635 0 0.50038 0.50038 0 0.09906 N V 21 N "FET_P"
+DC -1.17602 0.35052 -1.30048 0.44958 0.07874 21
+DS 1.27 -0.508 1.27 0.508 0.07874 21
+DS -1.3335 -0.508 -1.3335 0.508 0.07874 21
+DS 1.27 0.508 -1.3335 0.508 0.07874 21
+DS -1.3335 -0.508 1.27 -0.508 0.07874 21
+$PAD
+Sh "D" R 0.8001 1.00076 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 0 -1.09982
+$EndPAD
+$PAD
+Sh "S" R 0.8001 1.00076 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 0.9525 1.09982
+$EndPAD
+$PAD
+Sh "G" R 0.8001 1.00076 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -0.9525 1.09982
+$EndPAD
+$SHAPE3D
+Na "smd\\SOT23_3.wrl"
+Sc 0.4 0.4 0.4
+Of 0 0 0
+Ro 0 0 180
+$EndSHAPE3D
+$EndMODULE SOT23
+$MODULE ammeter
+Po 0 0 0 15 537913B5 00000000 ~~
+Li ammeter
+Sc 0
+AR 
+Op 0 0 0
+T0 -5 0 1 1 0 0.15 N V 21 N "AMMETER"
+T1 -4 3 1 1 0 0.15 N I 21 N "VAL**"
+$PAD
+Sh "1" C 4 4 0 0 0
+Dr 2.5 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -13 0
+$EndPAD
+$PAD
+Sh "2" C 4 4 0 0 0
+Dr 2.5 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 13 0
+$EndPAD
+$EndMODULE ammeter
+$MODULE bourns_encoder
+Po 0 0 0 15 53796774 00000000 ~~
+Li bourns_encoder
+Sc 0
+AR /5373DB9B
+Op 0 0 0
+T0 -6.35 -3.6 1 1 0 0.15 N V 21 N "S1"
+T1 6.3 -3.7 1 1 0 0.15 N V 21 N "QUADRATURE_ENCODR"
+$PAD
+Sh "1" C 2 2 0 0 0
+Dr 1 0 0
+At STD N 00E0FFFF
+Ne 3 "N-000005"
+Po -2.5 2.45
+$EndPAD
+$PAD
+Sh "2" C 2 2 0 0 0
+Dr 1 0 0
+At STD N 00E0FFFF
+Ne 1 "GND"
+Po 0 2.5
+$EndPAD
+$PAD
+Sh "3" C 2 2 0 0 0
+Dr 1 0 0
+At STD N 00E0FFFF
+Ne 2 "N-0000022"
+Po 2.5 2.5
+$EndPAD
+$PAD
+Sh "" R 2 2.1 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 6.1 0
+$EndPAD
+$PAD
+Sh "" R 2 2.1 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -6.1 0
+$EndPAD
+$EndMODULE bourns_encoder
+$MODULE bourns_knob
+Po 0 0 0 15 5379657B 00000000 ~~
+Li bourns_knob
+Sc 0
+AR /5373DB9B
+Op 0 0 0
+T0 -6.35 -3.6 1 1 0 0.15 N V 21 N "S1"
+T1 6.3 -3.7 1 1 0 0.15 N V 21 N "QUADRATURE_ENCODR"
+$PAD
+Sh "1" C 2 2 0 0 0
+Dr 1 0 0
+At STD N 00E0FFFF
+Ne 3 "N-000005"
+Po -3.75 3.3
+$EndPAD
+$PAD
+Sh "2" C 2 2 0 0 0
+Dr 1 0 0
+At STD N 00E0FFFF
+Ne 1 "GND"
+Po -1.25 3.3
+$EndPAD
+$PAD
+Sh "3" C 2 2 0 0 0
+Dr 1 0 0
+At STD N 00E0FFFF
+Ne 2 "N-0000022"
+Po 1.25 3.3
+$EndPAD
+$PAD
+Sh "4" C 2 2 0 0 0
+Dr 1 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 3.75 3.3
+$EndPAD
+$PAD
+Sh "" R 2 2.1 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 6.1 0
+$EndPAD
+$PAD
+Sh "" R 2 2.1 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -6.1 0
+$EndPAD
+$EndMODULE bourns_knob
+$MODULE bourns_potentiometer
+Po 0 0 0 15 5379657B 00000000 ~~
+Li bourns_potentiometer
+Sc 0
+AR /53750AFE
+Op 0 0 0
+T0 -6.35 -3.6 1 1 0 0.15 N V 21 N "R2"
+T1 6.3 -3.7 1 1 0 0.15 N V 21 N "50K"
+$PAD
+Sh "1" C 2 2 0 0 0
+Dr 1 0 0
+At STD N 00E0FFFF
+Ne 3 "N-0000019"
+Po -3.75 3.3
+$EndPAD
+$PAD
+Sh "2" C 2 2 0 0 0
+Dr 1 0 0
+At STD N 00E0FFFF
+Ne 1 "/MODE SELECT"
+Po -1.25 3.3
+$EndPAD
+$PAD
+Sh "3" C 2 2 0 0 0
+Dr 1 0 0
+At STD N 00E0FFFF
+Ne 2 "N-0000016"
+Po 1.25 3.3
+$EndPAD
+$PAD
+Sh "4" C 2 2 0 0 0
+Dr 1 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 3.75 3.3
+$EndPAD
+$PAD
+Sh "" R 2 2.1 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 6.1 0
+$EndPAD
+$PAD
+Sh "" R 2 2.1 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -6.1 0
+$EndPAD
+$EndMODULE bourns_potentiometer
+$EndLIBRARY
