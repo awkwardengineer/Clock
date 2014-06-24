@@ -1,17 +1,17 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 5/18/2014 11:05:38 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 5/22/2014 3:04:11 PM
 
 BeginCmp
 TimeStamp = /5373D24E;
 Reference = BT1;
 ValeurCmp = BATTERY;
-IdModule  = ;
+IdModule  = AA_battery_clip;
 EndCmp
 
 BeginCmp
 TimeStamp = /5373D25B;
 Reference = BT2;
 ValeurCmp = BATTERY;
-IdModule  = ;
+IdModule  = AA_battery_clip;
 EndCmp
 
 BeginCmp
@@ -67,21 +67,21 @@ BeginCmp
 TimeStamp = /537645F2;
 Reference = D1;
 ValeurCmp = DIODE;
-IdModule  = ;
+IdModule  = SIL-2;
 EndCmp
 
 BeginCmp
 TimeStamp = /5336523F;
 Reference = D2;
 ValeurCmp = LED;
-IdModule  = ;
+IdModule  = SIL-2;
 EndCmp
 
 BeginCmp
 TimeStamp = /5336524C;
 Reference = D3;
 ValeurCmp = LED;
-IdModule  = ;
+IdModule  = SIL-2;
 EndCmp
 
 BeginCmp
@@ -242,7 +242,7 @@ BeginCmp
 TimeStamp = /533652ED;
 Reference = SP1;
 ValeurCmp = SPEAKER;
-IdModule  = ;
+IdModule  = SIL-2;
 EndCmp
 
 BeginCmp
@@ -263,7 +263,7 @@ BeginCmp
 TimeStamp = /5336496D;
 Reference = X1;
 ValeurCmp = CRYSTAL 32.768kHz;
-IdModule  = ;
+IdModule  = CRYSTAL;
 EndCmp
 
 EndListe
