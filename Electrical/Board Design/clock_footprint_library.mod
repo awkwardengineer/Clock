@@ -1,13 +1,77 @@
-PCBNEW-LibModule-V1  5/18/2014 11:03:02 PM
+PCBNEW-LibModule-V1  5/22/2014 4:09:20 PM
 # encoding utf-8
 Units mm
 $INDEX
+AA_battery_clip
+CRYSTAL
 SOT23
 ammeter
 bourns_encoder
 bourns_knob
 bourns_potentiometer
+pin_array_3x2
 $EndINDEX
+$MODULE AA_battery_clip
+Po 0 0 0 15 537D1775 00000000 ~~
+Li AA_battery_clip
+Sc 0
+AR /5373D25B
+Op 0 0 0
+T0 -5.9 -26.15 1 1 900 0.15 N V 21 N "BT2"
+T1 6.95 -26.65 1 1 900 0.15 N V 21 N "BATTERY"
+$PAD
+Sh "2" R 5.08 3.96 0 0 0
+Dr 0 0 -1.98
+At SMD N 00888000
+Ne 1 "GND"
+Po 0 -35.26
+$EndPAD
+$PAD
+Sh "1" R 5.08 3.96 0 0 0
+Dr 0 0 1.98
+At SMD N 00888000
+Ne 2 "N-000002"
+Po 0 -16.81
+$EndPAD
+$PAD
+Sh "1" R 2.34 3.96 0 0 0
+Dr 0 0 -1.98
+At SMD N 00888000
+Ne 2 "N-000002"
+Po 0 0
+$EndPAD
+$PAD
+Sh "2" R 2.34 3.96 0 0 0
+Dr 0 0 1.96
+At SMD N 00888000
+Ne 1 "GND"
+Po 0 -52.07
+$EndPAD
+$EndMODULE AA_battery_clip
+$MODULE CRYSTAL
+Po 0 0 0 15 537E49F6 00000000 ~~
+Li CRYSTAL
+Sc 0
+AR 
+Op 0 0 0
+T0 -4.6 -1.7 1 1 0 0.15 N V 21 N "CRYSTAL"
+T1 3.05 -1.7 1 1 0 0.15 N V 21 N "VAL**"
+DC 0 0 1.6 0 0.15 21
+$PAD
+Sh "2" C 0.6 0.6 0 0 0
+Dr 0.4 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -0.55 0
+$EndPAD
+$PAD
+Sh "1" C 0.6 0.6 0 0 0
+Dr 0.4 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 0.55 0
+$EndPAD
+$EndMODULE CRYSTAL
 $MODULE SOT23
 Po 0 0 0 15 53797464 00000000 ~~
 Li SOT23
@@ -51,26 +115,26 @@ Ro 0 0 180
 $EndSHAPE3D
 $EndMODULE SOT23
 $MODULE ammeter
-Po 0 0 0 15 537913B5 00000000 ~~
+Po 0 0 0 15 537E5574 00000000 ~~
 Li ammeter
 Sc 0
-AR 
+AR /53743854
 Op 0 0 0
-T0 -5 0 1 1 0 0.15 N V 21 N "AMMETER"
-T1 -4 3 1 1 0 0.15 N I 21 N "VAL**"
+T0 7.8 0.05 1 1 0 0.15 N V 21 N "DS2"
+T1 17.2 0 1 1 0 0.15 N I 21 N "AMMETER"
 $PAD
 Sh "1" C 4 4 0 0 0
 Dr 2.5 0 0
 At STD N 00E0FFFF
-Ne 0 ""
-Po -13 0
+Ne 2 "N-0000024"
+Po 0 0
 $EndPAD
 $PAD
 Sh "2" C 4 4 0 0 0
 Dr 2.5 0 0
 At STD N 00E0FFFF
-Ne 0 ""
-Po 13 0
+Ne 1 "GND"
+Po 26 0
 $EndPAD
 $EndMODULE ammeter
 $MODULE bourns_encoder
@@ -219,4 +283,67 @@ Ne 0 ""
 Po -6.1 0
 $EndPAD
 $EndMODULE bourns_potentiometer
+$MODULE pin_array_3x2
+Po 0 0 0 15 537E5961 00000000 ~~
+Li pin_array_3x2
+Cd Double rangee de contacts 2 x 4 pins
+Kw CONN
+Sc 0
+AR /53378124
+Op 0 0 0
+T0 0 -3.81 1.016 1.016 0 0.2032 N V 21 N "CON1"
+T1 0 3.81 1.016 1.016 0 0.2032 N I 21 N "AVR-ISP-6"
+DS 3.81 2.54 -3.81 2.54 0.2032 21
+DS -3.81 -2.54 3.81 -2.54 0.2032 21
+DS 3.81 -2.54 3.81 2.54 0.2032 21
+DS -3.81 2.54 -3.81 -2.54 0.2032 21
+$PAD
+Sh "1" R 1.524 1.524 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 1 "/ALARM BUZZER"
+Po -2.54 1.27
+$EndPAD
+$PAD
+Sh "2" C 1.524 1.524 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 6 "VCC"
+Po -2.54 -1.27
+$EndPAD
+$PAD
+Sh "3" C 1.524 1.524 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 2 "/ALARM LIGHT"
+Po 0 1.27
+$EndPAD
+$PAD
+Sh "4" C 1.524 1.524 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 3 "/AM PM LIGHT"
+Po 0 -1.27
+$EndPAD
+$PAD
+Sh "5" C 1.524 1.524 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 5 "N-000009"
+Po 2.54 1.27
+$EndPAD
+$PAD
+Sh "6" C 1.524 1.524 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 4 "GND"
+Po 2.54 -1.27
+$EndPAD
+$SHAPE3D
+Na "pin_array/pins_array_3x2.wrl"
+Sc 1 1 1
+Of 0 0 0
+Ro 0 0 0
+$EndSHAPE3D
+$EndMODULE pin_array_3x2
 $EndLIBRARY

@@ -37,7 +37,7 @@ $Descr USLedger 17000 11000
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "18 may 2014"
+Date "22 may 2014"
 Rev ""
 Comp ""
 Comment1 ""
@@ -90,9 +90,9 @@ F 3 "" H 9200 1900 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text Label 11300 2700 2    60   ~ 0
-INT 2
-Text Label 7300 2700 0    60   ~ 0
 INT 1
+Text Label 7300 2700 0    60   ~ 0
+INT 2
 Text Notes 7600 1300 0    79   ~ 0
 QUADRATURE ENCODER\nSWITCH DEBOUNCE BLOCK
 Text Notes 13100 1600 0    79   ~ 0
