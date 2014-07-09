@@ -1,17 +1,31 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 5/22/2014 3:04:11 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 7/2/2014 3:35:08 PM
 
 BeginCmp
-TimeStamp = /5373D24E;
+TimeStamp = /53B41CBB;
 Reference = BT1;
-ValeurCmp = BATTERY;
-IdModule  = AA_battery_clip;
+ValeurCmp = BATTERY_CLIP;
+IdModule  = AA_battery_clip_single;
 EndCmp
 
 BeginCmp
-TimeStamp = /5373D25B;
+TimeStamp = /53B41CFA;
 Reference = BT2;
-ValeurCmp = BATTERY;
-IdModule  = AA_battery_clip;
+ValeurCmp = BATTERY_CLIP;
+IdModule  = AA_battery_clip_single;
+EndCmp
+
+BeginCmp
+TimeStamp = /53B41CA4;
+Reference = BT3;
+ValeurCmp = BATTERY_CLIP;
+IdModule  = AA_battery_clip_single;
+EndCmp
+
+BeginCmp
+TimeStamp = /53B41D0A;
+Reference = BT4;
+ValeurCmp = BATTERY_CLIP;
+IdModule  = AA_battery_clip_single;
 EndCmp
 
 BeginCmp

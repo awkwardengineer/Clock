@@ -1,14 +1,13 @@
-update=5/18/2014 4:15:56 PM
-version=1
-last_client=cvpcb
+update=7/7/2014 1:50:55 PM
+last_client=eeschema
 [pcbnew]
 version=1
 LastNetListRead=
 UseCmpFile=1
-PadDrill=0.600000000000
-PadDrillOvalY=0.600000000000
-PadSizeH=1.500000000000
-PadSizeV=1.500000000000
+PadDrill=0.000000000000
+PadDrillOvalY=0.000000000000
+PadSizeH=1.524000000000
+PadSizeV=1.524000000000
 PcbTextSizeV=1.500000000000
 PcbTextSizeH=1.500000000000
 PcbTextThickness=0.300000000000
@@ -39,12 +38,15 @@ LibName15=pga_sockets
 LibName16=valves
 LibName17=clock_footprint_library
 LibDir=
-[general]
+[cvpcb]
 version=1
+NetIExt=net
+[cvpcb/libraries]
+EquName1=devcms
 [eeschema]
 version=1
 LibDir=
-NetFmtName=
+NetFmtName=PcbnewAdvanced
 RptD_X=0
 RptD_Y=100
 RptLab=1
@@ -81,8 +83,3 @@ LibName28=atmel
 LibName29=contrib
 LibName30=valves
 LibName31=clock_schematic_library
-[cvpcb]
-version=1
-NetIExt=net
-[cvpcb/libraries]
-EquName1=devcms

@@ -1,8 +1,9 @@
-PCBNEW-LibModule-V1  5/22/2014 4:09:20 PM
+PCBNEW-LibModule-V1  7/8/2014 12:24:05 PM
 # encoding utf-8
 Units mm
 $INDEX
 AA_battery_clip
+AA_battery_clip_single
 CRYSTAL
 SOT23
 ammeter
@@ -48,6 +49,32 @@ Ne 1 "GND"
 Po 0 -52.07
 $EndPAD
 $EndMODULE AA_battery_clip
+$MODULE AA_battery_clip_single
+Po 0 0 0 15 53BADF00 00000000 ~~
+Li AA_battery_clip_single
+Sc 0
+AR /53B41CBB
+Op 0 0 0
+T0 4.445 -9.525 1 1 900 0.15 N V 21 N "BT1"
+T1 4.445 0 1 1 900 0.15 N V 21 N "BATTERY_CLIP"
+DS 6.35 9.525 6.35 -11.43 0.15 21
+DS 6.35 9.525 -6.35 9.525 0.15 21
+DS -6.35 9.525 -6.35 -11.43 0.15 21
+$PAD
+Sh "~" R 5.08 3.96 0 0 0
+Dr 0 0 1.98
+At SMD N 00888000
+Ne 0 ""
+Po 0 -8.555
+$EndPAD
+$PAD
+Sh "~" R 2.34 3.96 0 0 0
+Dr 0 0 -1.98
+At SMD N 00888000
+Ne 0 ""
+Po 0 8.255
+$EndPAD
+$EndMODULE AA_battery_clip_single
 $MODULE CRYSTAL
 Po 0 0 0 15 537E49F6 00000000 ~~
 Li CRYSTAL

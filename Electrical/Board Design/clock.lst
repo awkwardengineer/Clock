@@ -1,0 +1,88 @@
+eeschema (2013-07-07 BZR 4022)-stable  >> Creation date: 7/8/2014 3:06:24 PM
+#Cmp ( order = Reference )
+| BT1        BATTERY_CLIP
+| BT2        BATTERY_CLIP
+| BT3        BATTERY_CLIP
+| BT4        BATTERY_CLIP
+| C1         10uF        
+| C2         12.5pF      
+| C3         10uF        
+| C4         12.5pF      
+| C5         .01uF       
+| C6         .01uF       
+| CON1       AVR-ISP-6   
+| D1         DIODE       
+| D2         LED         
+| D3         LED         
+| DS1        AMMETER     
+| DS2        AMMETER     
+| IC1        ATTINY84A-SS
+| L1         4.7uH       
+| Q1         FET_N       
+| Q2         FET_P       
+| R1         50K         
+| R2         50K         
+| R3         50K         
+| R4         50K         
+| R5         130K        
+| R6         200K        
+| R7         36K         
+| R8         36K         
+| R9         10K         
+| R10        50K         
+| R11        50K         
+| R12        10K         
+| R13        220         
+| R14        220         
+| R15        220         
+| S1         QUADRATURE_ENCODR
+| SP1        SPEAKER     
+| SW1        SPST        
+| U1         MCP1624     
+| X1         CRYSTAL 32.768kHz
+#End Cmp
+
+#Cmp ( order = Value )
+| BATTERY_CLIP BT1       
+| BATTERY_CLIP BT2       
+| BATTERY_CLIP BT3       
+| BATTERY_CLIP BT4       
+| 12.5pF       C2        
+| 12.5pF       C4        
+| 10uF         C1        
+| 10uF         C3        
+| .01uF        C5        
+| .01uF        C6        
+| AVR-ISP-6    CON1      
+| DIODE        D1        
+| LED          D2        
+| LED          D3        
+| AMMETER      DS1       
+| AMMETER      DS2       
+| ATTINY84A-SS IC1       
+| 4.7uH        L1        
+| FET_N        Q1        
+| FET_P        Q2        
+| 220          R13       
+| 220          R14       
+| 220          R15       
+| 10K          R9        
+| 10K          R12       
+| 36K          R7        
+| 36K          R8        
+| 50K          R1        
+| 50K          R2        
+| 50K          R3        
+| 50K          R4        
+| 50K          R10       
+| 50K          R11       
+| 130K         R5        
+| 200K         R6        
+| QUADRATURE_ENCODR S1        
+| SPEAKER      SP1       
+| SPST         SW1       
+| MCP1624      U1        
+| CRYSTAL 32.768kHz X1        
+#End Cmp
+
+#End List
