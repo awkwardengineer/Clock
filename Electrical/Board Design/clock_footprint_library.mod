@@ -1,4 +1,4 @@
-PCBNEW-LibModule-V1  7/8/2014 12:24:05 PM
+PCBNEW-LibModule-V1  7/15/2014 11:00:40 PM
 # encoding utf-8
 Units mm
 $INDEX
@@ -57,21 +57,21 @@ AR /53B41CBB
 Op 0 0 0
 T0 4.445 -9.525 1 1 900 0.15 N V 21 N "BT1"
 T1 4.445 0 1 1 900 0.15 N V 21 N "BATTERY_CLIP"
-DS 6.35 9.525 6.35 -11.43 0.15 21
-DS 6.35 9.525 -6.35 9.525 0.15 21
-DS -6.35 9.525 -6.35 -11.43 0.15 21
+DS 6.35 11.025 6.35 -9.93 0.15 21
+DS 6.35 11.025 -6.35 11.025 0.15 21
+DS -6.35 11.025 -6.35 -9.93 0.15 21
 $PAD
 Sh "~" R 5.08 3.96 0 0 0
 Dr 0 0 1.98
 At SMD N 00888000
-Ne 0 ""
+Ne 1 "N-000006"
 Po 0 -8.555
 $EndPAD
 $PAD
 Sh "~" R 2.34 3.96 0 0 0
-Dr 0 0 -1.98
+Dr 0 0 0
 At SMD N 00888000
-Ne 0 ""
+Ne 1 "N-000006"
 Po 0 8.255
 $EndPAD
 $EndMODULE AA_battery_clip_single
@@ -165,7 +165,7 @@ Po 26 0
 $EndPAD
 $EndMODULE ammeter
 $MODULE bourns_encoder
-Po 0 0 0 15 53796774 00000000 ~~
+Po 0 0 0 15 53C5EAD3 00000000 ~~
 Li bourns_encoder
 Sc 0
 AR /5373DB9B
@@ -190,51 +190,51 @@ $PAD
 Sh "3" C 2 2 0 0 0
 Dr 1 0 0
 At STD N 00E0FFFF
-Ne 2 "N-0000022"
+Ne 2 "N-0000020"
 Po 2.5 2.5
 $EndPAD
 $PAD
-Sh "" R 2 2.1 0 0 0
-Dr 0 0 0
-At SMD N 00888000
+Sh "" O 3 4 0 0 0
+Dr 2 0 0 O 2 3.5
+At STD N 00E0FFFF
 Ne 0 ""
 Po 6.1 0
 $EndPAD
 $PAD
-Sh "" R 2 2.1 0 0 0
-Dr 0 0 0
-At SMD N 00888000
+Sh "" O 3 4 0 0 0
+Dr 2 0 0 O 2 3.5
+At STD N 00E0FFFF
 Ne 0 ""
 Po -6.1 0
 $EndPAD
 $EndMODULE bourns_encoder
 $MODULE bourns_knob
-Po 0 0 0 15 5379657B 00000000 ~~
+Po 0 0 0 15 53C5E94A 00000000 ~~
 Li bourns_knob
 Sc 0
-AR /5373DB9B
+AR /53750AFE
 Op 0 0 0
-T0 -6.35 -3.6 1 1 0 0.15 N V 21 N "S1"
-T1 6.3 -3.7 1 1 0 0.15 N V 21 N "QUADRATURE_ENCODR"
+T0 -8.999 -0.052 1 1 0 0.15 N V 21 N "R2"
+T1 9.035 -0.052 1 1 0 0.15 N V 21 N "50K"
 $PAD
 Sh "1" C 2 2 0 0 0
 Dr 1 0 0
 At STD N 00E0FFFF
-Ne 3 "N-000005"
+Ne 2 "N-0000015"
 Po -3.75 3.3
 $EndPAD
 $PAD
 Sh "2" C 2 2 0 0 0
 Dr 1 0 0
 At STD N 00E0FFFF
-Ne 1 "GND"
+Ne 1 "/MODE SELECT"
 Po -1.25 3.3
 $EndPAD
 $PAD
 Sh "3" C 2 2 0 0 0
 Dr 1 0 0
 At STD N 00E0FFFF
-Ne 2 "N-0000022"
+Ne 3 "N-0000016"
 Po 1.25 3.3
 $EndPAD
 $PAD
@@ -245,16 +245,16 @@ Ne 0 ""
 Po 3.75 3.3
 $EndPAD
 $PAD
-Sh "" R 2 2.1 0 0 0
-Dr 0 0 0
-At SMD N 00888000
+Sh "" O 3 4 0 0 0
+Dr 2 0 0 O 2 3.5
+At STD N 00E0FFFF
 Ne 0 ""
 Po 6.1 0
 $EndPAD
 $PAD
-Sh "" R 2 2.1 0 0 0
-Dr 0 0 0
-At SMD N 00888000
+Sh "" O 3 4 0 0 0
+Dr 2 0 0 O 2 3.5
+At STD N 00E0FFFF
 Ne 0 ""
 Po -6.1 0
 $EndPAD
