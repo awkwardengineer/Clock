@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 7/2/2014 3:35:08 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 7/13/2014 2:31:04 PM
 
 BeginCmp
 TimeStamp = /53B41CBB;
@@ -171,14 +171,14 @@ EndCmp
 BeginCmp
 TimeStamp = /5373C536;
 Reference = R5;
-ValeurCmp = R;
+ValeurCmp = 130K;
 IdModule  = SM0805;
 EndCmp
 
 BeginCmp
 TimeStamp = /5373C59E;
 Reference = R6;
-ValeurCmp = R;
+ValeurCmp = 200K;
 IdModule  = SM0805;
 EndCmp
 
@@ -249,7 +249,7 @@ BeginCmp
 TimeStamp = /5373DB9B;
 Reference = S1;
 ValeurCmp = QUADRATURE_ENCODR;
-IdModule  = bourns_knob;
+IdModule  = bourns_encoder;
 EndCmp
 
 BeginCmp
