@@ -1,4 +1,4 @@
-PCBNEW-LibModule-V1  7/15/2014 11:00:40 PM
+PCBNEW-LibModule-V1  7/22/2014 1:27:21 PM
 # encoding utf-8
 Units mm
 $INDEX
@@ -165,18 +165,22 @@ Po 26 0
 $EndPAD
 $EndMODULE ammeter
 $MODULE bourns_encoder
-Po 0 0 0 15 53C5EAD3 00000000 ~~
+Po 0 0 0 15 53CE9EF5 00000000 ~~
 Li bourns_encoder
 Sc 0
 AR /5373DB9B
 Op 0 0 0
 T0 -6.35 -3.6 1 1 0 0.15 N V 21 N "S1"
-T1 6.3 -3.7 1 1 0 0.15 N V 21 N "QUADRATURE_ENCODR"
+T1 6.3 -3.7 1 1 0 0.15 N V 21 N "QUADRATURE_ENCODER"
+DS 8 5.5 -8 5.5 0.3 21
+DS -8 5.5 -8 -2.5 0.3 21
+DS -8 -2.5 8 -2.5 0.3 21
+DS 8 -2.5 8 5.5 0.3 21
 $PAD
 Sh "1" C 2 2 0 0 0
 Dr 1 0 0
 At STD N 00E0FFFF
-Ne 3 "N-000005"
+Ne 3 "N-000006"
 Po -2.5 2.45
 $EndPAD
 $PAD
@@ -190,7 +194,7 @@ $PAD
 Sh "3" C 2 2 0 0 0
 Dr 1 0 0
 At STD N 00E0FFFF
-Ne 2 "N-0000020"
+Ne 2 "N-0000021"
 Po 2.5 2.5
 $EndPAD
 $PAD
@@ -209,18 +213,22 @@ Po -6.1 0
 $EndPAD
 $EndMODULE bourns_encoder
 $MODULE bourns_knob
-Po 0 0 0 15 53C5E94A 00000000 ~~
+Po 0 0 0 15 53CDDB9E 00000000 ~~
 Li bourns_knob
 Sc 0
 AR /53750AFE
 Op 0 0 0
-T0 -8.999 -0.052 1 1 0 0.15 N V 21 N "R2"
-T1 9.035 -0.052 1 1 0 0.15 N V 21 N "50K"
+T0 -9.5 -0.5 1 1 0 0.15 N V 21 N "R2"
+T1 10 -0.5 1 1 0 0.15 N V 21 N "50K"
+DS -8 7 8 7 0.3 21
+DS 8 7 8 -3 0.3 21
+DS 8 -3 -8 -3 0.3 21
+DS -8 -3 -8 7 0.3 21
 $PAD
 Sh "1" C 2 2 0 0 0
 Dr 1 0 0
 At STD N 00E0FFFF
-Ne 2 "N-0000015"
+Ne 2 "N-0000016"
 Po -3.75 3.3
 $EndPAD
 $PAD
@@ -234,7 +242,7 @@ $PAD
 Sh "3" C 2 2 0 0 0
 Dr 1 0 0
 At STD N 00E0FFFF
-Ne 3 "N-0000016"
+Ne 3 "N-0000017"
 Po 1.25 3.3
 $EndPAD
 $PAD
