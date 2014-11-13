@@ -1,0 +1,28 @@
+Line,Description,ID,Manufacturer,Manufacturer Part Number,Alternates,Supplier,Supplier Part Number,Reference Designators,Line Quantity,Datasheet 1,Datasheet 2,Datasheet 3,Datasheet 4,Datasheet 5,Datasheet 6,Datasheet 7,Datasheet 8,Datasheet 9,Datasheet 10,Datasheet 11,Datasheet 12,Datasheet 13,Datasheet 14,Datasheet 15,Datasheet 16,Datasheet 17
+1,DNP,DNP,,,,,,CON1 Q1 R13 R14 R15 R4 Q2 SW1 D2 D3 SP1 D1 DS1 DS2 ,,,,,,,,,,,,,,,,,,
+2,IC MCU 8BIT 4KB FLASH 14SOIC,ADESTO/ATTINY44V-10SSU,Adesto Technologies,ATTINY44V-10SSU,"ATTINY84V-10SSU 
+ATTINY84-20SSU  
+ATTINY44V-10SSU  
+ATTINY44A-SSU  
+ATTINY44-20SSU",Arrow,ATTINY44V-10SSU,IC1,1,,,,,,,,,,,,,,,,,
+3,CAP CER 10UF 16V 10% X5R 0805,TE2/GRM21BR61C106KE15L,TDK-EPC,GRM21BR61C106KE15L,open,Mouser,GRM21BR61C106KE15L,C1 C3,2,http://www.murata.com/products/catalog/pdf/c02e.pdf,http://datasheet.octopart.com/GRM21BR61C106KE15L-Murata-datasheet-8326434.pdf,http://datasheet.octopart.com/GRM21BR61C106KE15L-Murata-datasheet-14397509.pdf,,,,,,,,,,,,,,
+4,RES 51.0K OHM 1/8W 1% 0805 SMD,DALE/CRCW080551K0FKEA,Dale,CRCW080551K0FKEA,open,Newark,27W4713,R1 R10 R11 R3,4,,,,,,,,,,,,,,,,,
+5,INDUCTOR 4.7UH 30MA 0805,MURATA/LQM21NN4R7K10L,Murata,LQM21NN4R7K10L,open,Future Electronics,LQM21NN4R7K10L,L1,1,,,,,,,,,,,,,,,,,
+6,RES 200K OHM 1/8W 1% 0805 SMD,ECG/ERJ-6ENF2003V,ECG,ERJ-6ENF2003V,open,Mouser,ERJ-6ENF2003V,R6,1,,,,,,,,,,,,,,,,,
+7,RES 130K OHM 1/8W 1% 0805 SMD,ECG/ERJ-6ENF1303V,ECG,ERJ-6ENF1303V,open,Mouser,ERJ-6ENF1303V,R5,1,,,,,,,,,,,,,,,,,
+8,CAP CER 10000PF 50V 10% X7R 0805,AVX2/08055C103KAT2A,AVX / Kyocera,08055C103KAT2A,open,Newark,19C6332,C5 C6,2,http://datasheet.octopart.com/0603ZD105KAT2A-AVX-datasheet-5383.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-8113618.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-167033.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-12509786.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-12587061.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-111406.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-4352.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-5313617.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-11546901.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-8446237.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-148183.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-5377487.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-119053.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-75321.pdf,http://datasheet.octopart.com/08055C104KAT2A-AVX-datasheet-899.pdf,http://datasheet.octopart.com/06035C103KAT2A-AVX-datasheet-499018.pdf,http://datasheet.octopart.com/08055C103KAT2A-AVX-datasheet-7840860.pdf
+9,RES 10K OHM 1/8W 5% 0805 SMD,PANASONIC/ERJ-6GEYJ103V,Panasonic,ERJ-6GEYJ103V,open,Mouser,ERJ-6GEYJ103V,R12 R9,2,,,,,,,,,,,,,,,,,
+10,RES 36K OHM 1/8W .1% 0805 SMD,ECG/ERA6AEB363V,ECG,ERA6AEB363V,open,Mouser,ERA-6AEB363V,R7 R8,2,http://datasheet.octopart.com/ERA3AEB104V-Panasonic-datasheet-13381385.pdf,http://datasheet.octopart.com/ERA3AEB104V-Panasonic-datasheet-8367715.pdf,http://datasheet.octopart.com/ERA3AEB104V-Panasonic-datasheet-13327109.pdf,http://datasheet.octopart.com/ERA-3AEB104V-Panasonic-datasheet-118567.pdf,http://datasheet.octopart.com/ERJ-6GEYJ122V-Panasonic---ECG-datasheet-15994758.pdf,http://datasheet.octopart.com/ERA2AEB103X-Panasonic-datasheet-10050158.pdf,,,,,,,,,,,
+11,CAP CER 12PF 50V 5% NPO 0805,YAGEO/CC0805JRNPO9BN120,Yageo,CC0805JRNPO9BN120,open,Future Electronics,CC0805JRNPO9BN120,C2 C4,2,,,,,,,,,,,,,,,,,
+12,IC CONV PIC MICROCTRLR SOT-23-6,MICROCHIP/MCP1624T-I%2FCHY,Microchip,MCP1624T-I/CHY,-,Mouser,MCP1624T-I/CHY,U1,1,,,,,,,,,,,,,,,,,
+13,CRYSTAL 32.768KHZ 12.5PF THRU,ABRACON/AB38T-32.768KHZ,Abracon,AB38T-32.768KHZ,open,Digi-Key,535-9034-ND,X1,1,,,,,,,,,,,,,,,,,
+14,CLIP CONTACT BATTERY AA SMD,MPD/BK-53-TR,MPD,BK-53-TR,open,Digi-Key,BK-53DKR-ND,BT1 BT2 BT3 BT4,4,,,,,,,,,,,,,,,,,
+15,ENCODER ROTARY,BOURNS/PEC12R-2117F-N0024,Bourns,PEC12R-2117F-N0024,"PEC12R-2120F-N0012
+PEC12R-2117F-N0024
+PEC12R-2117F-N0012
+PEC12R-2217F-N0012
+PEC12R-2220F-N0024
+PEC12R-2217F-N0024",Mouser,PEC12R-2117F-N0024,S1,1,http://datasheet.octopart.com/PEC12R-2117F-N0024-Bourns-datasheet-16722599.pdf,,,,,,,,,,,,,,,,
+16,POTENTIOMETER,,Bourns,open,"PTV111-2420A-B203
+PTV111-2415A-B103  
+PTV111-2415A-A105",,,R2,1,,,,,,,,,,,,,,,,,

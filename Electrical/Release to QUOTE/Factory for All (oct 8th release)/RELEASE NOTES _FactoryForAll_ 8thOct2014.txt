@@ -1,0 +1,48 @@
+RELEASE NOTES
+==================
+8th Oct 2014 release
+
+
+This has been my first crack getting PCB's spun. I went through Circuithub.com before and I'm curious how you stack up for an order of QTY 100 boards. Most components are generic, 0805 size passives, with the exception of the items below.
+
+
+The voltmeters themselves aren't on the BOM for the board, as they are attached mechanically at a different assembly leve. The voltmeters for the clock are the PM-2, 50uA DC ammeter from China Hope Sun. I had gotten pricing through an intermediary tht didn't speak english well. Specifically, I wanted to get the same meter, but with my design for the scale inserted, and wanted quotes of QTY 50, 100, 500, 1000, both with my custom scale and with their standard one. (http://www.chinahopesun.com/en/products/PDetail.aspx?ID=27600)
+
+
+I had planned on adding some extra features onto the board to support an alarm clock, but left them unpopulated.
+
+
+Finally, what are the implications of moving Linest 15 and 16, the encoder and potentiometer knobs, to the other side of the board? Beside the clock crystal and the unpopulated features, they are the only thru hole components. I'm fairly certain that Circuithub.com's manufacturer ended up hand soldering them, anyway.
+
+
+
+
+Line 2, IC1
+Design was based around an Atmel ATtiny44. The ATtiny88 and a bunch of low power versions are available as alternates. I'd be curious to talk about burning the chips in, too.
+
+Line 12, U1
+I had picked this specific voltage boost regulator from Microchip and think it's best to keep it.
+
+Line 13, X1
+I was surprised, but I think the thru hole package crystal ended up cheaper than SMT, when sourced on Octopart... would be happy to consider alternates, though.
+
+Line 14, BT1 BT2 BT3 BT4
+Battery Clip BK-53-TR
+I looked high and low for battery clips for AA batteries. This is the doodad I found, but I'd be open to look for others.
+
+Line 15, S1
+I had picked this particular family of encoder knobs from Bourns because there was a matching potentiometer knob in their catalog. I liked that it was at a right angle, and the size was good. Unfortunately, I had trouble sourcing the POT, and ended up bending the pins 90 degrees to sortof fake the "right angle" knob that I wanted. The knob affects the fit to the case, so any alternates would need mechanical approval, but otherwise I'd love to find a pair of matching encoders/potentiometer knobs. I found a whole bunch of potential alternates:
+
+	
+PEC12R-2120F-N0012
+PEC12R-2117F-N0024
+PEC12R-2117F-N0012
+PEC12R-2217F-N0012
+PEC12R-2220F-N0024
+PEC12R-2217F-N0024
+
+Line 16, R2
+See notes on Line 15 above.
+PTV111-2420A-B203
+PTV111-2415A-B103		
+PTV111-2415A-A105
