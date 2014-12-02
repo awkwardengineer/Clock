@@ -3,16 +3,16 @@ RELEASE NOTES
 8th Oct 2014 release
 
 
-This has been my first crack getting PCB's spun. I went through Circuithub.com before and I'm curious how you stack up for an order of QTY 100 boards. Most components are generic, 0805 size passives, with the exception of the items below.
+This has been my first crack getting PCB's spun. I went through a US manufacturer for prototypes, and I'm curious how you stack up. Most components are generic, 0805 size passives, with the exception of the items below.
 
 
-The voltmeters themselves aren't on the BOM for the board, as they are attached mechanically at a different assembly level. The voltmeters for the clock are the PM-2, 50uA DC ammeter from China Hope Sun. I had gotten pricing through an intermediary tht didn't speak english well. Specifically, I wanted to get the same meter, but with my design for the scale inserted, and wanted quotes of QTY 50, 100, 500, 1000, both with my custom scale and with their standard one. (http://www.chinahopesun.com/en/products/PDetail.aspx?ID=27600)
+The voltmeters themselves aren't on the BOM for the board, as they are attached mechanically at a different assembly level. The voltmeters for the clock are the PM-2, 50uA DC ammeter from China Hope Sun.
 
 
 I had planned on adding some extra features onto the board to support an alarm clock, but left them unpopulated.
 
 
-Finally, what are the implications of moving Linest 15 and 16, the encoder and potentiometer knobs, to the other side of the board? Beside the clock crystal and the unpopulated features, they are the only thru hole components. I'm fairly certain that Circuithub.com's manufacturer ended up hand soldering them, anyway.
+Finally, what are the implications of moving Lines 15 and 16, the encoder and potentiometer knobs, to the other side of the board? Beside the clock crystal and the unpopulated features, they are the only thru hole components. I'm fairly certain that Circuithub.com's manufacturer ended up hand soldering them, anyway.
 
 
 
