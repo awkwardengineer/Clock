@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="765"
@@ -113,9 +114,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="201.16208"
-     inkscape:cy="739.49505"
+     inkscape:zoom="5.6"
+     inkscape:cx="329.28538"
+     inkscape:cy="386.70575"
      inkscape:document-units="px"
      inkscape:current-layer="g3006"
      showgrid="false"
@@ -157,7 +158,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -2941,6 +2942,24 @@
              x="-221.2234"
              y="50.558128"
              style="font-size:20px" /></flowRegion><flowPara
-           id="flowPara7150-3-4-3">G.</flowPara></flowRoot>    </g>
+           id="flowPara7150-3-4-3">G.</flowPara></flowRoot>      <image
+         y="-258.22906"
+         x="213.35995"
+         id="image11851"
+         xlink:href="file:///C:/Users/sfeller/Google%20Drive/Clock/Mechanical/Artwork/001.png"
+         height="226.83061"
+         width="160.57219"
+         transform="matrix(0.00781901,0.99996943,-0.99996943,0.00781901,0,0)"
+         style="opacity:0.5" />
+      <image
+         y="-462.7934"
+         x="905.29364"
+         id="image11851-1"
+         xlink:href="file:///C:/Users/sfeller/Google%20Drive/Clock/Mechanical/Artwork/001.png"
+         height="226.83061"
+         width="160.57219"
+         transform="matrix(0.00781901,0.99996943,-0.99996943,0.00781901,0,0)"
+         style="opacity:0.5" />
+    </g>
   </g>
 </svg>
