@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 7/13/2014 2:31:04 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 1/3/2015 9:02:29 PM
 
 BeginCmp
 TimeStamp = /53B41CBB;
@@ -57,17 +57,24 @@ IdModule  = SM0805;
 EndCmp
 
 BeginCmp
-TimeStamp = /536A4944;
+TimeStamp = /536A5550;
 Reference = C5;
 ValeurCmp = .01uF;
 IdModule  = SM0805;
 EndCmp
 
 BeginCmp
-TimeStamp = /536A5550;
+TimeStamp = /536A4944;
 Reference = C6;
 ValeurCmp = .01uF;
 IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /54A89CEC;
+Reference = C7;
+ValeurCmp = 1uF;
+IdModule  = C1;
 EndCmp
 
 BeginCmp
@@ -75,6 +82,13 @@ TimeStamp = /53378124;
 Reference = CON1;
 ValeurCmp = AVR-ISP-6;
 IdModule  = pin_array_3x2;
+EndCmp
+
+BeginCmp
+TimeStamp = /54A87A25;
+Reference = CON2;
+ValeurCmp = USB-MICRO-B;
+IdModule  = USB_MINI_B;
 EndCmp
 
 BeginCmp
@@ -197,28 +211,28 @@ IdModule  = SM0805;
 EndCmp
 
 BeginCmp
-TimeStamp = /53378727;
+TimeStamp = /53378721;
 Reference = R9;
 ValeurCmp = 10K;
 IdModule  = SM0805;
 EndCmp
 
 BeginCmp
-TimeStamp = /5376426B;
+TimeStamp = /53764271;
 Reference = R10;
 ValeurCmp = 50K;
 IdModule  = SM0805;
 EndCmp
 
 BeginCmp
-TimeStamp = /53764271;
+TimeStamp = /5376426B;
 Reference = R11;
 ValeurCmp = 50K;
 IdModule  = SM0805;
 EndCmp
 
 BeginCmp
-TimeStamp = /53378721;
+TimeStamp = /53378727;
 Reference = R12;
 ValeurCmp = 10K;
 IdModule  = SM0805;
@@ -271,6 +285,13 @@ TimeStamp = /5373C97A;
 Reference = U1;
 ValeurCmp = MCP1624;
 IdModule  = SOT23_6;
+EndCmp
+
+BeginCmp
+TimeStamp = /54A87F96;
+Reference = U2;
+ValeurCmp = MCP1702T-1502E/TO;
+IdModule  = TO92;
 EndCmp
 
 BeginCmp
