@@ -1,0 +1,154 @@
+                                                                                                                                                                                                                                                               
+Return-Path: <sam@awkwardengineer.com>
+Received: from mail-qg0-f43.google.com (mail-qg0-f43.google.com. [209.85.192.43])
+        by mx.google.com with ESMTPSA id 4sm28658355qgh.22.2015.01.03.10.01.24
+        for <peter@vokrot.com>
+        (version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+        Sat, 03 Jan 2015 10:01:24 -0800 (PST)
+Received: by mail-qg0-f43.google.com with SMTP id z107so14173102qgd.30
+        for <peter@vokrot.com>; Sat, 03 Jan 2015 10:01:24 -0800 (PST)
+X-Received: by 10.140.101.105 with SMTP id t96mr61816776qge.9.1420308084536;
+ Sat, 03 Jan 2015 10:01:24 -0800 (PST)
+MIME-Version: 1.0
+References: <CALXiB-8Mg8_W=VkTQcNz=weeOCzzS+qHw3tPLOMcKh-G2jkZTg@mail.gmail.com>
+ <CAMV8fA8+E=TNjHRt39GUQX7fVr3Np1qCuT5ZnOOvmeOBmAXM3g@mail.gmail.com>
+From: Sam Feller <sam@awkwardengineer.com>
+Date: Sat, 03 Jan 2015 18:01:23 +0000
+Message-ID: <CALXiB-_Pcu0mfnjKbMykBEw+gJvyfvkCnX5VFMZ9SJ+uOWcs6A@mail.gmail.com>
+Subject: Re: random technical question
+To: Peter Vokrot <peter@vokrot.com>
+Content-Type: multipart/alternative; boundary=001a11c16782d9c095050bc33e6a
+
+--001a11c16782d9c095050bc33e6a
+Content-Type: text/plain; charset=UTF-8
+
+Cool. Thanks for the feedback. I had briefly considered waste heat out of
+the LDO, but figured that I was drawing so little current, it wouldn't be a
+big issue. It's probably worth spending 5 minutes to run the math.
+
+thanks a bunch!
+-Sam
+
+On Sat Jan 03 2015 at 12:08:45 PM Peter Vokrot <peter@vokrot.com> wrote:
+
+> Hi Sam,
+>
+> I would seem that you've scoped the "upgrade" to minimize changes/costs.
+> It would be nice if they could use both AC and battery. But, your approach
+> to mimic a battery using a USB wall wart is a good one, considering how
+> cheap and easy they are to use.
+>
+> One thing to note is how much power you'll waste as heat on the LDO: the
+> voltage drop of 3.5V * current. I don't think it would be a problem
+> considering your tiny microcontroller, but you'll need to take it into
+> consideration so you don't send the LDO into over-temp reset. I've run and
+> LDO at 24V for an output of 5.5V and it hit 85C at a couple hundred mA.
+> Alternatively you could use a buck converter. Search Digikey for DC-DC
+> converter, board mount. There are a number that are 3-pin compatible with
+> LDOs but with 90%+ efficiencies (no heat).
+>
+> Good luck!
+>
+> Peter
+>
+> On Fri, Jan 2, 2015 at 12:07 PM, Sam Feller <sam@awkwardengineer.com>
+> wrote:
+>
+>> Hey Peter,
+>>
+>> here's a tech question on power management...
+>>
+>>
+>> a bunch of people have asked for a plugged in version of the Clock so as
+>> to avoid using batteries. I of course, am trying to make people happy,
+>> while keeping life as simple as possible for myself.  I know there are
+>> power management chips that will automatically switch between power sources
+>> as they are detected, but that throws a loop in my design process.
+>>
+>> can you tell me if this plan sounds reasonable? I want to effectively
+>> mimic a battery so that I can minimize changes to the rest of my board.
+>>
+>> 1. the base design will use battery clips, but will have unpopulated pads
+>> for the plugged in version. Users that really want to modify their boards
+>> can hand modify them.
+>>
+>> 2. the unpopulated pads will be physically located to interlock with the
+>> battery clips, preventing the addition of a battery when the new parts are
+>> installed.
+>>
+>> 3. To mimic a battery, I'll use a miniUSB connector with user supplied
+>> wall wart (4.7v) which is common enough without having to manage
+>> international voltages / electrical outlets. I'll pass that through an LDO
+>> regulator to get closer to 1.5V battery voltage, and then connect that to
+>> the rest of my circuit.
+>>
+>> so the idea is that hand soldering on 2-3 components (USB connector, LDO
+>> regulator, and filter cap) will allow me to use the same board.
+>>
+>>
+>> sorry if the wordy explanation was a bit hard to follow. what do you
+>> think?
+>>
+>> thanks!
+>> -Sam
+>>
+>>
+>
+
+--001a11c16782d9c095050bc33e6a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Cool. Thanks for the feedback. I had briefly considered waste heat out of t=
+he LDO, but figured that I was drawing so little current, it wouldn&#39;t b=
+e a big issue. It&#39;s probably worth spending 5 minutes to run the math.<=
+br><div><br></div><div>thanks a bunch!</div><div>-Sam</div><br><div class=
+=3D"gmail_quote">On Sat Jan 03 2015 at 12:08:45 PM Peter Vokrot &lt;<a href=
+=3D"mailto:peter@vokrot.com">peter@vokrot.com</a>&gt; wrote:<br><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
+d;padding-left:1ex"><div dir=3D"ltr">Hi Sam,<div><br></div><div>I would see=
+m that you&#39;ve scoped the &quot;upgrade&quot; to minimize changes/costs.=
+ It would be nice if they could use both AC and battery. But, your approach=
+ to mimic a battery using a USB wall wart is a good one, considering how ch=
+eap and easy they are to use.</div><div><br></div><div>One thing to note is=
+ how much power you&#39;ll waste as heat on the LDO: the voltage drop of 3.=
+5V * current. I don&#39;t think it would be a problem considering your tiny=
+ microcontroller, but you&#39;ll need to take it into consideration so you =
+don&#39;t send the LDO into over-temp reset. I&#39;ve run and LDO at 24V fo=
+r an output of 5.5V and it hit 85C at a couple hundred mA. Alternatively yo=
+u could use a buck converter. Search Digikey for DC-DC converter, board mou=
+nt. There are a number that are 3-pin compatible with LDOs but with 90%+ ef=
+ficiencies (no heat).</div><div><br></div><div>Good luck!</div></div><div d=
+ir=3D"ltr"><div><br></div><div>Peter=C2=A0</div></div><div class=3D"gmail_e=
+xtra"><br><div class=3D"gmail_quote">On Fri, Jan 2, 2015 at 12:07 PM, Sam F=
+eller <span dir=3D"ltr">&lt;<a href=3D"mailto:sam@awkwardengineer.com" targ=
+et=3D"_blank">sam@awkwardengineer.com</a>&gt;</span> wrote:<br><blockquote =
+class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
+;padding-left:1ex">Hey Peter,<div><br></div><div>here&#39;s a tech question=
+ on power management...</div><div><br></div><div><br></div><div>a bunch of =
+people have asked for a plugged in version of the Clock so as to avoid usin=
+g batteries. I of course, am trying to make people happy, while keeping lif=
+e as simple as possible for myself.=C2=A0 I know there are power management=
+ chips that will automatically switch between power sources as they are det=
+ected, but that throws a loop in my design process.</div><div><br></div><di=
+v>can you tell me if this plan sounds reasonable? I want to effectively mim=
+ic a battery so that I can minimize changes to the rest of my board.</div><=
+div><br></div><div>1. the base design will use battery clips, but will have=
+ unpopulated pads for the plugged in version. Users that really want to mod=
+ify their boards can hand modify them.</div><div><br></div><div>2. the unpo=
+pulated pads will be physically located to interlock with the battery clips=
+, preventing the addition of a battery when the new parts are installed.</d=
+iv><div><br></div><div>3. To mimic a battery, I&#39;ll use a miniUSB connec=
+tor with user supplied wall wart (4.7v) which is common enough without havi=
+ng to manage international voltages / electrical outlets. I&#39;ll pass tha=
+t through an LDO regulator to get closer to 1.5V battery voltage, and then =
+connect that to the rest of my circuit.</div><div><br></div><div>so the ide=
+a is that hand soldering on 2-3 components (USB connector, LDO regulator, a=
+nd filter cap) will allow me to use the same board.</div><div><br></div><di=
+v><br></div><div>sorry if the wordy explanation was a bit hard to follow. w=
+hat do you think?</div><div><br></div><div>thanks!</div><span><font color=
+=3D"#888888"><div>-Sam</div><div><br></div>
+</font></span></blockquote></div><br></div>
+</blockquote></div>
+
+--001a11c16782d9c095050bc33e6a--
