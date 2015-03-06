@@ -65,3 +65,6 @@ Electrical/Board Design/clock.bak
 Electrical/Board Design/clock.bak
 *.bak
 Electrical/Board Design/clock.pro
+Software/Firmware_Board1/Firmware_Board1/Debug/*.*
+Media Campaign/Video/*.*
+Software/Firmware_Board1/Firmware_Board1/Debug/Makefile
