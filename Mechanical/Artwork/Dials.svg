@@ -114,9 +114,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="279.65094"
-     inkscape:cy="415.54004"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="157.66341"
+     inkscape:cy="706.51015"
      inkscape:document-units="px"
      inkscape:current-layer="g3006"
      showgrid="false"
@@ -2943,23 +2943,25 @@
              y="50.558128"
              style="font-size:20px" /></flowRegion><flowPara
            id="flowPara7150-3-4-3">G.</flowPara></flowRoot>      <image
-         y="-258.22906"
-         x="213.35995"
+         sodipodi:absref="C:\Users\sfeller\Dropbox\Clock\Mechanical\Artwork\../Artwork/001.png"
+         xlink:href="../Artwork/001.png"
+         style="opacity:0.5"
+         transform="matrix(0.00781901,0.99996943,-0.99996943,0.00781901,0,0)"
+         width="160.57219"
+         height="226.83061"
          id="image11851"
-         xlink:href="file:///C:/Users/sfeller/Google%20Drive/Clock/Mechanical/Artwork/001.png"
-         height="226.83061"
-         width="160.57219"
-         transform="matrix(0.00781901,0.99996943,-0.99996943,0.00781901,0,0)"
-         style="opacity:0.5" />
+         x="213.35995"
+         y="-258.22906" />
       <image
-         y="-697.00488"
-         x="915.69666"
-         id="image11851-1"
-         xlink:href="file:///C:/Users/sfeller/Google%20Drive/Clock/Mechanical/Artwork/001.png"
-         height="226.83061"
-         width="160.57219"
+         sodipodi:absref="C:\Users\sfeller\Dropbox\Clock\Mechanical\Artwork\../Artwork/001.png"
+         xlink:href="../Artwork/001.png"
+         style="opacity:0.5"
          transform="matrix(0.00781901,0.99996943,-0.99996943,0.00781901,0,0)"
-         style="opacity:0.5" />
+         width="160.57219"
+         height="226.83061"
+         id="image11851-1"
+         x="915.69666"
+         y="-697.00488" />
     </g>
   </g>
 </svg>
