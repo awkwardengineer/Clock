@@ -21,9 +21,9 @@ PTV111-2420A-B104
 
 PTV111-
 
-2 - <config: no busshing, pins horizontal>
+2 - <config: no bushing, pins horizontal>
 4 - <center detent?: none>
-20 - <shaft length: 20mm>
+20 - <shaft length: 25mm>
 A - Flat type shaft
 B - <taper: most linearly tapered curve available>
 104 - <resistance: 100K>

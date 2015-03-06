@@ -1,0 +1,409 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: sammymiami@gmail.com
+Received: by 10.229.84.9 with SMTP id h9csp812381qcl;
+        Wed, 11 Feb 2015 10:26:17 -0800 (PST)
+X-Received: by 10.194.239.72 with SMTP id vq8mr62852644wjc.110.1423679177424;
+        Wed, 11 Feb 2015 10:26:17 -0800 (PST)
+Return-Path: <sam+caf_=sammymiami=gmail.com@awkwardengineer.com>
+Received: from mail-wi0-x236.google.com (mail-wi0-x236.google.com. [2a00:1450:400c:c05::236])
+        by mx.google.com with ESMTPS id h7si2747330wjy.71.2015.02.11.10.26.16
+        for <sammymiami@gmail.com>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 11 Feb 2015 10:26:17 -0800 (PST)
+Received-SPF: none (google.com: sam+caf_=sammymiami=gmail.com@awkwardengineer.com does not designate permitted sender hosts) client-ip=2a00:1450:400c:c05::236;
+Authentication-Results: mx.google.com;
+       spf=none (google.com: sam+caf_=sammymiami=gmail.com@awkwardengineer.com does not designate permitted sender hosts) smtp.mail=sam+caf_=sammymiami=gmail.com@awkwardengineer.com;
+       dkim=pass header.i=@digikey.com
+Received: by mail-wi0-x236.google.com with SMTP id n3so6982616wiv.3
+        for <sammymiami@gmail.com>; Wed, 11 Feb 2015 10:26:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:delivered-to:dkim-signature:from:to:subject
+         :thread-topic:thread-index:date:message-id:accept-language
+         :content-language:content-type:mime-version;
+        bh=vK6zHu6z03Ona8ITeKFitH4cmYXqzl9uaXM6IHe9DyU=;
+        b=gUTku4F6PvCASP9rILzn2OsuORc/6bVlNLscipN0sEiDR3BPArgl4xYneOfM31GsmV
+         +Bdr0r7M/ekr7rKGvAfKWay7QVHNfRSaX4VqjQP7acHV5d4u25ksPTZvmXqx0Uw8I8QQ
+         YPp7E/VK+TDa/t5FombhiabnQLATe5usKk68TbxEiTbMxfbkMn8nl9G05fbSa4BCLTS0
+         6c1NcRvrPy9Sm2OgcpMvjl0Qydg+/NvpfcMq9aqKTaVk86Hham/SZvA8/L866vLFi0WV
+         qZoyU6dkTNJGhoVOnNU/GIOdF4GfhqhZoFzMh+zaRD00aq2w7+LWJ7/AB8gdvTgBBKSN
+         Cy0Q==
+X-Gm-Message-State: ALoCoQnApIK66oT8XPs1zLY6gyEJuAmlR6ZPt9NpSRErgn/XlAssg0dYbz3ZDsgAWE4NQaBM8Aoo
+X-Received: by 10.180.23.36 with SMTP id j4mr8163576wif.69.1423679176728;
+        Wed, 11 Feb 2015 10:26:16 -0800 (PST)
+X-Forwarded-To: sammymiami@gmail.com
+X-Forwarded-For: sam@awkwardengineer.com sammymiami@gmail.com
+Delivered-To: sam@awkwardengineer.com
+Received: by 10.27.12.129 with SMTP id 1csp1407008wlm;
+        Wed, 11 Feb 2015 10:26:15 -0800 (PST)
+X-Received: by 10.50.49.43 with SMTP id r11mr32082918ign.18.1423679174794;
+        Wed, 11 Feb 2015 10:26:14 -0800 (PST)
+Return-Path: <prvs=4778cce7e=Nick.Westra@digikey.com>
+Received: from mail4.digikey.com (mail4.digikey.com. [204.221.76.205])
+        by mx.google.com with ESMTPS id y4si2397889icp.31.2015.02.11.10.26.13
+        for <SAM@awkwardengineer.com>
+        (version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+        Wed, 11 Feb 2015 10:26:14 -0800 (PST)
+Received-SPF: pass (google.com: domain of prvs=4778cce7e=Nick.Westra@digikey.com designates 204.221.76.205 as permitted sender) client-ip=204.221.76.205;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=digikey.com; s=en; t=1423679174;
+  h=from:to:subject:date:message-id:
+   content-transfer-encoding;
+  bh=vK6zHu6z03Ona8ITeKFitH4cmYXqzl9uaXM6IHe9DyU=;
+  b=VIPUQ4oCCK+sZMEZfpTOfu1Cp+Df3MG7325/oXKSsl3Xn0VT9SG/+1pg
+   5FUuv6wXiev54kSOnD93lTnEhJS2OdwuOFKUEd2njLE/oD3R++0gDjm+8
+   rIF4ZDzHnOPs5nbbEZP7ZEk/rT2uV7KyJdyjCp/1VuSL2BMYh00anbjOs
+   E=;
+Received: from [127.0.0.1] by mail4.digikey.com; 11 Feb 2015 18:26:13 -0000
+From: Nick Westra <Nick.Westra@digikey.com>
+To: "SAM@AWKWARDENGINEER.COM" <SAM@AWKWARDENGINEER.COM>
+Subject: Reference Number from Digi-Key 
+Thread-Topic: Reference Number from Digi-Key 
+Thread-Index: AdBGKDaMQXdgMCwYSMGmBkYtF5YnpQ==
+Date: Wed, 11 Feb 2015 18:26:12 +0000
+Message-ID: <A6C75114914A80428D33A88DE4B97BF628EA51@DKCEXCH-03.DIGIKEY.US>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+Content-Type: multipart/related;
+	boundary="_004_A6C75114914A80428D33A88DE4B97BF628EA51DKCEXCH03DIGIKEYU_";
+	type="multipart/alternative"
+MIME-Version: 1.0
+
+--_004_A6C75114914A80428D33A88DE4B97BF628EA51DKCEXCH03DIGIKEYU_
+Content-Type: multipart/alternative;
+	boundary="_000_A6C75114914A80428D33A88DE4B97BF628EA51DKCEXCH03DIGIKEYU_"
+
+--_000_A6C75114914A80428D33A88DE4B97BF628EA51DKCEXCH03DIGIKEYU_
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+T2630274
+
+
+Let me know if I can be of further assistance.
+
+Nick Westra
+Technical Support Specialist
+Digi-Key Corporation
+701 Brooks Ave. South
+Thief River Falls, Mn 56701 USA
+Nick.Westra@digikey.com<mailto:Nick.Westra@digikey.com>
+Phone: 1-800-344-4539 ext. 3805 (direct)
+Fax: 1-218-681-3330
+www.digikey.com<http://www.digikey.com/>
+[TechnicalSupport_CMYK]
+Digi-Key offers its Technical Assistance and Applications Engineering solel=
+y as a convenience to Digi-Key customers. Digi-Key Technical Assistance and=
+ Applications Engineering personnel strive to provide useful information re=
+garding the Products. Digi-Key does not guarantee that any information or r=
+ecommendation provided is accurate, complete, or correct, and Digi-Key shal=
+l have no responsibility or liability whatsoever in connection with any inf=
+ormation or recommendation provided, or your reliance on such information o=
+r recommendation. You are solely responsible for analyzing and determining =
+the appropriateness of any information or recommendation provided by Digi-K=
+ey Technical Assistance and Applications Engineering Personnel, and any rel=
+iance on such information or recommendation is at your sole risk and discre=
+tion.
+
+
+
+
+This email and the associated attachments may contain information that
+is proprietary, privileged, confidential or otherwise protected from
+disclosure.  If you are not the intended recipient or otherwise have
+received this message in error, you are not authorized to read, print,
+retain, copy or disseminate this message or any part of it.  If you
+are not the intended recipient or otherwise have received this message
+in error, please notify us immediately, destroy any paper copies and
+delete all electronic files of the message.
+Thank you.   Digi-Key Corporation.
+
+--_000_A6C75114914A80428D33A88DE4B97BF628EA51DKCEXCH03DIGIKEYU_
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Arial Narrow";
+	panose-1:2 11 6 6 2 2 2 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">T2630274<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Let me know if I can be of further assistance.<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Arial Narrow&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Arial Narrow&quot;,&quot;sans-serif&quot;">Nick Westra<o:p></o:p></span></=
+b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Arial Narrow&quot;,&quot;sans-serif&quot;">Technical Support Specialist
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Arial Narrow&quot;,&quot;sans-serif&quot;">Digi-Key Corporation<o:p></o:p>=
+</span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial Narrow&quot;,&quot;sans-serif&quot;">701 Brooks Ave. South<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial Narrow&quot;,&quot;sans-serif&quot;">Thief River Falls, Mn 56701 USA<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial Narrow&quot;,&quot;sans-serif&quot;"><a href=3D"mailto:Nick.Westra@digi=
+key.com">Nick.Westra@digikey.com</a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial Narrow&quot;,&quot;sans-serif&quot;">Phone: 1-800-344-4539 ext. 3805 (d=
+irect)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial Narrow&quot;,&quot;sans-serif&quot;">Fax: 1-218-681-3330<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial Narrow&quot;,&quot;sans-serif&quot;"><a href=3D"http://www.digikey.com/=
+">www.digikey.com</a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial Narrow&quot;,&quot;sans-serif&quot;;color:black"><img border=3D"0" widt=
+h=3D"333" height=3D"90" id=3D"Picture_x0020_2" src=3D"cid:image001.jpg@01D0=
+45F5.EC01F640" alt=3D"TechnicalSupport_CMYK"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial Narrow&quot;,&quot;sans-serif&quot;">Digi-Key offers its Technical Assi=
+stance and Applications Engineering solely as a convenience to Digi-Key cus=
+tomers. Digi-Key Technical Assistance and Applications Engineering
+ personnel strive to provide useful information regarding the Products. Dig=
+i-Key does not guarantee that any information or recommendation provided is=
+ accurate, complete, or correct, and Digi-Key shall have no responsibility =
+or liability whatsoever in connection
+ with any information or recommendation provided, or your reliance on such =
+information or recommendation. You are solely responsible for analyzing and=
+ determining the appropriateness of any information or recommendation provi=
+ded by Digi-Key Technical Assistance
+ and Applications Engineering Personnel, and any reliance on such informati=
+on or recommendation is at your sole risk and discretion.<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<p><br>
+This email and the associated attachments may contain information that<br>
+is proprietary, privileged, confidential or otherwise protected from<br>
+disclosure.&nbsp; If you are not the intended recipient or otherwise have<b=
+r>
+received this message in error, you are not authorized to read, print,<br>
+retain, copy or disseminate this message or any part of it.&nbsp; If you<br>
+are not the intended recipient or otherwise have received this message<br>
+in error, please notify us immediately, destroy any paper copies and<br>
+delete all electronic files of the message.<br>
+Thank you.&nbsp;  Digi-Key Corporation.</p></body>
+</html>
+
+--_000_A6C75114914A80428D33A88DE4B97BF628EA51DKCEXCH03DIGIKEYU_--
+
+--_004_A6C75114914A80428D33A88DE4B97BF628EA51DKCEXCH03DIGIKEYU_
+Content-Type: image/jpeg; name="image001.jpg"
+Content-Description: image001.jpg
+Content-Disposition: inline; filename="image001.jpg"; size=7281;
+	creation-date="Wed, 11 Feb 2015 18:26:12 GMT";
+	modification-date="Wed, 11 Feb 2015 18:26:12 GMT"
+Content-ID: <image001.jpg@01D045F5.EC01F640>
+Content-Transfer-Encoding: base64
+
+/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMg
+IyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wAARCABaAU0DASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD2aiii
+kAUUUUAFFMklSFC8rqiDqzHAFYV9410izB2SvcMP+eS5H5nAqZTjHdmlOjUqu0ItnQUV57efFOON
+iILSMAf89Jcn9BWPcfFPUZTiDyU/3Ii38yaz9vHodSy6t9qy9WetUV41J4/8QT/dlmH+5Eo/pUf/
+AAmfiT/ntd/98L/hR7b+6x/UO9SP4/5HtNFeNR+PfEMP3pZj/vxKf6Vbg+KGqxH98IJP9+Ir/I0e
+2XVMf9nyfwzi/n/wD1qivPLP4qB2AuLFCD3il5/IiugsfHWjXuA07W7ntMuB+Y4qlWg+plPA4iCu
+439NfyOjopkUsc8YeJ1dD0ZTkGn1ocgUUUUAFFFUtW1JdJ02W7aCe42D5YoIy7uewAFAF2ivDL/x
+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
+
+--_004_A6C75114914A80428D33A88DE4B97BF628EA51DKCEXCH03DIGIKEYU_--
+
