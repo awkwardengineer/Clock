@@ -1,0 +1,277 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: sammymiami@gmail.com
+Received: by 10.229.238.202 with SMTP id kt10csp1599259qcb;
+        Mon, 9 Mar 2015 15:05:12 -0700 (PDT)
+X-Received: by 10.180.76.4 with SMTP id g4mr106946586wiw.43.1425938712191;
+        Mon, 09 Mar 2015 15:05:12 -0700 (PDT)
+Return-Path: <sam+caf_=sammymiami=gmail.com@awkwardengineer.com>
+Received: from mail-wg0-f46.google.com (mail-wg0-f46.google.com. [74.125.82.46])
+        by mx.google.com with ESMTPS id di7si28667116wjc.113.2015.03.09.15.05.11
+        for <sammymiami@gmail.com>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 09 Mar 2015 15:05:11 -0700 (PDT)
+Received-SPF: none (google.com: sam+caf_=sammymiami=gmail.com@awkwardengineer.com does not designate permitted sender hosts) client-ip=74.125.82.46;
+Authentication-Results: mx.google.com;
+       spf=none (google.com: sam+caf_=sammymiami=gmail.com@awkwardengineer.com does not designate permitted sender hosts) smtp.mail=sam+caf_=sammymiami=gmail.com@awkwardengineer.com
+Received: by mail-wg0-f46.google.com with SMTP id l18so28191558wgh.5
+        for <sammymiami@gmail.com>; Mon, 09 Mar 2015 15:05:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-original-authentication-results:x-gm-message-state:delivered-to
+         :from:to:cc:subject:date:message-id:mime-version:content-type
+         :content-language:thread-index;
+        bh=tmXvq/P6db6ORbtvr0ub8chFElCXydHCADFpMDW8AIE=;
+        b=Ht1ZLfnJFkaAX+6FpiLU7fyXLzeMrYHFZNzOPhkLrFYe3mbqiAqIq0RpmH1CXBWMDf
+         hfT6t5Gul3e3GbJMW7EtXoV3RQTW8Z5o5dAKldXsFZhWfK68TZlRx3VY0Skbuo0tCnM6
+         79uCyE2VWKg/4I7d3CMeFr4Nk97YeWHAP4DeIetd1o4S9SR1LQGQ6HtY7VgbEUAn9hIk
+         M+4EqafDcTPsHwlxohgpaIV51xwrOLq42B1/a9HAAmm+gML0H64GVnmYaCbboCe2b4BU
+         Eo9Bmc/VgqgF/k3LGlenT6MXsSyz6A19/d2Ti3pHkKPDDsqaxnZygSV1qCtZ/0dlXSrO
+         Pivw==
+X-Original-Authentication-Results: mx.google.com;       spf=neutral (google.com: 74.52.222.242 is neither permitted nor denied by domain of nscanlon@worthingtonassembly.com) smtp.mail=nscanlon@worthingtonassembly.com
+X-Gm-Message-State: ALoCoQlDim+qlK+HdSC4ZlfBZUl3f+QkSnMErMRINvpAEcWkazSDS6K4NC7tlnXhwhoqwI7biP93
+X-Received: by 10.194.60.104 with SMTP id g8mr60906293wjr.96.1425938711479;
+        Mon, 09 Mar 2015 15:05:11 -0700 (PDT)
+X-Forwarded-To: sammymiami@gmail.com
+X-Forwarded-For: sam@awkwardengineer.com sammymiami@gmail.com
+Delivered-To: sam@awkwardengineer.com
+Received: by 10.27.12.167 with SMTP id 39csp1234922wlm;
+        Mon, 9 Mar 2015 15:05:10 -0700 (PDT)
+X-Received: by 10.202.190.6 with SMTP id o6mr22425993oif.28.1425938709448;
+        Mon, 09 Mar 2015 15:05:09 -0700 (PDT)
+Return-Path: <nscanlon@worthingtonassembly.com>
+Received: from gateway01.websitewelcome.com (gateway01.websitewelcome.com. [74.52.222.242])
+        by mx.google.com with ESMTPS id c1si730440oel.71.2015.03.09.15.05.07
+        for <sam@awkwardengineer.com>
+        (version=TLSv1 cipher=RC4-SHA bits=128/128);
+        Mon, 09 Mar 2015 15:05:08 -0700 (PDT)
+Received-SPF: neutral (google.com: 74.52.222.242 is neither permitted nor denied by domain of nscanlon@worthingtonassembly.com) client-ip=74.52.222.242;
+Received: by gateway01.websitewelcome.com (Postfix, from userid 5007)
+	id 765A768A6AD94; Mon,  9 Mar 2015 17:05:07 -0500 (CDT)
+Received: from gator3155.hostgator.com (gator3155.hostgator.com [50.87.144.195])
+	by gateway01.websitewelcome.com (Postfix) with ESMTP id 565AA68A6AD12
+	for <sam@awkwardengineer.com>; Mon,  9 Mar 2015 17:05:07 -0500 (CDT)
+Received: from [50.255.189.57] (port=2469 helo=NeilScanlonPC)
+	by gator3155.hostgator.com with esmtpsa (TLSv1:AES256-SHA:256)
+	(Exim 4.82)
+	(envelope-from <nscanlon@worthingtonassembly.com>)
+	id 1YV5nO-0008G8-Fg; Mon, 09 Mar 2015 17:05:06 -0500
+From: "Neil Scanlon" <nscanlon@worthingtonassembly.com>
+To: <sam@awkwardengineer.com>
+Cc: <cdenney@worthingtonassembly.com>
+Subject: Programmed Atmel Devices
+Date: Mon, 9 Mar 2015 18:05:05 -0400
+Message-ID: <031401d05ab5$1a1616a0$4e4243e0$@worthingtonassembly.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0315_01D05A93.930783E0"
+X-Mailer: Microsoft Outlook 14.0
+Content-Language: en-us
+Thread-Index: AdBatRf+QgINrwtPS7SzqptNfPz06Q==
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator3155.hostgator.com
+X-AntiAbuse: Original Domain - awkwardengineer.com
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - worthingtonassembly.com
+X-BWhitelist: no
+X-Source-IP: 50.255.189.57
+X-Exim-ID: 1YV5nO-0008G8-Fg
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: (NeilScanlonPC) [50.255.189.57]:2469
+X-Source-Auth: nscanlon@worthingtonassembly.com
+X-Email-Count: 1
+X-Source-Cap: ZWNocmlzZDtlY2hyaXNkO2dhdG9yMzE1NS5ob3N0Z2F0b3IuY29t
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0315_01D05A93.930783E0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hello Sam,
+
+Nice meeting you.
+
+ 
+
+As discussed you could go to any Atmel authorized distributer and have the
+devices arrive pre-programmed.
+
+ 
+
+We have done the most programming with Arrow.but Digi-key, Avnet, Future,
+and Mouser could all do this for you.
+
+ 
+
+I would have them all quote (520) or so programmed devices.we are going to
+need some extra if we build (500) pieces...
+
+ 
+
+Future I know is very aggressively pursuing startups locally right now..Zach
+Johnson is the local person to contact at Future.
+Zachary.Johnson@FutureElectronics.com 
+
+ 
+
+Arrow: mbelson@arrow.com
+
+ 
+
+Avnet: Bob.Lucy@avnet.com
+
+ 
+
+Digikey: Brenda.Gillund@digikey.com
+
+ 
+
+We always recommend having the devices that are programmed..labeled..by the
+distributer as well..to confirm the fact the device is programmed and
+typically we include a revision.
+
+ 
+
+ 
+
+Talk with you soon,
+
+ 
+
+ 
+
+ 
+
+ 
+
+Neil Scanlon
+
+President
+
+Worthington Assembly, Inc.
+
+ISO  9001:2008 certified
+
+14 Industrial Drive East
+
+South Deerfield, MA 01373
+
+www.worthingtonassembly.com <http://www.worthingtonassembly.com/> 
+
+ 
+
+Main Phone:  1.413.397.8260
+
+Direct Line:     1.413.397.8270
+
+Fax:                  1.413.397.8293
+
+Mobile:           1.413.262.7227     
+
+ 
+
+
+------=_NextPart_000_0315_01D05A93.930783E0
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>Hello =
+Sam,<o:p></o:p></p><p class=3DMsoNormal>Nice meeting =
+you.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>As discussed you could go to any Atmel authorized =
+distributer and have the devices arrive pre-programmed.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>We have done =
+the most programming with Arrow&#8230;but Digi-key, Avnet, Future, and =
+Mouser could all do this for you&#8230;<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I would have =
+them all quote (520) or so programmed devices&#8230;we are going to need =
+some extra if we build (500) pieces&#8230;..<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Future I =
+know is very aggressively pursuing startups locally right =
+now&#8230;.Zach Johnson is the local person to contact at Future. <a =
+href=3D"mailto:Zachary.Johnson@FutureElectronics.com">Zachary.Johnson@Fut=
+ureElectronics.com</a> <o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Arrow: <a =
+href=3D"mailto:mbelson@arrow.com">mbelson@arrow.com</a><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Avnet: <a =
+href=3D"mailto:Bob.Lucy@avnet.com">Bob.Lucy@avnet.com</a><o:p></o:p></p><=
+p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Digikey: =
+<a =
+href=3D"mailto:Brenda.Gillund@digikey.com">Brenda.Gillund@digikey.com</a>=
+<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>We always recommend having the devices that are =
+programmed&#8230;.labeled&#8230;.by the distributer as well&#8230;.to =
+confirm the fact the device is programmed and typically we include a =
+revision.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Talk with =
+you soon,<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Neil =
+Scanlon<o:p></o:p></p><p class=3DMsoNormal>President<o:p></o:p></p><p =
+class=3DMsoNormal>Worthington Assembly, Inc.<o:p></o:p></p><p =
+class=3DMsoNormal><b>ISO&nbsp; 9001:2008 certified</b><o:p></o:p></p><p =
+class=3DMsoNormal>14 Industrial Drive East<o:p></o:p></p><p =
+class=3DMsoNormal>South Deerfield, MA 01373<o:p></o:p></p><p =
+class=3DMsoNormal><a =
+href=3D"http://www.worthingtonassembly.com/">www.worthingtonassembly.com<=
+/a><o:p></o:p></p><p class=3DMsoNormal>&nbsp;<o:p></o:p></p><p =
+class=3DMsoNormal>Main Phone:&nbsp; 1.413.397.8260<o:p></o:p></p><p =
+class=3DMsoNormal>Direct Line:&nbsp;&nbsp;&nbsp;&nbsp; =
+1.413.397.8270<o:p></o:p></p><p =
+class=3DMsoNormal>Fax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+1.413.397.8293<o:p></o:p></p><p =
+class=3DMsoNormal>Mobile:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; 1.413.262.7227&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_0315_01D05A93.930783E0--
+
