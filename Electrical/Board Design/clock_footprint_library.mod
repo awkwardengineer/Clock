@@ -1,7 +1,8 @@
-PCBNEW-LibModule-V1  7/22/2014 1:27:21 PM
+PCBNEW-LibModule-V1  3/20/2015 9:29:33 AM
 # encoding utf-8
 Units mm
 $INDEX
+AA_Battery_Clip_THRU_HOLE_BK-92
 AA_battery_clip
 AA_battery_clip_single
 CRYSTAL
@@ -12,6 +13,33 @@ bourns_knob
 bourns_potentiometer
 pin_array_3x2
 $EndINDEX
+$MODULE AA_Battery_Clip_THRU_HOLE_BK-92
+Po 0 0 0 15 550C20BB 00000000 ~~
+Li AA_Battery_Clip_THRU_HOLE_BK-92
+Sc 0
+AR 
+Op 0 0 0
+T0 -5 12.5 1 1 0 0.15 N V 21 N "BT "
+T1 -2 12.5 1 1 0 0.15 N V 21 N "VAL**"
+DS 6 11 6 5 0.15 21
+DS 6 11 -6 11 0.15 21
+DS -6 11 -6 5 0.15 21
+DS 1.27 -33.528 -1.27 -33.528 0.15 21
+$PAD
+Sh "~" C 3 3 0 0 0
+Dr 1.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 0 0
+$EndPAD
+$PAD
+Sh "~" C 3 3 0 0 0
+Dr 1.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 0 7.62
+$EndPAD
+$EndMODULE AA_Battery_Clip_THRU_HOLE_BK-92
 $MODULE AA_battery_clip
 Po 0 0 0 15 537D1775 00000000 ~~
 Li AA_battery_clip
