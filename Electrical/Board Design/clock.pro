@@ -1,13 +1,20 @@
-update=9/11/2014 1:43:11 PM
+update=4/25/2015 8:56:31 AM
 last_client=eeschema
+[cvpcb]
+version=1
+NetIExt=net
+[cvpcb/libraries]
+EquName1=devcms
+[general]
+version=1
 [pcbnew]
 version=1
 LastNetListRead=
 UseCmpFile=1
-PadDrill=0.000000000000
-PadDrillOvalY=0.000000000000
-PadSizeH=1.524000000000
-PadSizeV=1.524000000000
+PadDrill=1.780000000000
+PadDrillOvalY=1.780000000000
+PadSizeH=2.800000000000
+PadSizeV=5.500000000000
 PcbTextSizeV=1.500000000000
 PcbTextSizeH=1.500000000000
 PcbTextThickness=0.300000000000
@@ -18,8 +25,9 @@ SolderMaskClearance=0.000000000000
 SolderMaskMinWidth=0.000000000000
 DrawSegmentWidth=0.200000000000
 BoardOutlineThickness=0.100000000000
-ModuleOutlineThickness=0.150000000000
+ModuleOutlineThickness=0.300000000000
 [pcbnew/libraries]
+LibDir=
 LibName1=sockets
 LibName2=connect
 LibName3=discret
@@ -37,12 +45,6 @@ LibName14=dip_sockets
 LibName15=pga_sockets
 LibName16=valves
 LibName17=clock_footprint_library
-LibDir=
-[cvpcb]
-version=1
-NetIExt=net
-[cvpcb/libraries]
-EquName1=devcms
 [eeschema]
 version=1
 LibDir=

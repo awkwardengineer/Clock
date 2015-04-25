@@ -1,31 +1,31 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 1/3/2015 9:02:29 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 4/14/2015 7:49:07 PM
 
 BeginCmp
 TimeStamp = /53B41CBB;
 Reference = BT1;
 ValeurCmp = BATTERY_CLIP;
-IdModule  = AA_battery_clip_single;
+IdModule  = AA_Battery_Clip_THRU_HOLE_BK-92;
 EndCmp
 
 BeginCmp
 TimeStamp = /53B41CFA;
 Reference = BT2;
 ValeurCmp = BATTERY_CLIP;
-IdModule  = AA_battery_clip_single;
+IdModule  = AA_Battery_Clip_THRU_HOLE_BK-92;
 EndCmp
 
 BeginCmp
 TimeStamp = /53B41CA4;
 Reference = BT3;
 ValeurCmp = BATTERY_CLIP;
-IdModule  = AA_battery_clip_single;
+IdModule  = AA_Battery_Clip_THRU_HOLE_BK-92;
 EndCmp
 
 BeginCmp
 TimeStamp = /53B41D0A;
 Reference = BT4;
 ValeurCmp = BATTERY_CLIP;
-IdModule  = AA_battery_clip_single;
+IdModule  = AA_Battery_Clip_THRU_HOLE_BK-92;
 EndCmp
 
 BeginCmp
@@ -138,6 +138,27 @@ TimeStamp = /5373CB63;
 Reference = L1;
 ValeurCmp = 4.7uH;
 IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /55241100;
+Reference = P1;
+ValeurCmp = CONN_6;
+IdModule  = SIL-6;
+EndCmp
+
+BeginCmp
+TimeStamp = /552DA9D4;
+Reference = P2;
+ValeurCmp = CONN_2;
+IdModule  = SIL-2;
+EndCmp
+
+BeginCmp
+TimeStamp = /552DAE13;
+Reference = P3;
+ValeurCmp = CONN_2;
+IdModule  = SIL-2;
 EndCmp
 
 BeginCmp
@@ -291,14 +312,14 @@ BeginCmp
 TimeStamp = /54A87F96;
 Reference = U2;
 ValeurCmp = MCP1702T-1502E/TO;
-IdModule  = TO92;
+IdModule  = TO92-INVERT;
 EndCmp
 
 BeginCmp
 TimeStamp = /5336496D;
 Reference = X1;
 ValeurCmp = CRYSTAL 32.768kHz;
-IdModule  = CRYSTAL;
+IdModule  = SMD_CRYSTAL_SMALL;
 EndCmp
 
 EndListe
