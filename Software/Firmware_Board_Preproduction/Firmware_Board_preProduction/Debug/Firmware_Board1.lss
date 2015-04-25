@@ -1,0 +1,1067 @@
+
+Firmware_Board1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000606  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000020  00800060  00000606  0000069a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000008  00800080  00800080  000006ba  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  000006bc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000097  00000000  00000000  00000d88  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  00000e1f  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000088  00000000  00000000  00000e4e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   000003b5  00000000  00000000  00000ed6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 0000016f  00000000  00000000  0000128b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00000241  00000000  00000000  000013fa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000160  00000000  00000000  0000163c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000207  00000000  00000000  0000179c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    000001cf  00000000  00000000  000019a3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000078  00000000  00000000  00001b72  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	10 c0       	rjmp	.+32     	; 0x22 <__ctors_end>
+   2:	2a c0       	rjmp	.+84     	; 0x58 <__bad_interrupt>
+   4:	48 c2       	rjmp	.+1168   	; 0x496 <__vector_2>
+   6:	28 c0       	rjmp	.+80     	; 0x58 <__bad_interrupt>
+   8:	27 c0       	rjmp	.+78     	; 0x58 <__bad_interrupt>
+   a:	26 c0       	rjmp	.+76     	; 0x58 <__bad_interrupt>
+   c:	11 c2       	rjmp	.+1058   	; 0x430 <__vector_6>
+   e:	24 c0       	rjmp	.+72     	; 0x58 <__bad_interrupt>
+  10:	23 c0       	rjmp	.+70     	; 0x58 <__bad_interrupt>
+  12:	22 c0       	rjmp	.+68     	; 0x58 <__bad_interrupt>
+  14:	21 c0       	rjmp	.+66     	; 0x58 <__bad_interrupt>
+  16:	20 c0       	rjmp	.+64     	; 0x58 <__bad_interrupt>
+  18:	1f c0       	rjmp	.+62     	; 0x58 <__bad_interrupt>
+  1a:	1e c0       	rjmp	.+60     	; 0x58 <__bad_interrupt>
+  1c:	1d c0       	rjmp	.+58     	; 0x58 <__bad_interrupt>
+  1e:	1c c0       	rjmp	.+56     	; 0x58 <__bad_interrupt>
+  20:	1b c0       	rjmp	.+54     	; 0x58 <__bad_interrupt>
+
+00000022 <__ctors_end>:
+  22:	11 24       	eor	r1, r1
+  24:	1f be       	out	0x3f, r1	; 63
+  26:	cf e5       	ldi	r28, 0x5F	; 95
+  28:	d1 e0       	ldi	r29, 0x01	; 1
+  2a:	de bf       	out	0x3e, r29	; 62
+  2c:	cd bf       	out	0x3d, r28	; 61
+
+0000002e <__do_copy_data>:
+  2e:	10 e0       	ldi	r17, 0x00	; 0
+  30:	a0 e6       	ldi	r26, 0x60	; 96
+  32:	b0 e0       	ldi	r27, 0x00	; 0
+  34:	e6 e0       	ldi	r30, 0x06	; 6
+  36:	f6 e0       	ldi	r31, 0x06	; 6
+  38:	02 c0       	rjmp	.+4      	; 0x3e <__SP_H__>
+  3a:	05 90       	lpm	r0, Z+
+  3c:	0d 92       	st	X+, r0
+  3e:	a0 38       	cpi	r26, 0x80	; 128
+  40:	b1 07       	cpc	r27, r17
+  42:	d9 f7       	brne	.-10     	; 0x3a <__do_copy_data+0xc>
+
+00000044 <__do_clear_bss>:
+  44:	20 e0       	ldi	r18, 0x00	; 0
+  46:	a0 e8       	ldi	r26, 0x80	; 128
+  48:	b0 e0       	ldi	r27, 0x00	; 0
+  4a:	01 c0       	rjmp	.+2      	; 0x4e <.do_clear_bss_start>
+
+0000004c <.do_clear_bss_loop>:
+  4c:	1d 92       	st	X+, r1
+
+0000004e <.do_clear_bss_start>:
+  4e:	a8 38       	cpi	r26, 0x88	; 136
+  50:	b2 07       	cpc	r27, r18
+  52:	e1 f7       	brne	.-8      	; 0x4c <.do_clear_bss_loop>
+  54:	5a d2       	rcall	.+1204   	; 0x50a <main>
+  56:	d5 c2       	rjmp	.+1450   	; 0x602 <_exit>
+
+00000058 <__bad_interrupt>:
+  58:	d3 cf       	rjmp	.-90     	; 0x0 <__vectors>
+
+0000005a <tell_time>:
+
+	
+	return;
+}
+
+void tell_time(){
+  5a:	8f 92       	push	r8
+  5c:	9f 92       	push	r9
+  5e:	af 92       	push	r10
+  60:	bf 92       	push	r11
+  62:	cf 92       	push	r12
+  64:	df 92       	push	r13
+  66:	ef 92       	push	r14
+  68:	ff 92       	push	r15
+	unsigned long hours;
+	unsigned long minutes;
+	
+	hours = (((timer_interrupts / MINS_CONVERSION) % 720) * cal_hours) / 720 ; //order of operations matters to avoid rounding errors
+  6a:	60 91 62 00 	lds	r22, 0x0062
+  6e:	70 91 63 00 	lds	r23, 0x0063
+  72:	80 91 64 00 	lds	r24, 0x0064
+  76:	90 91 65 00 	lds	r25, 0x0065
+  7a:	b0 90 61 00 	lds	r11, 0x0061
+  7e:	2c e3       	ldi	r18, 0x3C	; 60
+  80:	30 e0       	ldi	r19, 0x00	; 0
+  82:	40 e0       	ldi	r20, 0x00	; 0
+  84:	50 e0       	ldi	r21, 0x00	; 0
+  86:	87 d2       	rcall	.+1294   	; 0x596 <__udivmodsi4>
+  88:	0f 2e       	mov	r0, r31
+  8a:	f0 ed       	ldi	r31, 0xD0	; 208
+  8c:	cf 2e       	mov	r12, r31
+  8e:	f2 e0       	ldi	r31, 0x02	; 2
+  90:	df 2e       	mov	r13, r31
+  92:	e1 2c       	mov	r14, r1
+  94:	f1 2c       	mov	r15, r1
+  96:	f0 2d       	mov	r31, r0
+  98:	ca 01       	movw	r24, r20
+  9a:	b9 01       	movw	r22, r18
+  9c:	a7 01       	movw	r20, r14
+  9e:	96 01       	movw	r18, r12
+  a0:	7a d2       	rcall	.+1268   	; 0x596 <__udivmodsi4>
+  a2:	2b 2d       	mov	r18, r11
+  a4:	30 e0       	ldi	r19, 0x00	; 0
+  a6:	40 e0       	ldi	r20, 0x00	; 0
+  a8:	50 e0       	ldi	r21, 0x00	; 0
+  aa:	49 d2       	rcall	.+1170   	; 0x53e <__mulsi3>
+  ac:	a7 01       	movw	r20, r14
+  ae:	96 01       	movw	r18, r12
+  b0:	72 d2       	rcall	.+1252   	; 0x596 <__udivmodsi4>
+	OCR0B = (uint8_t)(hours );  //get the low byte of hours
+  b2:	2c bf       	out	0x3c, r18	; 60
+	
+	minutes = (((timer_interrupts / SECONDS_CONVERSION) % 3600) * cal_minutes) / 3600;
+  b4:	60 91 62 00 	lds	r22, 0x0062
+  b8:	70 91 63 00 	lds	r23, 0x0063
+  bc:	80 91 64 00 	lds	r24, 0x0064
+  c0:	90 91 65 00 	lds	r25, 0x0065
+  c4:	80 90 60 00 	lds	r8, 0x0060
+  c8:	91 2c       	mov	r9, r1
+  ca:	a1 2c       	mov	r10, r1
+  cc:	b1 2c       	mov	r11, r1
+  ce:	0f 2e       	mov	r0, r31
+  d0:	f0 e1       	ldi	r31, 0x10	; 16
+  d2:	cf 2e       	mov	r12, r31
+  d4:	fe e0       	ldi	r31, 0x0E	; 14
+  d6:	df 2e       	mov	r13, r31
+  d8:	e1 2c       	mov	r14, r1
+  da:	f1 2c       	mov	r15, r1
+  dc:	f0 2d       	mov	r31, r0
+  de:	a7 01       	movw	r20, r14
+  e0:	96 01       	movw	r18, r12
+  e2:	59 d2       	rcall	.+1202   	; 0x596 <__udivmodsi4>
+  e4:	9b 01       	movw	r18, r22
+  e6:	ac 01       	movw	r20, r24
+  e8:	c5 01       	movw	r24, r10
+  ea:	b4 01       	movw	r22, r8
+  ec:	28 d2       	rcall	.+1104   	; 0x53e <__mulsi3>
+  ee:	a7 01       	movw	r20, r14
+  f0:	96 01       	movw	r18, r12
+  f2:	51 d2       	rcall	.+1186   	; 0x596 <__udivmodsi4>
+	OCR0A = (uint8_t)(minutes); //get the low byte of minutes
+  f4:	26 bf       	out	0x36, r18	; 54
+}
+  f6:	ff 90       	pop	r15
+  f8:	ef 90       	pop	r14
+  fa:	df 90       	pop	r13
+  fc:	cf 90       	pop	r12
+  fe:	bf 90       	pop	r11
+ 100:	af 90       	pop	r10
+ 102:	9f 90       	pop	r9
+ 104:	8f 90       	pop	r8
+ 106:	08 95       	ret
+
+00000108 <mode_time>:
+	
+	return;
+}
+
+void mode_time(){
+	if (ADCH < time_low){
+ 108:	85 b1       	in	r24, 0x05	; 5
+ 10a:	8d 3a       	cpi	r24, 0xAD	; 173
+ 10c:	40 f4       	brcc	.+16     	; 0x11e <mode_time+0x16>
+		mode_pointer = &mode_warble;
+ 10e:	89 eb       	ldi	r24, 0xB9	; 185
+ 110:	90 e0       	ldi	r25, 0x00	; 0
+ 112:	90 93 87 00 	sts	0x0087, r25
+ 116:	80 93 86 00 	sts	0x0086, r24
+		mode_warble();
+ 11a:	2b d0       	rcall	.+86     	; 0x172 <mode_warble>
+ 11c:	08 95       	ret
+	}
+	else{
+		
+		timer_interrupts += rotation_accumulator * 32; //scales the rotation accumulator so it changes time faster
+ 11e:	80 91 80 00 	lds	r24, 0x0080
+ 122:	90 91 81 00 	lds	r25, 0x0081
+ 126:	40 91 62 00 	lds	r20, 0x0062
+ 12a:	50 91 63 00 	lds	r21, 0x0063
+ 12e:	60 91 64 00 	lds	r22, 0x0064
+ 132:	70 91 65 00 	lds	r23, 0x0065
+ 136:	88 0f       	add	r24, r24
+ 138:	99 1f       	adc	r25, r25
+ 13a:	82 95       	swap	r24
+ 13c:	92 95       	swap	r25
+ 13e:	90 7f       	andi	r25, 0xF0	; 240
+ 140:	98 27       	eor	r25, r24
+ 142:	80 7f       	andi	r24, 0xF0	; 240
+ 144:	98 27       	eor	r25, r24
+ 146:	aa 27       	eor	r26, r26
+ 148:	97 fd       	sbrc	r25, 7
+ 14a:	a0 95       	com	r26
+ 14c:	ba 2f       	mov	r27, r26
+ 14e:	84 0f       	add	r24, r20
+ 150:	95 1f       	adc	r25, r21
+ 152:	a6 1f       	adc	r26, r22
+ 154:	b7 1f       	adc	r27, r23
+ 156:	80 93 62 00 	sts	0x0062, r24
+ 15a:	90 93 63 00 	sts	0x0063, r25
+ 15e:	a0 93 64 00 	sts	0x0064, r26
+ 162:	b0 93 65 00 	sts	0x0065, r27
+		rotation_accumulator = 0;
+ 166:	10 92 81 00 	sts	0x0081, r1
+ 16a:	10 92 80 00 	sts	0x0080, r1
+		
+		tell_time();	
+ 16e:	75 df       	rcall	.-278    	; 0x5a <tell_time>
+ 170:	08 95       	ret
+
+00000172 <mode_warble>:
+	static uint8_t warble_count = 0;
+	static int8_t warbling = 0;
+	static uint8_t warble_randomizer = 0;
+		
+	
+	if (ADCH < warble_low){
+ 172:	85 b1       	in	r24, 0x05	; 5
+ 174:	87 39       	cpi	r24, 0x97	; 151
+ 176:	60 f4       	brcc	.+24     	; 0x190 <mode_warble+0x1e>
+		rotation_accumulator = 0;
+ 178:	10 92 81 00 	sts	0x0081, r1
+ 17c:	10 92 80 00 	sts	0x0080, r1
+		mode_pointer = &mode_cal_minutes;
+ 180:	88 e9       	ldi	r24, 0x98	; 152
+ 182:	91 e0       	ldi	r25, 0x01	; 1
+ 184:	90 93 87 00 	sts	0x0087, r25
+ 188:	80 93 86 00 	sts	0x0086, r24
+		mode_cal_minutes();
+ 18c:	d1 d0       	rcall	.+418    	; 0x330 <mode_cal_minutes>
+ 18e:	08 95       	ret
+	}
+	else if (ADCH > warble_high){
+ 190:	85 b1       	in	r24, 0x05	; 5
+ 192:	8d 3a       	cpi	r24, 0xAD	; 173
+ 194:	60 f0       	brcs	.+24     	; 0x1ae <mode_warble+0x3c>
+		rotation_accumulator = 0;
+ 196:	10 92 81 00 	sts	0x0081, r1
+ 19a:	10 92 80 00 	sts	0x0080, r1
+		mode_pointer = &mode_time;
+ 19e:	84 e8       	ldi	r24, 0x84	; 132
+ 1a0:	90 e0       	ldi	r25, 0x00	; 0
+ 1a2:	90 93 87 00 	sts	0x0087, r25
+ 1a6:	80 93 86 00 	sts	0x0086, r24
+		mode_time();
+ 1aa:	ae df       	rcall	.-164    	; 0x108 <mode_time>
+ 1ac:	08 95       	ret
+	}
+	else{
+		if (warbling==0){
+ 1ae:	80 91 82 00 	lds	r24, 0x0082
+ 1b2:	81 11       	cpse	r24, r1
+ 1b4:	02 c0       	rjmp	.+4      	; 0x1ba <mode_warble+0x48>
+			tell_time();
+ 1b6:	51 df       	rcall	.-350    	; 0x5a <tell_time>
+ 1b8:	05 c0       	rjmp	.+10     	; 0x1c4 <mode_warble+0x52>
+		}
+		else{
+			warble_randomizer++;			//rotates the warble randomizer
+ 1ba:	80 91 83 00 	lds	r24, 0x0083
+ 1be:	8f 5f       	subi	r24, 0xFF	; 255
+ 1c0:	80 93 83 00 	sts	0x0083, r24
+		}
+		
+		
+		if (timer_interrupts % prime_table[warble_randomizer & 0b00000111] == 0){
+ 1c4:	60 91 62 00 	lds	r22, 0x0062
+ 1c8:	70 91 63 00 	lds	r23, 0x0063
+ 1cc:	80 91 64 00 	lds	r24, 0x0064
+ 1d0:	90 91 65 00 	lds	r25, 0x0065
+ 1d4:	e0 91 83 00 	lds	r30, 0x0083
+ 1d8:	e7 70       	andi	r30, 0x07	; 7
+ 1da:	f0 e0       	ldi	r31, 0x00	; 0
+ 1dc:	e9 59       	subi	r30, 0x99	; 153
+ 1de:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1e0:	20 81       	ld	r18, Z
+ 1e2:	30 e0       	ldi	r19, 0x00	; 0
+ 1e4:	40 e0       	ldi	r20, 0x00	; 0
+ 1e6:	50 e0       	ldi	r21, 0x00	; 0
+ 1e8:	d6 d1       	rcall	.+940    	; 0x596 <__udivmodsi4>
+ 1ea:	67 2b       	or	r22, r23
+ 1ec:	68 2b       	or	r22, r24
+ 1ee:	69 2b       	or	r22, r25
+ 1f0:	41 f4       	brne	.+16     	; 0x202 <mode_warble+0x90>
+			warbling = 1;
+ 1f2:	81 e0       	ldi	r24, 0x01	; 1
+ 1f4:	80 93 82 00 	sts	0x0082, r24
+			warble_count = max_warble_level;
+ 1f8:	80 91 66 00 	lds	r24, 0x0066
+ 1fc:	80 93 84 00 	sts	0x0084, r24
+			OCR0A = 0;
+ 200:	16 be       	out	0x36, r1	; 54
+			
+		}
+		if (timer_interrupts % prime_table[(warble_randomizer + 1) & 0b00000111] == 0){
+ 202:	60 91 62 00 	lds	r22, 0x0062
+ 206:	70 91 63 00 	lds	r23, 0x0063
+ 20a:	80 91 64 00 	lds	r24, 0x0064
+ 20e:	90 91 65 00 	lds	r25, 0x0065
+ 212:	e0 91 83 00 	lds	r30, 0x0083
+ 216:	f0 e0       	ldi	r31, 0x00	; 0
+ 218:	31 96       	adiw	r30, 0x01	; 1
+ 21a:	e7 70       	andi	r30, 0x07	; 7
+ 21c:	ff 27       	eor	r31, r31
+ 21e:	e9 59       	subi	r30, 0x99	; 153
+ 220:	ff 4f       	sbci	r31, 0xFF	; 255
+ 222:	20 81       	ld	r18, Z
+ 224:	30 e0       	ldi	r19, 0x00	; 0
+ 226:	40 e0       	ldi	r20, 0x00	; 0
+ 228:	50 e0       	ldi	r21, 0x00	; 0
+ 22a:	b5 d1       	rcall	.+874    	; 0x596 <__udivmodsi4>
+ 22c:	67 2b       	or	r22, r23
+ 22e:	68 2b       	or	r22, r24
+ 230:	69 2b       	or	r22, r25
+ 232:	49 f4       	brne	.+18     	; 0x246 <mode_warble+0xd4>
+			warbling = 1;
+ 234:	81 e0       	ldi	r24, 0x01	; 1
+ 236:	80 93 82 00 	sts	0x0082, r24
+			warble_count = max_warble_level;
+ 23a:	80 91 66 00 	lds	r24, 0x0066
+ 23e:	80 93 84 00 	sts	0x0084, r24
+			OCR0A = 255;
+ 242:	8f ef       	ldi	r24, 0xFF	; 255
+ 244:	86 bf       	out	0x36, r24	; 54
+			
+		}
+		if (timer_interrupts % prime_table[(warble_randomizer + 2) & 0b00000111] == 0){
+ 246:	60 91 62 00 	lds	r22, 0x0062
+ 24a:	70 91 63 00 	lds	r23, 0x0063
+ 24e:	80 91 64 00 	lds	r24, 0x0064
+ 252:	90 91 65 00 	lds	r25, 0x0065
+ 256:	e0 91 83 00 	lds	r30, 0x0083
+ 25a:	f0 e0       	ldi	r31, 0x00	; 0
+ 25c:	32 96       	adiw	r30, 0x02	; 2
+ 25e:	e7 70       	andi	r30, 0x07	; 7
+ 260:	ff 27       	eor	r31, r31
+ 262:	e9 59       	subi	r30, 0x99	; 153
+ 264:	ff 4f       	sbci	r31, 0xFF	; 255
+ 266:	20 81       	ld	r18, Z
+ 268:	30 e0       	ldi	r19, 0x00	; 0
+ 26a:	40 e0       	ldi	r20, 0x00	; 0
+ 26c:	50 e0       	ldi	r21, 0x00	; 0
+ 26e:	93 d1       	rcall	.+806    	; 0x596 <__udivmodsi4>
+ 270:	67 2b       	or	r22, r23
+ 272:	68 2b       	or	r22, r24
+ 274:	69 2b       	or	r22, r25
+ 276:	41 f4       	brne	.+16     	; 0x288 <mode_warble+0x116>
+			warbling = 1;
+ 278:	81 e0       	ldi	r24, 0x01	; 1
+ 27a:	80 93 82 00 	sts	0x0082, r24
+			warble_count = max_warble_level;
+ 27e:	80 91 66 00 	lds	r24, 0x0066
+ 282:	80 93 84 00 	sts	0x0084, r24
+			OCR0B = 0;
+ 286:	1c be       	out	0x3c, r1	; 60
+			
+		}
+		if (timer_interrupts % prime_table[(warble_randomizer + 3) & 0b00000111] == 0){
+ 288:	60 91 62 00 	lds	r22, 0x0062
+ 28c:	70 91 63 00 	lds	r23, 0x0063
+ 290:	80 91 64 00 	lds	r24, 0x0064
+ 294:	90 91 65 00 	lds	r25, 0x0065
+ 298:	e0 91 83 00 	lds	r30, 0x0083
+ 29c:	f0 e0       	ldi	r31, 0x00	; 0
+ 29e:	33 96       	adiw	r30, 0x03	; 3
+ 2a0:	e7 70       	andi	r30, 0x07	; 7
+ 2a2:	ff 27       	eor	r31, r31
+ 2a4:	e9 59       	subi	r30, 0x99	; 153
+ 2a6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2a8:	20 81       	ld	r18, Z
+ 2aa:	30 e0       	ldi	r19, 0x00	; 0
+ 2ac:	40 e0       	ldi	r20, 0x00	; 0
+ 2ae:	50 e0       	ldi	r21, 0x00	; 0
+ 2b0:	72 d1       	rcall	.+740    	; 0x596 <__udivmodsi4>
+ 2b2:	67 2b       	or	r22, r23
+ 2b4:	68 2b       	or	r22, r24
+ 2b6:	69 2b       	or	r22, r25
+ 2b8:	49 f4       	brne	.+18     	; 0x2cc <mode_warble+0x15a>
+			warbling = 1;
+ 2ba:	81 e0       	ldi	r24, 0x01	; 1
+ 2bc:	80 93 82 00 	sts	0x0082, r24
+			warble_count = max_warble_level;
+ 2c0:	80 91 66 00 	lds	r24, 0x0066
+ 2c4:	80 93 84 00 	sts	0x0084, r24
+			OCR0B = 255;
+ 2c8:	8f ef       	ldi	r24, 0xFF	; 255
+ 2ca:	8c bf       	out	0x3c, r24	; 60
+			
+			
+		}
+		
+		
+		if (warble_count > 0){
+ 2cc:	80 91 84 00 	lds	r24, 0x0084
+ 2d0:	88 23       	and	r24, r24
+ 2d2:	21 f0       	breq	.+8      	; 0x2dc <mode_warble+0x16a>
+			warble_count--;	
+ 2d4:	81 50       	subi	r24, 0x01	; 1
+ 2d6:	80 93 84 00 	sts	0x0084, r24
+ 2da:	02 c0       	rjmp	.+4      	; 0x2e0 <mode_warble+0x16e>
+		}
+		else{
+			warbling = 0;
+ 2dc:	10 92 82 00 	sts	0x0082, r1
+		}
+		
+		
+ 		
+		if (rotation_accumulator > 5 || rotation_accumulator < -5){
+ 2e0:	80 91 80 00 	lds	r24, 0x0080
+ 2e4:	90 91 81 00 	lds	r25, 0x0081
+ 2e8:	06 97       	sbiw	r24, 0x06	; 6
+ 2ea:	3c f4       	brge	.+14     	; 0x2fa <mode_warble+0x188>
+ 2ec:	80 91 80 00 	lds	r24, 0x0080
+ 2f0:	90 91 81 00 	lds	r25, 0x0081
+ 2f4:	8b 3f       	cpi	r24, 0xFB	; 251
+ 2f6:	9f 4f       	sbci	r25, 0xFF	; 255
+ 2f8:	d4 f4       	brge	.+52     	; 0x32e <mode_warble+0x1bc>
+			max_warble_level += rotation_accumulator / 5;
+ 2fa:	80 91 80 00 	lds	r24, 0x0080
+ 2fe:	90 91 81 00 	lds	r25, 0x0081
+ 302:	65 e0       	ldi	r22, 0x05	; 5
+ 304:	70 e0       	ldi	r23, 0x00	; 0
+ 306:	34 d1       	rcall	.+616    	; 0x570 <__divmodhi4>
+ 308:	80 91 66 00 	lds	r24, 0x0066
+ 30c:	68 0f       	add	r22, r24
+			
+			if (max_warble_level < 0){
+ 30e:	1a f4       	brpl	.+6      	; 0x316 <mode_warble+0x1a4>
+				max_warble_level = 0;
+ 310:	10 92 66 00 	sts	0x0066, r1
+ 314:	08 c0       	rjmp	.+16     	; 0x326 <mode_warble+0x1b4>
+			}
+			else if (max_warble_level > 30){
+ 316:	6f 31       	cpi	r22, 0x1F	; 31
+ 318:	1c f4       	brge	.+6      	; 0x320 <mode_warble+0x1ae>
+		}
+		
+		
+ 		
+		if (rotation_accumulator > 5 || rotation_accumulator < -5){
+			max_warble_level += rotation_accumulator / 5;
+ 31a:	60 93 66 00 	sts	0x0066, r22
+ 31e:	03 c0       	rjmp	.+6      	; 0x326 <mode_warble+0x1b4>
+			
+			if (max_warble_level < 0){
+				max_warble_level = 0;
+			}
+			else if (max_warble_level > 30){
+				max_warble_level = 30;
+ 320:	8e e1       	ldi	r24, 0x1E	; 30
+ 322:	80 93 66 00 	sts	0x0066, r24
+			}
+			
+			rotation_accumulator = 0; // only clears the accumulator if had a large enough value
+ 326:	10 92 81 00 	sts	0x0081, r1
+ 32a:	10 92 80 00 	sts	0x0080, r1
+ 32e:	08 95       	ret
+
+00000330 <mode_cal_minutes>:
+	return;
+}
+
+void mode_cal_minutes(){
+		
+	if (ADCH < cal_minutes_low){
+ 330:	85 b1       	in	r24, 0x05	; 5
+ 332:	81 38       	cpi	r24, 0x81	; 129
+ 334:	40 f4       	brcc	.+16     	; 0x346 <mode_cal_minutes+0x16>
+		mode_pointer = &mode_cal_hours;
+ 336:	80 ec       	ldi	r24, 0xC0	; 192
+ 338:	91 e0       	ldi	r25, 0x01	; 1
+ 33a:	90 93 87 00 	sts	0x0087, r25
+ 33e:	80 93 86 00 	sts	0x0086, r24
+		mode_cal_hours();
+ 342:	1e d0       	rcall	.+60     	; 0x380 <mode_cal_hours>
+ 344:	08 95       	ret
+	}
+	else if (ADCH > cal_minutes_high){
+ 346:	85 b1       	in	r24, 0x05	; 5
+ 348:	87 39       	cpi	r24, 0x97	; 151
+ 34a:	40 f0       	brcs	.+16     	; 0x35c <mode_cal_minutes+0x2c>
+		mode_pointer = &mode_warble;
+ 34c:	89 eb       	ldi	r24, 0xB9	; 185
+ 34e:	90 e0       	ldi	r25, 0x00	; 0
+ 350:	90 93 87 00 	sts	0x0087, r25
+ 354:	80 93 86 00 	sts	0x0086, r24
+		mode_warble();
+ 358:	0c df       	rcall	.-488    	; 0x172 <mode_warble>
+ 35a:	08 95       	ret
+	}
+	else{
+		OCR0A = 0;
+ 35c:	16 be       	out	0x36, r1	; 54
+		OCR0B = cal_minutes;
+ 35e:	80 91 60 00 	lds	r24, 0x0060
+ 362:	8c bf       	out	0x3c, r24	; 60
+		
+		cal_minutes += rotation_accumulator;
+ 364:	80 91 80 00 	lds	r24, 0x0080
+ 368:	90 91 81 00 	lds	r25, 0x0081
+ 36c:	90 91 60 00 	lds	r25, 0x0060
+ 370:	89 0f       	add	r24, r25
+ 372:	80 93 60 00 	sts	0x0060, r24
+		
+		rotation_accumulator = 0;
+ 376:	10 92 81 00 	sts	0x0081, r1
+ 37a:	10 92 80 00 	sts	0x0080, r1
+ 37e:	08 95       	ret
+
+00000380 <mode_cal_hours>:
+	return;
+}
+
+void mode_cal_hours(){
+		
+	if (ADCH < cal_hours_low){
+ 380:	85 b1       	in	r24, 0x05	; 5
+ 382:	8b 36       	cpi	r24, 0x6B	; 107
+ 384:	40 f4       	brcc	.+16     	; 0x396 <mode_cal_hours+0x16>
+		mode_pointer = &mode_test;
+ 386:	88 ee       	ldi	r24, 0xE8	; 232
+ 388:	91 e0       	ldi	r25, 0x01	; 1
+ 38a:	90 93 87 00 	sts	0x0087, r25
+ 38e:	80 93 86 00 	sts	0x0086, r24
+		mode_test();
+ 392:	1e d0       	rcall	.+60     	; 0x3d0 <mode_test>
+ 394:	08 95       	ret
+	}
+	else if (ADCH > cal_hours_high){
+ 396:	85 b1       	in	r24, 0x05	; 5
+ 398:	81 38       	cpi	r24, 0x81	; 129
+ 39a:	40 f0       	brcs	.+16     	; 0x3ac <mode_cal_hours+0x2c>
+		mode_pointer = &mode_cal_minutes;
+ 39c:	88 e9       	ldi	r24, 0x98	; 152
+ 39e:	91 e0       	ldi	r25, 0x01	; 1
+ 3a0:	90 93 87 00 	sts	0x0087, r25
+ 3a4:	80 93 86 00 	sts	0x0086, r24
+		mode_cal_minutes();
+ 3a8:	c3 df       	rcall	.-122    	; 0x330 <mode_cal_minutes>
+ 3aa:	08 95       	ret
+	}
+	else{
+		OCR0A = cal_hours;
+ 3ac:	80 91 61 00 	lds	r24, 0x0061
+ 3b0:	86 bf       	out	0x36, r24	; 54
+		OCR0B = 0;
+ 3b2:	1c be       	out	0x3c, r1	; 60
+		
+		cal_hours += rotation_accumulator;
+ 3b4:	80 91 80 00 	lds	r24, 0x0080
+ 3b8:	90 91 81 00 	lds	r25, 0x0081
+ 3bc:	90 91 61 00 	lds	r25, 0x0061
+ 3c0:	89 0f       	add	r24, r25
+ 3c2:	80 93 61 00 	sts	0x0061, r24
+		
+		rotation_accumulator = 0;
+ 3c6:	10 92 81 00 	sts	0x0081, r1
+ 3ca:	10 92 80 00 	sts	0x0080, r1
+ 3ce:	08 95       	ret
+
+000003d0 <mode_test>:
+#define HOURS_OUT PB2
+
+
+void mode_test(){
+	
+	rotation_accumulator = 0; // dump the contents of the quadrature input accumulator, it is not used in this mode
+ 3d0:	10 92 81 00 	sts	0x0081, r1
+ 3d4:	10 92 80 00 	sts	0x0080, r1
+		
+	if (ADCH > test_high){
+ 3d8:	85 b1       	in	r24, 0x05	; 5
+ 3da:	8b 36       	cpi	r24, 0x6B	; 107
+ 3dc:	40 f0       	brcs	.+16     	; 0x3ee <mode_test+0x1e>
+		mode_pointer = &mode_cal_hours;
+ 3de:	80 ec       	ldi	r24, 0xC0	; 192
+ 3e0:	91 e0       	ldi	r25, 0x01	; 1
+ 3e2:	90 93 87 00 	sts	0x0087, r25
+ 3e6:	80 93 86 00 	sts	0x0086, r24
+		mode_cal_hours();
+ 3ea:	ca df       	rcall	.-108    	; 0x380 <mode_cal_hours>
+ 3ec:	08 95       	ret
+	}
+	else{
+		OCR0A +=10 ; // cycles the registers
+ 3ee:	86 b7       	in	r24, 0x36	; 54
+ 3f0:	86 5f       	subi	r24, 0xF6	; 246
+ 3f2:	86 bf       	out	0x36, r24	; 54
+		OCR0B +=10 ;
+ 3f4:	8c b7       	in	r24, 0x3c	; 60
+ 3f6:	86 5f       	subi	r24, 0xF6	; 246
+ 3f8:	8c bf       	out	0x3c, r24	; 60
+ 3fa:	08 95       	ret
+
+000003fc <pwm_init>:
+	//  SET WAVE GENERATION MODE
+	//  ***********************************************************
+	//  Timer/Counter Control Register 0
+	//  Setting WaveGenerationMode bits 00:02 to 0b001 puts the counter in phase correct PWM mode
+	//  and sets the TOP of the counter to the full 0xFF range. (see page83 of docs)
+	TCCR0A = (1<<WGM00);
+ 3fc:	81 e0       	ldi	r24, 0x01	; 1
+ 3fe:	80 bf       	out	0x30, r24	; 48
+	//  SET OUTPUT COMPARISON MODE
+	//  ***********************************************************
+	//  Timer/Counter Control Register 0
+	//  Setting only Compare Output Mode bit A1 (COM0A1) clears the counter when up-counting on a match and sets it
+	//  when down-counting. Kinda like inverted mode. (See page 81/82). 
+	TCCR0A |= (1<<COM0A1);  
+ 400:	80 b7       	in	r24, 0x30	; 48
+ 402:	80 68       	ori	r24, 0x80	; 128
+ 404:	80 bf       	out	0x30, r24	; 48
+	TCCR0A |= (1<<COM0B1);   // I find the mishmash of output compare for Timer0/ChannelB being on register A slightly confusing
+ 406:	80 b7       	in	r24, 0x30	; 48
+ 408:	80 62       	ori	r24, 0x20	; 32
+ 40a:	80 bf       	out	0x30, r24	; 48
+	// SET CLOCK SOURCE
+	// No Clock prescaler will be necessary for the PWM
+	// System clock is at 32khz
+	// 32khz / 256bits*2 for counting up AAAND down = 64Hz
+	 	
+	TCCR0B |= (1 << CS00); // set clock source to 0b001 for on with no prescaler
+ 40c:	83 b7       	in	r24, 0x33	; 51
+ 40e:	81 60       	ori	r24, 0x01	; 1
+ 410:	83 bf       	out	0x33, r24	; 51
+	
+	//  SET DATA DIRECTION REGISTERS
+	//  ***********************************************************
+	// the Output Compare 0A register (OC0A) is PortB2, and OC0B is on PortA7
+	// set the Data Direction Register
+	DDRB |= (1<<HOURS_OUT);
+ 412:	ba 9a       	sbi	0x17, 2	; 23
+	DDRA |= (1<<MINUTES_OUT);
+ 414:	d7 9a       	sbi	0x1a, 7	; 26
+ 416:	08 95       	ret
+
+00000418 <timer_init>:
+	// Timer/Conter Control Register 0A and 0B
+	// Wave Generation Mode bit 13:10 need to be set to 0b0100
+	// to put the timer in Clear Timer on Compare mode.
+	// Sets the TOP of the register to OCR1A
+	
+		OCR1A = TIMER_TICKS_PER_INTERRUPT; // will trigger Timer1A every __ sec or so. 1A needs to be the larger number, as that does the actual Clear Timer on Compare
+ 418:	80 e0       	ldi	r24, 0x00	; 0
+ 41a:	9d e7       	ldi	r25, 0x7D	; 125
+ 41c:	9b bd       	out	0x2b, r25	; 43
+ 41e:	8a bd       	out	0x2a, r24	; 42
+		
+		TCCR1B = (1<<WGM12);  //only need to set WGM12 to achieve 0b0100
+ 420:	88 e0       	ldi	r24, 0x08	; 8
+ 422:	8e bd       	out	0x2e, r24	; 46
+	
+	// SET CLOCK SOURCE
+	//  ***********************************************************
+		
+		
+		TCCR1B |= (1 << CS10);  //Set Clock Source Bits CS12:10 to 0b001 to turn timer on with no prescaler 
+ 424:	8e b5       	in	r24, 0x2e	; 46
+ 426:	81 60       	ori	r24, 0x01	; 1
+ 428:	8e bd       	out	0x2e, r24	; 46
+		
+	// ENABLE INTERRUPT
+	// Output Compare A Match Interrupt Enable
+	
+		TIMSK1 = (1 << OCIE1A);  // trigger interrupt when TIMER1 reaches the TOP of A (I previously had it trigger on B as well, but turned that off)
+ 42a:	82 e0       	ldi	r24, 0x02	; 2
+ 42c:	8c b9       	out	0x0c, r24	; 12
+ 42e:	08 95       	ret
+
+00000430 <__vector_6>:
+}
+
+ISR (TIM1_COMPA_vect){
+ 430:	1f 92       	push	r1
+ 432:	0f 92       	push	r0
+ 434:	0f b6       	in	r0, 0x3f	; 63
+ 436:	0f 92       	push	r0
+ 438:	11 24       	eor	r1, r1
+ 43a:	8f 93       	push	r24
+ 43c:	9f 93       	push	r25
+ 43e:	af 93       	push	r26
+ 440:	bf 93       	push	r27
+	//THIS ISR IS CALLLED WHEN THE 16 BIT TIMER HITS IT'S MATCH POINT
+	
+	//volatile variable was defined in main()
+	timer_interrupts += 1;  //in Compare Timer and Clear Mode, the register should have the number of Timer ticks
+ 442:	80 91 62 00 	lds	r24, 0x0062
+ 446:	90 91 63 00 	lds	r25, 0x0063
+ 44a:	a0 91 64 00 	lds	r26, 0x0064
+ 44e:	b0 91 65 00 	lds	r27, 0x0065
+ 452:	01 96       	adiw	r24, 0x01	; 1
+ 454:	a1 1d       	adc	r26, r1
+ 456:	b1 1d       	adc	r27, r1
+ 458:	80 93 62 00 	sts	0x0062, r24
+ 45c:	90 93 63 00 	sts	0x0063, r25
+ 460:	a0 93 64 00 	sts	0x0064, r26
+ 464:	b0 93 65 00 	sts	0x0065, r27
+	
+	//PORTA ^= (1 << PA0);  //toggles LED on PBA/pin13   //on the breadboard, there was an LED on this pin, but it has been removed on the PCB
+	
+}
+ 468:	bf 91       	pop	r27
+ 46a:	af 91       	pop	r26
+ 46c:	9f 91       	pop	r25
+ 46e:	8f 91       	pop	r24
+ 470:	0f 90       	pop	r0
+ 472:	0f be       	out	0x3f, r0	; 63
+ 474:	0f 90       	pop	r0
+ 476:	1f 90       	pop	r1
+ 478:	18 95       	reti
+
+0000047a <analog_init>:
+	
+	//Voltage Reference is already set to Vcc by default (pg 145)
+	
+	// set PORTA1 (MODE_SELECT) as the input to the ADC (Pin #12) by setting MUX5:0 to 0b00001
+	//ADC Multiplexer Selection Register
+	ADMUX |= (1<<MUX0);
+ 47a:	38 9a       	sbi	0x07, 0	; 7
+	
+	//ADC Control and Status Register A
+	ADCSRA |= (1<<ADEN); // enables the ADC
+ 47c:	37 9a       	sbi	0x06, 7	; 6
+	ADCSRA |= (1<<ADPS0); //prescaler divides clock by 1, ADPS2:0 = 0b001
+ 47e:	30 9a       	sbi	0x06, 0	; 6
+	
+	//ADC Control and Status Register B
+	ADCSRB |= (1 <<ADLAR); //left adjust result, so of the 10 bits, the high 8 bit register has the data I need.
+ 480:	1c 9a       	sbi	0x03, 4	; 3
+	
+	DDRA |= (1<<MODE_SELECT_POWER); //used to select the potentiometer as an output
+ 482:	d0 9a       	sbi	0x1a, 0	; 26
+	PORTA &= ~(1<<MODE_SELECT_POWER); //turn power to potentiometer off
+ 484:	d8 98       	cbi	0x1b, 0	; 27
+ 486:	08 95       	ret
+
+00000488 <pinchange_init>:
+}
+
+void pinchange_init(){
+	
+	// General Interrupt Mask Register
+	GIMSK |= (1<<PCIE0);  //Pin Change Interrupt Enable 0, turns on interrupts for Pin Change bits 7:0 
+ 488:	8b b7       	in	r24, 0x3b	; 59
+ 48a:	80 61       	ori	r24, 0x10	; 16
+ 48c:	8b bf       	out	0x3b, r24	; 59
+	
+	//Pin Change Mask Register
+	PCMSK0 |= (1<<QUAD_INT1)|(1<<QUAD_INT2);  //turns on Pin Change interupts on QUAD_INT1 and QUAD_INT2
+ 48e:	82 b3       	in	r24, 0x12	; 18
+ 490:	8c 60       	ori	r24, 0x0C	; 12
+ 492:	82 bb       	out	0x12, r24	; 18
+ 494:	08 95       	ret
+
+00000496 <__vector_2>:
+}
+
+ISR (PCINT0_vect){
+ 496:	1f 92       	push	r1
+ 498:	0f 92       	push	r0
+ 49a:	0f b6       	in	r0, 0x3f	; 63
+ 49c:	0f 92       	push	r0
+ 49e:	11 24       	eor	r1, r1
+ 4a0:	2f 93       	push	r18
+ 4a2:	8f 93       	push	r24
+ 4a4:	9f 93       	push	r25
+ 4a6:	ef 93       	push	r30
+ 4a8:	ff 93       	push	r31
+	
+	uint8_t input_status;
+	
+	//the inputs were on QUAD_INT1 and QUAD_INT2  (PA2 and 3), so we mask off the other inputs and then shift
+	//the bits to the right
+	input_status = (PINA & 0b00001100) >> 2;   //PINA is Port Input A register
+ 4aa:	e9 b3       	in	r30, 0x19	; 25
+ 4ac:	ec 70       	andi	r30, 0x0C	; 12
+ 4ae:	e6 95       	lsr	r30
+ 4b0:	e6 95       	lsr	r30
+
+	grey_code = grey_code << 2 ;  //move the old grey code over two bits
+ 4b2:	80 91 85 00 	lds	r24, 0x0085
+ 4b6:	88 0f       	add	r24, r24
+ 4b8:	88 0f       	add	r24, r24
+	grey_code = grey_code | input_status ; //concatenates the current input status onto the old grey code
+ 4ba:	e8 2b       	or	r30, r24
+	grey_code = grey_code & 0b00001111; // masks off the high bits to throw the old grey shifted over grey code away
+ 4bc:	ef 70       	andi	r30, 0x0F	; 15
+ 4be:	e0 93 85 00 	sts	0x0085, r30
+
+	rotation_accumulator += lookup_table[grey_code];  
+ 4c2:	80 91 80 00 	lds	r24, 0x0080
+ 4c6:	90 91 81 00 	lds	r25, 0x0081
+ 4ca:	f0 e0       	ldi	r31, 0x00	; 0
+ 4cc:	e1 59       	subi	r30, 0x91	; 145
+ 4ce:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4d0:	20 81       	ld	r18, Z
+ 4d2:	82 0f       	add	r24, r18
+ 4d4:	91 1d       	adc	r25, r1
+ 4d6:	27 fd       	sbrc	r18, 7
+ 4d8:	9a 95       	dec	r25
+ 4da:	90 93 81 00 	sts	0x0081, r25
+ 4de:	80 93 80 00 	sts	0x0080, r24
+	//if (mode_pointer != &mode_warble)
+	//{
+	//	(*mode_pointer)();  //uses a pointer to call the function for the specific mode
+	//}
+	
+}
+ 4e2:	ff 91       	pop	r31
+ 4e4:	ef 91       	pop	r30
+ 4e6:	9f 91       	pop	r25
+ 4e8:	8f 91       	pop	r24
+ 4ea:	2f 91       	pop	r18
+ 4ec:	0f 90       	pop	r0
+ 4ee:	0f be       	out	0x3f, r0	; 63
+ 4f0:	0f 90       	pop	r0
+ 4f2:	1f 90       	pop	r1
+ 4f4:	18 95       	reti
+
+000004f6 <power_register_init>:
+
+void power_register_init(){
+	
+	//MCUCR: MCU Control Register
+	
+	MCUCR |= (1<<BODS); //disable brown out detector
+ 4f6:	85 b7       	in	r24, 0x35	; 53
+ 4f8:	80 68       	ori	r24, 0x80	; 128
+ 4fa:	85 bf       	out	0x35, r24	; 53
+	MCUCR |= (1<<SE); //sleep enable
+ 4fc:	85 b7       	in	r24, 0x35	; 53
+ 4fe:	80 62       	ori	r24, 0x20	; 32
+ 500:	85 bf       	out	0x35, r24	; 53
+	
+	MCUCR |= (0<<SM1)|(0<<SM0); //sleepmode select 0b00; will enter IDLE mode with CPU shut down
+ 502:	85 b7       	in	r24, 0x35	; 53
+ 504:	85 bf       	out	0x35, r24	; 53
+	//MCUCR |= (1<<SM1)|(1<<SM0);//sleepmode select 0b11, will enter STANDBY mode with CPU shutdown and crystal still on
+	
+	//PRR: Power Reduction Register
+	
+	PRR |= (1<<PRUSI); // shuts down the USI clock
+ 506:	01 9a       	sbi	0x00, 1	; 0
+ 508:	08 95       	ret
+
+0000050a <main>:
+	
+}
+
+int main (void)
+{
+	mode_pointer = &mode_time; //assigns the mode_pointer initially to time mode
+ 50a:	84 e8       	ldi	r24, 0x84	; 132
+ 50c:	90 e0       	ldi	r25, 0x00	; 0
+ 50e:	90 93 87 00 	sts	0x0087, r25
+ 512:	80 93 86 00 	sts	0x0086, r24
+		
+	pwm_init();
+ 516:	72 df       	rcall	.-284    	; 0x3fc <pwm_init>
+	timer_init();
+ 518:	7f df       	rcall	.-258    	; 0x418 <timer_init>
+	analog_init();
+ 51a:	af df       	rcall	.-162    	; 0x47a <analog_init>
+	pinchange_init();
+ 51c:	b5 df       	rcall	.-150    	; 0x488 <pinchange_init>
+	power_register_init();
+ 51e:	eb df       	rcall	.-42     	; 0x4f6 <power_register_init>
+	sei(); // global set enable interrupts
+ 520:	78 94       	sei
+		
+	while(1)
+    {
+		PRR &= ~(1<<PRADC); //turns on the ADC comparator
+ 522:	00 98       	cbi	0x00, 0	; 0
+		PORTA |= (1<<MODE_SELECT_POWER); //turn on to power pot
+ 524:	d8 9a       	sbi	0x1b, 0	; 27
+		ADCSRA |= (1<<ADSC); // starts AtoD conversion by flipping ADC Start Conversion bit in AD Control and Status Register A
+ 526:	36 9a       	sbi	0x06, 6	; 6
+		while(ADCSRA & (1<<ADSC));  // loops while waiting for ADC to finish
+ 528:	36 99       	sbic	0x06, 6	; 6
+ 52a:	fe cf       	rjmp	.-4      	; 0x528 <main+0x1e>
+		PORTA &= ~(1<<MODE_SELECT_POWER); //turn pot back off to conserve power
+ 52c:	d8 98       	cbi	0x1b, 0	; 27
+		PRR |= (1<<PRADC); //shuts down the ADC and comparator
+ 52e:	00 9a       	sbi	0x00, 0	; 0
+		
+		
+		
+		(*mode_pointer)();  //uses a pointer to call the function for the specific mode
+ 530:	e0 91 86 00 	lds	r30, 0x0086
+ 534:	f0 91 87 00 	lds	r31, 0x0087
+ 538:	09 95       	icall
+		
+		sleep_cpu();
+ 53a:	88 95       	sleep
+		//just hang out and wait for interrupts
+		
+    }
+ 53c:	f2 cf       	rjmp	.-28     	; 0x522 <main+0x18>
+
+0000053e <__mulsi3>:
+ 53e:	ff 27       	eor	r31, r31
+ 540:	ee 27       	eor	r30, r30
+ 542:	bb 27       	eor	r27, r27
+ 544:	aa 27       	eor	r26, r26
+
+00000546 <__mulsi3_loop>:
+ 546:	60 ff       	sbrs	r22, 0
+ 548:	04 c0       	rjmp	.+8      	; 0x552 <__mulsi3_skip1>
+ 54a:	a2 0f       	add	r26, r18
+ 54c:	b3 1f       	adc	r27, r19
+ 54e:	e4 1f       	adc	r30, r20
+ 550:	f5 1f       	adc	r31, r21
+
+00000552 <__mulsi3_skip1>:
+ 552:	22 0f       	add	r18, r18
+ 554:	33 1f       	adc	r19, r19
+ 556:	44 1f       	adc	r20, r20
+ 558:	55 1f       	adc	r21, r21
+ 55a:	96 95       	lsr	r25
+ 55c:	87 95       	ror	r24
+ 55e:	77 95       	ror	r23
+ 560:	67 95       	ror	r22
+ 562:	89 f7       	brne	.-30     	; 0x546 <__mulsi3_loop>
+ 564:	00 97       	sbiw	r24, 0x00	; 0
+ 566:	76 07       	cpc	r23, r22
+ 568:	71 f7       	brne	.-36     	; 0x546 <__mulsi3_loop>
+
+0000056a <__mulsi3_exit>:
+ 56a:	cf 01       	movw	r24, r30
+ 56c:	bd 01       	movw	r22, r26
+ 56e:	08 95       	ret
+
+00000570 <__divmodhi4>:
+ 570:	97 fb       	bst	r25, 7
+ 572:	07 2e       	mov	r0, r23
+ 574:	16 f4       	brtc	.+4      	; 0x57a <__divmodhi4+0xa>
+ 576:	00 94       	com	r0
+ 578:	06 d0       	rcall	.+12     	; 0x586 <__divmodhi4_neg1>
+ 57a:	77 fd       	sbrc	r23, 7
+ 57c:	08 d0       	rcall	.+16     	; 0x58e <__divmodhi4_neg2>
+ 57e:	2d d0       	rcall	.+90     	; 0x5da <__udivmodhi4>
+ 580:	07 fc       	sbrc	r0, 7
+ 582:	05 d0       	rcall	.+10     	; 0x58e <__divmodhi4_neg2>
+ 584:	3e f4       	brtc	.+14     	; 0x594 <__divmodhi4_exit>
+
+00000586 <__divmodhi4_neg1>:
+ 586:	90 95       	com	r25
+ 588:	81 95       	neg	r24
+ 58a:	9f 4f       	sbci	r25, 0xFF	; 255
+ 58c:	08 95       	ret
+
+0000058e <__divmodhi4_neg2>:
+ 58e:	70 95       	com	r23
+ 590:	61 95       	neg	r22
+ 592:	7f 4f       	sbci	r23, 0xFF	; 255
+
+00000594 <__divmodhi4_exit>:
+ 594:	08 95       	ret
+
+00000596 <__udivmodsi4>:
+ 596:	a1 e2       	ldi	r26, 0x21	; 33
+ 598:	1a 2e       	mov	r1, r26
+ 59a:	aa 1b       	sub	r26, r26
+ 59c:	bb 1b       	sub	r27, r27
+ 59e:	fd 01       	movw	r30, r26
+ 5a0:	0d c0       	rjmp	.+26     	; 0x5bc <__udivmodsi4_ep>
+
+000005a2 <__udivmodsi4_loop>:
+ 5a2:	aa 1f       	adc	r26, r26
+ 5a4:	bb 1f       	adc	r27, r27
+ 5a6:	ee 1f       	adc	r30, r30
+ 5a8:	ff 1f       	adc	r31, r31
+ 5aa:	a2 17       	cp	r26, r18
+ 5ac:	b3 07       	cpc	r27, r19
+ 5ae:	e4 07       	cpc	r30, r20
+ 5b0:	f5 07       	cpc	r31, r21
+ 5b2:	20 f0       	brcs	.+8      	; 0x5bc <__udivmodsi4_ep>
+ 5b4:	a2 1b       	sub	r26, r18
+ 5b6:	b3 0b       	sbc	r27, r19
+ 5b8:	e4 0b       	sbc	r30, r20
+ 5ba:	f5 0b       	sbc	r31, r21
+
+000005bc <__udivmodsi4_ep>:
+ 5bc:	66 1f       	adc	r22, r22
+ 5be:	77 1f       	adc	r23, r23
+ 5c0:	88 1f       	adc	r24, r24
+ 5c2:	99 1f       	adc	r25, r25
+ 5c4:	1a 94       	dec	r1
+ 5c6:	69 f7       	brne	.-38     	; 0x5a2 <__udivmodsi4_loop>
+ 5c8:	60 95       	com	r22
+ 5ca:	70 95       	com	r23
+ 5cc:	80 95       	com	r24
+ 5ce:	90 95       	com	r25
+ 5d0:	9b 01       	movw	r18, r22
+ 5d2:	ac 01       	movw	r20, r24
+ 5d4:	bd 01       	movw	r22, r26
+ 5d6:	cf 01       	movw	r24, r30
+ 5d8:	08 95       	ret
+
+000005da <__udivmodhi4>:
+ 5da:	aa 1b       	sub	r26, r26
+ 5dc:	bb 1b       	sub	r27, r27
+ 5de:	51 e1       	ldi	r21, 0x11	; 17
+ 5e0:	07 c0       	rjmp	.+14     	; 0x5f0 <__udivmodhi4_ep>
+
+000005e2 <__udivmodhi4_loop>:
+ 5e2:	aa 1f       	adc	r26, r26
+ 5e4:	bb 1f       	adc	r27, r27
+ 5e6:	a6 17       	cp	r26, r22
+ 5e8:	b7 07       	cpc	r27, r23
+ 5ea:	10 f0       	brcs	.+4      	; 0x5f0 <__udivmodhi4_ep>
+ 5ec:	a6 1b       	sub	r26, r22
+ 5ee:	b7 0b       	sbc	r27, r23
+
+000005f0 <__udivmodhi4_ep>:
+ 5f0:	88 1f       	adc	r24, r24
+ 5f2:	99 1f       	adc	r25, r25
+ 5f4:	5a 95       	dec	r21
+ 5f6:	a9 f7       	brne	.-22     	; 0x5e2 <__udivmodhi4_loop>
+ 5f8:	80 95       	com	r24
+ 5fa:	90 95       	com	r25
+ 5fc:	bc 01       	movw	r22, r24
+ 5fe:	cd 01       	movw	r24, r26
+ 600:	08 95       	ret
+
+00000602 <_exit>:
+ 602:	f8 94       	cli
+
+00000604 <__stop_program>:
+ 604:	ff cf       	rjmp	.-2      	; 0x604 <__stop_program>
