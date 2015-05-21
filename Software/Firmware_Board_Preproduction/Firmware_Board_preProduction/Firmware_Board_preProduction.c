@@ -10,10 +10,13 @@
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
-#define F_CPU 1000000 //default
+#define F_CPU 1000000 //default internal clock speed
 #define TIMER_PRESCALER 1
 #define TIMER_TICKS_PER_INTERRUPT 32767
+#define TWELVE_HOURS 43200 // 12hours * 60 min * 60 sec = 43200
+#define THIRTY_SIX_HOURS 129600 // 36 hours * 60 min * 60 sec - 129000 timer ticks
 
 // conversion = 32768hz / TIMER_PRESCALER / TIMER_TICKS_PER_INTERRUPT = 1 timer interrupts/sec
 
@@ -22,35 +25,38 @@
 #define SECONDS_CONVERSION 1 
 
 
-volatile unsigned long timer_interrupts = 18000;
+volatile unsigned long timer_interrupts = 18000;   //time starts at 5:00
 volatile uint8_t cal_hours = 240;
 volatile uint8_t cal_minutes = 240;
 
 volatile int rotation_accumulator = 0;
 volatile bool time_to_check_knob;
 
+volatile uint8_t last_reading = 0;
+volatile uint8_t scans_remaining = 0;
 
-void (*mode_pointer)(void);  //declares the pointer
+
 void mode_test(void);		//the compiler is pretty dumb and needs to know about the other functions for the function pointer to work
 void mode_cal_hours(void);
 void mode_cal_minutes(void);
 void mode_warble(void);
 void mode_time(void);
 void tell_time(void);
+void (*mode_pointer)(void) = &mode_time; //assigns the mode_pointer initially to time mode;  //declares the pointer
 
 #define test_low 0
-#define test_high 106
+#define test_high 13
 
-#define cal_hours_low 107
-#define cal_hours_high 128
+#define cal_hours_low 14
+#define cal_hours_high 64
 
-#define cal_minutes_low 129
-#define cal_minutes_high 150
+#define cal_minutes_low 65
+#define cal_minutes_high 128
 
-#define warble_low 151
-#define warble_high 172
+#define warble_low 129
+#define warble_high 191
 
-#define time_low 173
+#define time_low 192
 #define time_high 255
 
 #define MODE_SELECT_POWER PA0
@@ -60,22 +66,6 @@ void tell_time(void);
 #define MINUTES_OUT PA7
 #define HOURS_OUT PB2
 
-
-void mode_test(){
-	
-	rotation_accumulator = 0; // dump the contents of the quadrature input accumulator, it is not used in this mode
-		
-	if (ADCH > test_high){
-		mode_pointer = &mode_cal_hours;
-		mode_cal_hours();
-	}
-	else{
-		OCR0A +=10 ; // cycles the registers
-		OCR0B +=10 ;
-	}
-	
-	return;
-}
 
 void mode_cal_hours(){
 		
@@ -88,7 +78,7 @@ void mode_cal_hours(){
 		mode_cal_minutes();
 	}
 	else{
-		OCR0B = cal_hours;  //by dividing by 2, pointer is calibrated on the 6.
+		OCR0B = cal_hours;  
 		OCR0A = 0;
 		
 		if (255 < (rotation_accumulator + (int)cal_hours)){
@@ -101,7 +91,7 @@ void mode_cal_hours(){
 			cal_hours += rotation_accumulator;
 		}
 		
-		rotation_accumulator = 0;
+		
 	}
 	
 	return;
@@ -131,90 +121,95 @@ void mode_cal_minutes(){
 			cal_minutes += rotation_accumulator;
 		}
 		
-		rotation_accumulator = 0;
+		
 	}
 	
 	return;
 }
 
 void mode_warble(){
-	
-	static uint8_t prime_table[] = {53, 67, 197, 43, 157, 97, 83, 179};
-	
-	// {197, 179, 157, 97, 83, 59, 29, 17 }
-	
-	static int8_t max_warble_level = 1;
+		
 	static uint8_t warble_count = 0;
-	static int8_t warbling = 0;
-	static uint8_t warble_randomizer = 0;
+	static bool isOdd = true;
+	static bool minFlag = false;
+	static bool hourFlag = false;
 		
 	
 	if (ADCH < warble_low){
-		rotation_accumulator = 0;
+		OCR1B = (unsigned long)TIMER_TICKS_PER_INTERRUPT + 1; //sets OCR1B	to a point that won't be reached on exiting mode
+		
 		mode_pointer = &mode_cal_minutes;
 		mode_cal_minutes();
 	}
 	else if (ADCH > warble_high){
-		rotation_accumulator = 0;
+		OCR1B = (unsigned long)TIMER_TICKS_PER_INTERRUPT + 1; //sets OCR1B	to a point that won't be reached on exiting mode
+		
 		mode_pointer = &mode_time;
 		mode_time();
 	}
 	else{
-		if (warbling==0){
+		if(scans_remaining>5){  //will point both meters straight up while entering this mode.
+			OCR0B=cal_hours/2;
+			OCR0A=cal_minutes/2;
+			return;
+		}
+		if(scans_remaining==5)  //then it flashes the meters, and then it tells time.
+		{
+			OCR0B=cal_hours;
+			OCR0A=cal_minutes;
+			return;
+		}
+		
+		if (hourFlag){
+			OCR0B += 127;
+		}
+		if (minFlag){
+			OCR0A += 127;
+		}
+		if (!hourFlag && !minFlag){
 			tell_time();
 		}
+		hourFlag = false;
+		minFlag = false;
+		
+				
+		if (warble_count==0){   //3,5,8 from the fibonaci sequeuence, multiplied by 2 to get 6,10,16
+				if((timer_interrupts % 6) == 0){
+					warble_count++;
+					isOdd = !isOdd; // toggles which meter to flip
+				}
+				if((timer_interrupts % 10) == 0){
+					warble_count++;
+				}
+				if((timer_interrupts % 16) == 0){
+					warble_count++;
+					isOdd = !isOdd;  // toggles which meter to flip
+				}
+		
+				if (warble_count >= 2){
+					
+					OCR1B = 5000;	
+			
+					minFlag = true;
+					hourFlag = true;
+					
+				}
+				else if (warble_count >=1){
+					OCR1B = 5000;
+		
+					if (isOdd){
+						minFlag = true;
+					}
+					else{
+						hourFlag = true;
+					}
+				}
+	
+		}
 		else{
-			warble_randomizer++;			//rotates the warble randomizer
-		}
-		
-		
-		if (timer_interrupts % prime_table[warble_randomizer & 0b00000111] == 0){
-			warbling = 1;
-			warble_count = max_warble_level;
-			OCR0A = 0;
-			
-		}
-		if (timer_interrupts % prime_table[(warble_randomizer + 1) & 0b00000111] == 0){
-			warbling = 1;
-			warble_count = max_warble_level;
-			OCR0A = 255;
-			
-		}
-		if (timer_interrupts % prime_table[(warble_randomizer + 2) & 0b00000111] == 0){
-			warbling = 1;
-			warble_count = max_warble_level;
-			OCR0B = 0;
-			
-		}
-		if (timer_interrupts % prime_table[(warble_randomizer + 3) & 0b00000111] == 0){
-			warbling = 1;
-			warble_count = max_warble_level;
-			OCR0B = 255;
-			
-			
-		}
-		
-		
-		if (warble_count > 0){
-			warble_count--;	
-		}
-		else{
-			warbling = 0;
-		}
-		
-		
- 		
-		if (rotation_accumulator > 5 || rotation_accumulator < -5){
-			max_warble_level += rotation_accumulator / 5;
-			
-			if (max_warble_level < 0){
-				max_warble_level = 0;
-			}
-			else if (max_warble_level > 30){
-				max_warble_level = 30;
-			}
-			
-			rotation_accumulator = 0; // only clears the accumulator if had a large enough value
+			warble_count = 0;
+			OCR1B = TIMER_TICKS_PER_INTERRUPT + 1;	
+				
 		}
 		
 	}
@@ -229,11 +224,23 @@ void mode_time(){
 	}
 	else{
 		
-		timer_interrupts += rotation_accumulator ;
-				
-		rotation_accumulator = 0;
+	
 		
-		tell_time();	
+		if(scans_remaining>6){
+			OCR0B=cal_hours;
+			OCR0A=cal_minutes;
+			return;
+		}
+		if(scans_remaining==6)
+		{
+			OCR0B=0;
+			OCR0A=0;
+			return;
+		}
+		
+		tell_time();
+		
+		timer_interrupts += 60*rotation_accumulator ;		
 		
 	}
 
@@ -241,20 +248,35 @@ void mode_time(){
 	return;
 }
 
+
+void mode_test(){
+	
+	//rotation_accumulator = 0; // dump the contents of the quadrature input accumulator, it is not used in this mode
+	
+	if (ADCH > test_high){
+		mode_pointer = &mode_cal_hours;
+		mode_cal_hours();
+	}
+	else{
+		OCR0A +=10 ; // cycles the registers
+		OCR0B +=10 ;
+	}
+	
+	return;
+}
+
+
+
 void tell_time(){
 	unsigned long hours;
 	unsigned long minutes;
-	
-	
-	//hours = (((timer_interrupts / MINS_CONVERSION) % (12*60)) * cal_hours) / (12*60) ; //order of operations matters to avoid rounding errors
-	
-	
+		
 	hours = (((timer_interrupts /(60* MINS_CONVERSION) % 12 ) * cal_hours) / 12) ; //order of operations matters to avoid rounding errors
 	if (hours==0){
 		hours=cal_hours;
 	}
 	OCR0B = (uint8_t)(hours );  //get the low byte of hours
-	
+		
 	minutes = (((timer_interrupts / SECONDS_CONVERSION) % 3600) * cal_minutes) / 3600;
 	OCR0A = (uint8_t)(minutes); //get the low byte of minutes
 }
@@ -262,21 +284,19 @@ void tell_time(){
 // initialize PWM
 void pwm_init()
 {
+	// Timer/Counter Control  Register 0A
 	//  SET WAVE GENERATION MODE
 	//  ***********************************************************
-	//  Timer/Counter Control Register 0
 	//  Setting WaveGenerationMode bits 00:02 to 0b001 puts the counter in phase correct PWM mode
 	//  and sets the TOP of the counter to the full 0xFF range. (see page83 of docs)
-	TCCR0A = (1<<WGM00);
-		
+	
 	//  SET OUTPUT COMPARISON MODE
 	//  ***********************************************************
-	//  Timer/Counter Control Register 0
 	//  Setting only Compare Output Mode bit A1 (COM0A1) clears the counter when up-counting on a match and sets it
-	//  when down-counting. Kinda like inverted mode. (See page 81/82). 
-	TCCR0A |= (1<<COM0A1);  
-	TCCR0A |= (1<<COM0B1);   // I find the mishmash of output compare for Timer0/ChannelB being on register A slightly confusing
+	//  when down-counting. Kinda like inverted mode. (See page 81/82).
 	
+	TCCR0A = (1<<WGM00)|(1<<COM0A1)|(1<<COM0B1); ;
+			
 	// SET CLOCK SOURCE
 	// No Clock prescaler will be necessary for the PWM
 	// System clock is at 32khz
@@ -300,38 +320,54 @@ void timer_init()
 	//  SET WAVE GENERATION MODE
 	//  ***********************************************************
 	// Timer/Conter Control Register 0A and 0B
-	// Wave Generation Mode bit 13:10 need to be set to 0b0100
-	// to put the timer in Clear Timer on Compare mode.
+	// Wave Generation Mode bit 13:10 need to be set to 0b1111
+	// to put the timer in Fast PWM mode.
 	// Sets the TOP of the register to OCR1A
 	
-		OCR1A = TIMER_TICKS_PER_INTERRUPT; // will trigger Timer1A every __ sec or so. 1A needs to be the larger number, as that does the actual Clear Timer on Compare
-		
-		TCCR1B = (1<<WGM12);  //only need to set WGM12 to achieve 0b0100
-		
 	
+		OCR1A = TIMER_TICKS_PER_INTERRUPT; // will trigger Timer1A every __ sec or so. 1A needs to be the larger number, as that does the actual Clear Timer on Compare
+		OCR1B = TIMER_TICKS_PER_INTERRUPT / 2;
+		
+		TCCR1A |= (1<<WGM11)|(1<<WGM10);					//set WGM to 0b1111 for fastpwm with OCR1A as the top
+		TCCR1B |= (1<<WGM13)|(1<<WGM12)|(1 << CS10);;		//set WGM to 0b1111 for fastpwm with OCR1A as the top
+															// SET CLOCK SOURCE  
+															//CS10 Set Clock Source Bits CS12:10 to 0b001 to turn timer on with no prescaler
+
 	// SET OUTPUT COMPARISON MODE 
 	// Compare Output Mode doesn't need to be set, the output pin is disconnected by default
 	
-	// SET CLOCK SOURCE
-	//  ***********************************************************
-		
-		
-		TCCR1B |= (1 << CS10);  //Set Clock Source Bits CS12:10 to 0b001 to turn timer on with no prescaler 
 		
 	// ENABLE INTERRUPT
 	// Output Compare A Match Interrupt Enable
 	
-		TIMSK1 = (1 << OCIE1A);  // trigger interrupt when TIMER1 reaches the TOP of A (I previously had it trigger on B as well, but turned that off)
+		TIMSK1 |= (1 << TOIE1)|(1 << OCIE1B);;  // TOIE1 trigger interrupt when TIMER1 reaches the TOP of A
+												 // OCIE1B  trigger interrupt at halfway to top of A as well.
 }
 
-ISR (TIM1_COMPA_vect){
+ISR (TIM1_OVF_vect){
 	//THIS ISR IS CALLLED WHEN THE 16 BIT TIMER HITS IT'S MATCH POINT
 	
 	//volatile variable was defined in main()
 	timer_interrupts += 1;  //in Compare Timer and Clear Mode, the register should have the number of Timer ticks
+	if (timer_interrupts < TWELVE_HOURS){
+		timer_interrupts += TWELVE_HOURS ; //prevents zero rollover bug
+	}
+	if (timer_interrupts > THIRTY_SIX_HOURS){
+		timer_interrupts -= TWELVE_HOURS ;
+	}
+	
 	time_to_check_knob = true;
 	
 	//PORTA ^= (1 << PA0);  //toggles LED on PBA/pin13   //on the breadboard, there was an LED on this pin, but it has been removed on the PCB
+	
+}
+
+ISR (TIM1_COMPB_vect){
+	//THIS ISR IS CALLED TO INCREASE THE FREQUENCY THAT THE KNOB IS READ
+	
+	if (scans_remaining > 0){
+		time_to_check_knob = true;	
+	}
 	
 }
 
@@ -344,14 +380,14 @@ void analog_init(){
 	ADMUX |= (1<<MUX0);
 	
 	//ADC Control and Status Register A
-	ADCSRA |= (1<<ADEN); // enables the ADC
-	ADCSRA |= (1<<ADPS0); //prescaler divides clock by 1, ADPS2:0 = 0b001
+	ADCSRA |= (1<<ADEN)|(1<<ADPS0);; // ADEN enables the ADC
+									 //ADPS0 prescaler divides clock by 1, ADPS2:0 = 0b001
 	
 	//ADC Control and Status Register B
 	ADCSRB |= (1 <<ADLAR); //left adjust result, so of the 10 bits, the high 8 bit register has the data I need.
 	
 	DDRA |= (1<<MODE_SELECT_POWER); //used to select the potentiometer as an output
-	PORTA &= ~(1<<MODE_SELECT_POWER); //turn power to potentiometer off
+	//PORTA &= ~(1<<MODE_SELECT_POWER); //turn power to potentiometer off
 }
 
 void pinchange_init(){
@@ -372,7 +408,8 @@ ISR (PCINT0_vect){
 
 	//the static keyword allows the table to persist within the scope of the ISR
 	//from one ISR call to the next
-    static int8_t lookup_table[] = {0,-1,1,0,1,0,0,-1,-1,0,0,1,0,1,-1,0};
+    //static int8_t lookup_table[] = {0,-1,1,0,1,0,0,-1,-1,0,0,1,0,1,-1,0}; //saving the original table in a comment
+	static int8_t lookup_table[] = {0,-1,1,0,0,0,0,0,0,0,0,0,0,0,0,0};  //trying to limit the to one tick per four counts
 	static uint8_t grey_code = 0;
 	
 	uint8_t input_status;
@@ -387,22 +424,17 @@ ISR (PCINT0_vect){
 
 	rotation_accumulator += lookup_table[grey_code];  
 	
-	//if (mode_pointer != &mode_warble)
-	//{
-	//	(*mode_pointer)();  //uses a pointer to call the function for the specific mode
-	//}
-	
 }
 
 void power_register_init(){
 	
 	//MCUCR: MCU Control Register
 	
-	MCUCR |= (1<<BODS); //disable brown out detector
-	MCUCR |= (1<<SE); //sleep enable
+	MCUCR |= (1<<BODS)|(1<<SE)|(0<<SM1)|(0<<SM0);; 
 	
-	MCUCR |= (0<<SM1)|(0<<SM0); //sleepmode select 0b00; will enter IDLE mode with CPU shut down
-	//MCUCR |= (1<<SM1)|(1<<SM0);//sleepmode select 0b11, will enter STANDBY mode with CPU shutdown and crystal still on
+								//BODS disable brown out detector
+								//SE sleep enable
+								//SM1, SM0  - sleepmode select 0b00; will enter IDLE mode with CPU shut down
 	
 	//PRR: Power Reduction Register
 	
@@ -412,7 +444,7 @@ void power_register_init(){
 
 int main (void)
 {
-	mode_pointer = &mode_time; //assigns the mode_pointer initially to time mode
+	
 		
 	pwm_init();
 	timer_init();
@@ -430,18 +462,36 @@ int main (void)
 			while(ADCSRA & (1<<ADSC));  // loops while waiting for ADC to finish
 			PORTA &= ~(1<<MODE_SELECT_POWER); //turn pot back off to conserve power
 			PRR |= (1<<PRADC); //shuts down the ADC and comparator
+			
+			//the status of scans_remaining will change the interrupt behavior
+			//of ISR timer1B. timer1B is used to poll the knobs more often
+			//and also to trigger twitch behavior more often in warble mode
+			if (abs( (int)ADCH - (int)last_reading ) < 4){   //if NO CHANGE
+				if (scans_remaining==0 ){
+					if (mode_pointer != &mode_warble){						  //don't fuck with OCR1B in warble mode
+						OCR1B = (unsigned long)TIMER_TICKS_PER_INTERRUPT + 1; //no change, no scans left, sets OCR1B	to a point that won't be reached
+					}
+				}
+				else{
+					scans_remaining--;
+				}
+			}
+			else{
+				scans_remaining = 10;
+				OCR1B = TIMER_TICKS_PER_INTERRUPT / 2;						 // if there WAS change, reset the scan count at higher frequency interrupts
+			}
+			
+			
+			last_reading = ADCH;  //saves the reading
 			time_to_check_knob = false;
 		}
 		
-		sleep_cpu();
-		//just hang out and wait for interrupts
-		
-		(*mode_pointer)();  //uses a pointer to call the function for the specific mode
-		
+		rotation_accumulator = 0;
+		sleep_cpu();     	//just hang out and wait for interrupts
+		(*mode_pointer)();  //uses a pointer to call the function for the specific mode	
 		
 		
     }
 	
-	return 1;
 }
 
