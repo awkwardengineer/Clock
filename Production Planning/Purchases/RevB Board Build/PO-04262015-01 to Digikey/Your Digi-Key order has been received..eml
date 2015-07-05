@@ -1,0 +1,146 @@
+Delivered-To: sammymiami@gmail.com
+Received: by 10.229.169.196 with SMTP id a4csp950884qcz;
+        Sun, 26 Apr 2015 10:51:09 -0700 (PDT)
+X-Received: by 10.181.13.16 with SMTP id eu16mr14391953wid.10.1430070668305;
+        Sun, 26 Apr 2015 10:51:08 -0700 (PDT)
+Return-Path: <sam+caf_=sammymiami=gmail.com@awkwardengineer.com>
+Received: from mail-wi0-x236.google.com (mail-wi0-x236.google.com. [2a00:1450:400c:c05::236])
+        by mx.google.com with ESMTPS id 8si29561071wjx.16.2015.04.26.10.51.07
+        for <sammymiami@gmail.com>
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 26 Apr 2015 10:51:08 -0700 (PDT)
+Received-SPF: none (google.com: sam+caf_=sammymiami=gmail.com@awkwardengineer.com does not designate permitted sender hosts) client-ip=2a00:1450:400c:c05::236;
+Authentication-Results: mx.google.com;
+       spf=none (google.com: sam+caf_=sammymiami=gmail.com@awkwardengineer.com does not designate permitted sender hosts) smtp.mail=sam+caf_=sammymiami=gmail.com@awkwardengineer.com;
+       dkim=pass header.i=@digikey.com
+Received: by mail-wi0-x236.google.com with SMTP id x7so68323818wia.0
+        for <sammymiami@gmail.com>; Sun, 26 Apr 2015 10:51:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:delivered-to:dkim-signature:message-id
+         :mime-version:from:to:reply-to:date:subject:content-type
+         :content-transfer-encoding;
+        bh=KioHElClYgquwsPVnsHhNynpQDMoMlLc9YLBvbBoz1w=;
+        b=B2XWPc+aLrZFPDK5gFT3q4ez6mTiYJo+8O/Rn3KgDd7pjQmx9KTzoalWWIvW7l/Sro
+         gLs9ZL8kGT8dhnhhfyu4qpvDee/fWPoSXlboOClFduisDgd81pb8p3EMEhOeIMqxrfGC
+         fu+rgY5O78l8iR8epRNobpkdAd5ZwASeLF2cST3mUWTgc/hAtdH/2KGLsPtFWtthN8JA
+         mSnxQuCAmkQlzZSORa02Rc3pipFoG5LxdwSRkRMjCHvW4rHBsJEVwKhrkry+VMhO4Lm+
+         Z7+TJE1F54j+8ggaJsQgAXbVmbByDajVgMkWqcMS1cufim3Dpzji3UDS8+/wY/2MHsmH
+         Ilnw==
+X-Gm-Message-State: ALoCoQnS6s0cMG73b8vYiMPWEYhhF3CJ0+6EtmG7NsgkmYu+oPwlWePvn6fC3CEOELD62yWvIqoq
+X-Received: by 10.194.85.116 with SMTP id g20mr15752037wjz.154.1430070667718;
+        Sun, 26 Apr 2015 10:51:07 -0700 (PDT)
+X-Forwarded-To: sammymiami@gmail.com
+X-Forwarded-For: sam@awkwardengineer.com sammymiami@gmail.com
+Delivered-To: sam@awkwardengineer.com
+Received: by 10.27.87.1 with SMTP id l1csp989185wlb;
+        Sun, 26 Apr 2015 10:51:06 -0700 (PDT)
+X-Received: by 10.50.132.33 with SMTP id or1mr9110874igb.31.1430070665430;
+        Sun, 26 Apr 2015 10:51:05 -0700 (PDT)
+Return-Path: <prvs=551b8d37b=no_reply@digikey.com>
+Received: from mail4.digikey.com (mail4.digikey.com. [204.221.76.205])
+        by mx.google.com with ESMTPS id t17si14339488ict.31.2015.04.26.10.51.04
+        for <SAM@awkwardengineer.com>
+        (version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+        Sun, 26 Apr 2015 10:51:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of prvs=551b8d37b=no_reply@digikey.com designates 204.221.76.205 as permitted sender) client-ip=204.221.76.205;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=digikey.com; s=en; t=1430070665;
+  h=mime-version:from:to:reply-to:date:subject:
+   content-transfer-encoding:message-id;
+  bh=KioHElClYgquwsPVnsHhNynpQDMoMlLc9YLBvbBoz1w=;
+  b=c8METx9eU2lH3fVqIO9LXBlaGRmOutsXIgo/YmBlJQnSAhnOEM+zFI/B
+   jraP9i0Okb9jX2uXJI0frlDcUz9JJ4ZkGHd5Y8Q6XR3HJEnnP2RMDgGKg
+   BjVMnKAafXjMWNokwPtZuWA7nG1xKzdvwifyrggCIx6qt+h6BIMhxL7Io
+   Q=;
+Message-Id: <99e65d$1vsfg2@mail4.digikey.com>
+Received: from [127.0.0.1] by mail4.digikey.com; 26 Apr 2015 17:51:04 -0000
+MIME-Version: 1.0
+From: "Digi-Key Corporation" <no_reply@digikey.com>
+To: SAM@AWKWARDENGINEER.COM
+Reply-To: "Digi-Key Corporation" <web.orders@digikey.com>
+Date: 26 Apr 2015 12:51:04 -0500
+Subject: Your Digi-Key order has been received.
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGhlYWQ+PHRpdGxlPkRpZ2ktS2V5IENvcnBvcmF0aW9uPC90aXRsZT48bWV0YSBodHRw
+LWVxdWl2PSJDb250ZW50LVR5cGUiIGNvbnRlbnQ9InRleHQvaHRtbDsgY2hhcnNldD1pc28tODg1
+OS0xIiAvPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQogICAgICAgICAgKnttYXJnaW46MDsgcGFk
+ZGluZzowO30NCg0KICAgICAgICAgIGh0bWwsIGJvZHkgeyBtaW4taGVpZ2h0OiAxMDAlOyBoZWln
+aHQ6IGF1dG8gIWltcG9ydGFudDsgaGVpZ2h0OiAxMDAlOyBiYWNrZ3JvdW5kOiNmZmZmZmY7IHRl
+eHQtYWxpZ246IGNlbnRlcjsgY29sb3I6IzMzMzMzMzt9DQoNCiAgICAgICAgICBib2R5IHtmb250
+OjEzcHggYXJpYWwsaGVsdmV0aWNhLGNsZWFuLHNhbnMtc2VyaWY7Zm9udC1zaXplOnNtYWxsO2Zv
+bnQ6eC1zbWFsbDt9DQogICAgICAgICAgdGFibGUge2ZvbnQtc2l6ZTppbmhlcml0O2ZvbnQ6MTAw
+JTt9DQoNCiAgICAgICAgICBzZWxlY3QsIGlucHV0LCB0ZXh0YXJlYSB7Zm9udDo5OSUgYXJpYWws
+aGVsdmV0aWNhLGNsZWFuLHNhbnMtc2VyaWY7fQ0KDQogICAgICAgICAgcHJlLCBjb2RlIHtmb250
+OjExNSUgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMDAlO30NCg0KICAgICAgICAgIGJvZHkgKiB7bGlu
+ZS1oZWlnaHQ6MS4yMmVtO30NCg0KICAgICAgICAgIHAsIGlucHV0LCB0ZXh0YXJlYSwgc2VsZWN0
+LCBsYWJlbCwgbGksIGRkLCBwcmUsIGg1LCBoNiB7Zm9udC1zaXplOiA4NSV9DQoNCiAgICAgICAg
+ICBoMiB7Zm9udC1zaXplOiAxNjclOyBmb250LXdlaWdodDpub3JtYWw7fQ0KICAgICAgICAgIGE6
+bGluayB7Y29sb3I6I0ZGMDAwMDtvdXRsaW5lOm5vbmU7fQ0KICAgICAgICAgIGE6dmlzaXRlZCB7
+Y29sb3I6I0ZGMDAwMDtvdXRsaW5lOm5vbmU7fQ0KICAgICAgICAgIGE6aG92ZXIge2NvbG9yOiNG
+RjAwMDA7b3V0bGluZTpub25lO30NCiAgICAgICAgICBhOmFjdGl2ZSB7Y29sb3I6I0ZGMDAwMDtv
+dXRsaW5lOm5vbmU7fQ0KICAgICAgICAgIGE6Zm9jdXN7Y29sb3I6I0ZGMDAwMDtvdXRsaW5lOm5v
+bmU7fQ0KICAgICAgICAgIDpmb2N1cyB7IC1tb3otb3V0bGluZS1zdHlsZTogbm9uZTsgfQ0KDQog
+ICAgICAgICAgI2NlbnRlcmVkQ29udGVudCB7d2lkdGg6NjQwcHg7IG1hcmdpbjowIGF1dG87IHRl
+eHQtYWxpZ246bGVmdDt9DQogICAgICAgICAgc2VsZWN0LCBpbnB1dCB7cGFkZGluZzoxcHg7fQ0K
+ICAgICAgICAgIGxhYmVse2ZvbnQtd2VpZ2h0OmJvbGQ7IGNvbG9yOiMzMzMzMzM7Y3Vyc29yOiBw
+b2ludGVyO2N1cnNvcjogaGFuZDt9DQogICAgICAgICAgLmV4Rm9ybXtkaXNwbGF5OmlubGluZTsg
+Y29sb3I6I0NDQ0NDQzt9DQogICAgICAgICAgLmNsZWFyZmxvYXQge2NsZWFyOiBib3RoOyBsaW5l
+LWhlaWdodDogMDsgaGVpZ2h0OiAwOyBkaXNwbGF5OiBibG9jazt9DQogICAgICAgICAgLmZsb2F0
+UmlnaHR7ZmxvYXQ6cmlnaHQ7fQ0KICAgICAgICAgIC5mbG9hdExlZnR7ZmxvYXQ6bGVmdDt9DQog
+ICAgICAgICAgaW1ne2JvcmRlcjpub25lO30NCiAgICAgICAgICBwe2xpbmUtaGVpZ2h0OjEuNGVt
+O30NCiAgICAgICAgICBzdHJvbmd7Y29sb3I6IzY2NjY2Njt9DQogICAgICAgICAgdWwuZGVmYXVs
+dCB7bWFyZ2luOjAgMCAxMHB4IDEwcHg7fQ0KDQogICAgICAgICAgLmRpc3BsYXlOb25lIHtkaXNw
+bGF5Om5vbmU7fQ0KICAgICAgICAgIC5kaXNwbGF5QmxvY2sge2Rpc3BsYXk6YmxvY2s7fQ0KDQog
+ICAgICAgICAgaDEge3dpZHRoOjM2OHB4OyBoZWlnaHQ6NjFweDt9DQoNCiAgICAgICAgICAjbWFp
+bkNvbnRlbnQge3BhZGRpbmc6MjBweCAxOXB4O30NCg0KICAgICAgICAgICNmb290ZXIgdGFibGUg
+e3dpZHRoOiAxMDAlOyBtYXJnaW4tbGVmdDogMjBweDt9DQoNCiAgICAgICAgICAjcnVsZXIge2hl
+aWdodDogMXB4OyB3aWR0aDogNjIwcHg7IG1hcmdpbi1sZWZ0OiAxMHB4O30NCg0KICAgICAgICAg
+ICN0YWJsZUZvcm1hdCBkaXYge3dpZHRoOiA5MCU7fQ0KICAgICAgICAgICN0YWJsZUZvcm1hdCB0
+YWJsZSB7d2lkdGg6IDkwJTt9DQogICAgICAgICAgI3RhYmxlRm9ybWF0IHRoIHt0ZXh0LWFsaWdu
+OiBsZWZ0OyBiYWNrZ3JvdW5kLWNvbG9yOiAjRTlFQUVDOyBwYWRkaW5nLWxlZnQ6IDEwcHg7fQ0K
+ICAgICAgICAgICN0YWJsZUZvcm1hdCBzdHJvbmcge2NvbG9yOiAjMDAwMDAwO30NCiAgICAgICAg
+ICAjdGFibGVGb3JtYXQgdHIgdGQge2JvcmRlcjogMXB4IHNvbGlkICNFOUVBRUM7IHBhZGRpbmct
+dG9wOiAxMHB4OyBwYWRkaW5nLWJvdHRvbToxMHB4OyBwYWRkaW5nLWxlZnQ6IDEwcHg7fQ0KICAg
+ICAgICA8L3N0eWxlPjwvaGVhZD48Ym9keT48ZGl2IGlkPSJjZW50ZXJlZENvbnRlbnQiPjx0YWJs
+ZSB3aWR0aD0iNjQwIiBib3JkZXI9IjAiIGFsaWduPSJjZW50ZXIiIGNlbGxwYWRkaW5nPSIwIiBj
+ZWxsc3BhY2luZz0iMCI+PHRyPjx0ZD48dGFibGUgd2lkdGg9IjY0MCIgYm9yZGVyPSIwIiBhbGln
+bj0iY2VudGVyIiBjZWxscGFkZGluZz0iMCIgY2VsbHNwYWNpbmc9IjAiPjx0cj48dGQ+PGEgaHJl
+Zj0iaHR0cDovL3d3dy5kaWdpa2V5LmNvbT9ka2NpZD03OTI5OCI+PGltZyBzcmM9Imh0dHA6Ly93
+d3cuZGlnaWtleS5jb20vV2ViJTIwRXhwb3J0L2Vwcm8vaW5mb3NlcnYtYmFubmVyLmpwZyIgYWx0
+PSJEaWdpLUtleSBJbmZvcm1hdGlvbiBTZXJ2aWNlcyIgdGl0bGU9IkdvIHRvIHd3dy5kaWdpa2V5
+LmNvbSIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMDMiIGJvcmRlcj0iMCIgLz48L2E+PC90ZD48L3Ry
+PjwvdGFibGU+PC90ZD48L3RyPjx0cj48dGQ+PGRpdiBpZD0ibWFpbkNvbnRlbnQiIHN0eWxlPSJj
+b2xvcjogYmxhY2s7Ij48dGFibGUgc3R5bGU9IndpZHRoOiAxMDAlOyB0ZXh0LWFsaWduOiBsZWZ0
+OyI+PHRyPjx0ZD5UaGFuayB5b3UgZm9yIHBsYWNpbmcgYW4gb3JkZXIgd2l0aCBEaWdpLUtleS48
+YnI+PGJyPllvdXIgb3JkZXIgaXMgYmVpbmcgcHJvY2Vzc2VkLglZb3Ugd2lsbCByZWNlaXZlIGFu
+IGUtbWFpbCBjb25maXJtYXRpb24gd2hlbiB5b3VyIG9yZGVyIHNoaXBzLjxicj48YnI+WW91ciBT
+YWxlc29yZGVyIE51bWJlciBpczogNDI4MzM5NTg8YnI+WW91ciBQdXJjaGFzZSBPcmRlciBOdW1i
+ZXIgaXM6IFBPLTA0MjYyMDE1LTAxPGJyPllvdXIgV2ViIElEIGlzOiAxNDM1MDg2NDU8YnI+WW91
+ciBBY2Nlc3MgSUQgaXM6IDMxMjY1PGJyPjxicj5BbGwgdHJhbnNhY3Rpb25zIHdpdGggRGlnaS1L
+ZXkgQ29ycG9yYXRpb24sIGluY2x1ZGluZyBpdHMgc3Vic2lkaWFyaWVzIGFuZC9vciBhZmZpbGlh
+dGVzLCBhcmUgc3ViamVjdCB0byBEaWdpLUtleSdzIFRlcm1zIG9mIFVzZSBhbmQgQ29uZGl0aW9u
+cyBvZiBPcmRlciwgYXZhaWxhYmxlIGF0IHd3dy5kaWdpa2V5LmNvbS48L3RkPjwvdHI+PC90YWJs
+ZT48L2Rpdj48L3RkPjwvdHI+PHRyPjx0ZD48ZGl2IGlkPSJmb290ZXIiPjxociBpZD0icnVsZXIi
+IC8+PGJyIC8+PHRhYmxlIHN0eWxlPSJ0ZXh0LWFsaWduOiBsZWZ0OyI+PHRyPjx0ZD4NCiAgICAg
+ICAgICAgICAgICAgICAgICAgIENvcHlyaWdodCDCqSAyMDE1wqA8YSBocmVmPSJodHRwOi8vd3d3
+LmRpZ2lrZXkuY29tIj5EaWdpLUtleSBDb3Jwb3JhdGlvbjwvYT48YnIgLz4NCiAgICAgICAgICAg
+ICAgICAgICAgICAgIDcwMSBCcm9va3MgQXZlbnVlIFNvdXRoIFRoaWVmIFJpdmVyIEZhbGxzLCBN
+TiA1NjcwMSBVU0E8YnIgLz4NCiAgICAgICAgICAgICAgICAgICAgICAgIFBob25lOiA4MDAtMzQ0
+LTQ1Mzkgb3IgMjE4LTY4MS02Njc0wqDCoEZheDoyMTgtNjgxLTMzODDCoMKgDQogICAgICAgICAg
+ICAgICAgICAgICAgPC90ZD48L3RyPjwvdGFibGU+PC9kaXY+PC90ZD48L3RyPjwvdGFibGU+PGJy
+IC8+PC9kaXY+PHA+PGJyPgpUaGlzIGVtYWlsIGFuZCB0aGUgYXNzb2NpYXRlZCBhdHRhY2htZW50
+cyBtYXkgY29udGFpbiBpbmZvcm1hdGlvbiB0aGF0PGJyPgppcyBwcm9wcmlldGFyeSwgcHJpdmls
+ZWdlZCwgY29uZmlkZW50aWFsIG9yIG90aGVyd2lzZSBwcm90ZWN0ZWQgZnJvbTxicj4KZGlzY2xv
+c3VyZS4mbmJzcDsgSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCBvciBvdGhl
+cndpc2UgaGF2ZTxicj4KcmVjZWl2ZWQgdGhpcyBtZXNzYWdlIGluIGVycm9yLCB5b3UgYXJlIG5v
+dCBhdXRob3JpemVkIHRvIHJlYWQsIHByaW50LDxicj4KcmV0YWluLCBjb3B5IG9yIGRpc3NlbWlu
+YXRlIHRoaXMgbWVzc2FnZSBvciBhbnkgcGFydCBvZiBpdC4mbmJzcDsgSWYgeW91PGJyPgphcmUg
+bm90IHRoZSBpbnRlbmRlZCByZWNpcGllbnQgb3Igb3RoZXJ3aXNlIGhhdmUgcmVjZWl2ZWQgdGhp
+cyBtZXNzYWdlPGJyPgppbiBlcnJvciwgcGxlYXNlIG5vdGlmeSB1cyBpbW1lZGlhdGVseSwgZGVz
+dHJveSBhbnkgcGFwZXIgY29waWVzIGFuZDxicj4KZGVsZXRlIGFsbCBlbGVjdHJvbmljIGZpbGVz
+IG9mIHRoZSBtZXNzYWdlLjxicj4KVGhhbmsgeW91LiZuYnNwOyAgRGlnaS1LZXkgQ29ycG9yYXRp
+b24uPC9wPjwvYm9keT48L2h0bWw+
+
