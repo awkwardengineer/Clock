@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 4/14/2015 7:49:07 PM
+Cmp-Mod V01 Created by PcbNew date = 6/6/2015 12:02:52 PM
 
 BeginCmp
 TimeStamp = /53B41CBB;
@@ -81,14 +81,14 @@ BeginCmp
 TimeStamp = /53378124;
 Reference = CON1;
 ValeurCmp = AVR-ISP-6;
-IdModule  = pin_array_3x2;
+IdModule  = ISPheader;
 EndCmp
 
 BeginCmp
 TimeStamp = /54A87A25;
 Reference = CON2;
 ValeurCmp = USB-MICRO-B;
-IdModule  = USB_MINI_B;
+IdModule  = USB_MINI_B_s;
 EndCmp
 
 BeginCmp
@@ -144,7 +144,7 @@ BeginCmp
 TimeStamp = /55241100;
 Reference = P1;
 ValeurCmp = CONN_6;
-IdModule  = SIL-6;
+IdModule  = SIL-6_s;
 EndCmp
 
 BeginCmp
@@ -157,6 +157,13 @@ EndCmp
 BeginCmp
 TimeStamp = /552DAE13;
 Reference = P3;
+ValeurCmp = CONN_2;
+IdModule  = SIL-2;
+EndCmp
+
+BeginCmp
+TimeStamp = /55690DE7;
+Reference = P4;
 ValeurCmp = CONN_2;
 IdModule  = SIL-2;
 EndCmp
@@ -178,28 +185,28 @@ EndCmp
 BeginCmp
 TimeStamp = /53750B10;
 Reference = R1;
-ValeurCmp = 50K;
+ValeurCmp = 0K;
 IdModule  = SM0805;
 EndCmp
 
 BeginCmp
 TimeStamp = /53750AFE;
 Reference = R2;
-ValeurCmp = 50K;
+ValeurCmp = 100K;
 IdModule  = bourns_knob;
 EndCmp
 
 BeginCmp
 TimeStamp = /53764252;
 Reference = R3;
-ValeurCmp = 50K;
+ValeurCmp = 10K;
 IdModule  = SM0805;
 EndCmp
 
 BeginCmp
 TimeStamp = /53764258;
 Reference = R4;
-ValeurCmp = 50K;
+ValeurCmp = 100K;
 IdModule  = SM0805;
 EndCmp
 
@@ -220,14 +227,14 @@ EndCmp
 BeginCmp
 TimeStamp = /5336474C;
 Reference = R7;
-ValeurCmp = 36K;
+ValeurCmp = 33K;
 IdModule  = SM0805;
 EndCmp
 
 BeginCmp
 TimeStamp = /53364759;
 Reference = R8;
-ValeurCmp = 36K;
+ValeurCmp = 33K;
 IdModule  = SM0805;
 EndCmp
 
@@ -241,14 +248,14 @@ EndCmp
 BeginCmp
 TimeStamp = /53764271;
 Reference = R10;
-ValeurCmp = 50K;
+ValeurCmp = 130K;
 IdModule  = SM0805;
 EndCmp
 
 BeginCmp
 TimeStamp = /5376426B;
 Reference = R11;
-ValeurCmp = 50K;
+ValeurCmp = 130K;
 IdModule  = SM0805;
 EndCmp
 
