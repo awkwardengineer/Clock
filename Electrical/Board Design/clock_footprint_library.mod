@@ -1,4 +1,4 @@
-PCBNEW-LibModule-V1  4/19/2015 11:08:49 PM
+PCBNEW-LibModule-V1  6/6/2015 12:03:15 PM
 # encoding utf-8
 Units mm
 $INDEX
@@ -6,11 +6,15 @@ AA_Battery_Clip_THRU_HOLE_BK-92
 AA_battery_clip
 AA_battery_clip_single
 CRYSTAL
+ISPheader
 SIL-6
+SIL-6_s
 SMD_CRYSTAL
 SMD_CRYSTAL_SMALL
 SOT23
 TO92-INVERT
+USB_MINI_B
+USB_MINI_B_s
 ammeter
 bourns_encoder
 bourns_knob
@@ -18,13 +22,13 @@ bourns_potentiometer
 pin_array_3x2
 $EndINDEX
 $MODULE AA_Battery_Clip_THRU_HOLE_BK-92
-Po 0 0 0 15 552C4B84 00000000 ~~
+Po 0 0 0 15 5568FF65 00000000 ~~
 Li AA_Battery_Clip_THRU_HOLE_BK-92
 Sc 0
-AR 
+AR /53B41CBB
 Op 0 0 0
-T0 -5 12.5 1 1 0 0.15 N V 21 N "BT "
-T1 -2 12.5 1 1 0 0.15 N V 21 N "VAL**"
+T0 -5.548 12.055 1 1 0 0.15 N V 21 N "BT1"
+T1 1.691 12.055 1 1 0 0.15 N V 21 N "BATTERY_CLIP"
 DS 6 11 6 5 0.15 21
 DS 6 11 -6 11 0.15 21
 DS -6 11 -6 5 0.15 21
@@ -33,14 +37,14 @@ $PAD
 Sh "~" O 2.8 5.8 0 0 0
 Dr 1.78 0 0
 At STD N 00E0FFFF
-Ne 0 ""
-Po 0 0
+Ne 1 "/BATTERY POWER"
+Po 0 0.254
 $EndPAD
 $PAD
 Sh "~" O 2.8 5.5 0 0 0
 Dr 1.78 0 0
 At STD N 00E0FFFF
-Ne 0 ""
+Ne 1 "/BATTERY POWER"
 Po 0 7.62
 $EndPAD
 $EndMODULE AA_Battery_Clip_THRU_HOLE_BK-92
@@ -131,8 +135,92 @@ Ne 0 ""
 Po 0.55 0
 $EndPAD
 $EndMODULE CRYSTAL
+$MODULE ISPheader
+Po 0 0 0 15 557319BC 00000000 ~~
+Li ISPheader
+Cd Double rangee de contacts 2 x 4 pins
+Kw CONN
+Sc 0
+AR /53378124
+Op 0 0 0
+T0 -3.048 -3.81 1.016 1.016 0 0.2032 N V 21 N "CON1"
+T1 0 3.81 1.016 1.016 0 0.2032 N I 21 N "AVR-ISP-6"
+DS 3.81 2.54 -3.81 2.54 0.2032 21
+DS -3.81 -2.54 3.81 -2.54 0.2032 21
+DS 3.81 -2.54 3.81 2.54 0.2032 21
+DS -3.81 2.54 -3.81 -2.54 0.2032 21
+$PAD
+Sh "1" R 1.524 1.524 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 1 "/ALARM BUZZER"
+Po -2.54 1.27
+$EndPAD
+$PAD
+Sh "2" C 1.524 1.524 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 6 "VCC"
+Po -2.54 -1.27
+$EndPAD
+$PAD
+Sh "3" C 1.524 1.524 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 2 "/ALARM LIGHT"
+Po 0 1.27
+$EndPAD
+$PAD
+Sh "4" C 1.524 1.524 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 3 "/AM PM LIGHT"
+Po 0 -1.27
+$EndPAD
+$PAD
+Sh "5" C 1.524 1.524 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 5 "N-0000029"
+Po 2.54 1.27
+$EndPAD
+$PAD
+Sh "6" C 1.524 1.524 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 4 "GND"
+Po 2.54 -1.27
+$EndPAD
+$PAD
+Sh "" C 1.5748 1.5748 0 0 0
+Dr 1.5748 0 0
+At HOLE N 00E0FFFF
+Ne 0 ""
+Po 5.334 0
+$EndPAD
+$PAD
+Sh "" C 1.5748 1.5748 0 0 0
+Dr 1.5748 0 0
+At HOLE N 00E0FFFF
+Ne 0 ""
+Po -5.334 0
+$EndPAD
+$PAD
+Sh "" C 1.5748 1.5748 0 0 0
+Dr 1.5748 0 0
+At HOLE N 00E0FFFF
+Ne 0 ""
+Po 0 4.064
+$EndPAD
+$SHAPE3D
+Na "pin_array/pins_array_3x2.wrl"
+Sc 1 1 1
+Of 0 0 0
+Ro 0 0 0
+$EndSHAPE3D
+$EndMODULE ISPheader
 $MODULE SIL-6
-Po 0 0 0 15 552A9AEC 00000000 ~~
+Po 0 0 0 15 5569C786 00000000 ~~
 Li SIL-6
 Cd Connecteur 6 pins
 Kw CONN DEV
@@ -140,7 +228,7 @@ Sc 0
 AR /55241100
 Op 0 0 0
 T0 -6.61 -2.528 1.72974 1.08712 0 0.3048 N V 21 N "P1"
-T1 3.931 -2.528 1.524 1.016 0 0.3048 N I 21 N "TEST PORT"
+T1 3.931 -2.528 1.524 1.016 0 0.3048 N I 21 N "CONN_6"
 DS -7.62 1.27 -7.62 -1.27 0.3048 21
 DS -7.62 -1.27 7.62 -1.27 0.3048 21
 DS 7.62 -1.27 7.62 1.27 0.3048 21
@@ -188,7 +276,107 @@ At SMD N 00888000
 Ne 6 "VCC"
 Po 6.35 0
 $EndPAD
+$PAD
+Sh "" O 1.5748 1.5748 0 0 0
+Dr 1.5748 0 0
+At HOLE N 00E0FFFF
+Ne 0 ""
+Po 9.525 0
+$EndPAD
+$PAD
+Sh "1" O 1.5748 1.5748 0 0 0
+Dr 1.5748 0 0
+At HOLE N 00E0FFFF
+Ne 0 ""
+Po -9.525 0
+$EndPAD
+$PAD
+Sh "" O 1.5748 1.5748 0 0 0
+Dr 1.5748 0 0
+At HOLE N 00E0FFFF
+Ne 0 ""
+Po 0 -3.175
+$EndPAD
 $EndMODULE SIL-6
+$MODULE SIL-6_s
+Po 0 0 0 15 5569C786 00000000 ~~
+Li SIL-6_s
+Cd keyed connector
+Kw CONN DEV
+Sc 0
+AR /55241100
+Op 0 0 0
+T0 -6.61 -2.528 1.72974 1.08712 0 0.3048 N V 21 N "P1"
+T1 3.931 -2.528 1.524 1.016 0 0.3048 N I 21 N "CONN_6"
+DS -7.62 1.27 -7.62 -1.27 0.3048 21
+DS -7.62 -1.27 7.62 -1.27 0.3048 21
+DS 7.62 -1.27 7.62 1.27 0.3048 21
+DS 7.62 1.27 -7.62 1.27 0.3048 21
+DS -5.08 1.27 -5.08 -1.27 0.3048 21
+$PAD
+Sh "1" R 1.397 1.397 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 1 "/BATTERY POWER"
+Po -6.35 0
+$EndPAD
+$PAD
+Sh "2" C 1.397 1.397 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 5 "GND"
+Po -3.81 0
+$EndPAD
+$PAD
+Sh "3" C 1.397 1.397 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 3 "/MINUTES"
+Po -1.27 0
+$EndPAD
+$PAD
+Sh "4" C 1.397 1.397 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 2 "/HOURS"
+Po 1.27 0
+$EndPAD
+$PAD
+Sh "5" C 1.397 1.397 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 4 "/MODE SELECT"
+Po 3.81 0
+$EndPAD
+$PAD
+Sh "6" C 1.397 1.397 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 6 "VCC"
+Po 6.35 0
+$EndPAD
+$PAD
+Sh "" O 1.5748 1.5748 0 0 0
+Dr 1.5748 0 0
+At HOLE N 00E0FFFF
+Ne 0 ""
+Po 9.525 0
+$EndPAD
+$PAD
+Sh "1" O 1.5748 1.5748 0 0 0
+Dr 1.5748 0 0
+At HOLE N 00E0FFFF
+Ne 0 ""
+Po -9.525 0
+$EndPAD
+$PAD
+Sh "" O 1.5748 1.5748 0 0 0
+Dr 1.5748 0 0
+At HOLE N 00E0FFFF
+Ne 0 ""
+Po 0 -3.175
+$EndPAD
+$EndMODULE SIL-6_s
 $MODULE SMD_CRYSTAL
 Po 0 0 0 15 552559E7 00000000 ~~
 Li SMD_CRYSTAL
@@ -330,6 +518,184 @@ Of 0 0 0
 Ro 0 0 0
 $EndSHAPE3D
 $EndMODULE TO92-INVERT
+$MODULE USB_MINI_B
+Po 0 0 0 15 5569081C 00000000 ~~
+Li USB_MINI_B
+Cd USB Mini-B 5-pin SMD connector
+Kw USB, Mini-B, connector
+Sc 0
+AR /54A87A25
+Op 0 0 0
+T0 -3 -5 1.016 1.016 0 0.2032 N V 21 N "CON2"
+T1 4 -5 1.016 1.016 0 0.2032 N I 21 N "USB MICRO"
+DS -2.4 1.45 2.4 1.45 0.2 21
+$PAD
+Sh "3" R 0.4 2 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 0 -2.35
+$EndPAD
+$PAD
+Sh "4" R 0.4 2 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 0.65 -2.35
+$EndPAD
+$PAD
+Sh "5" R 0.4 2 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 1.3 -2.35
+$EndPAD
+$PAD
+Sh "2" R 0.4 2 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -0.65 -2.35
+$EndPAD
+$PAD
+Sh "1" R 0.4 2 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -1.25 -2.35
+$EndPAD
+$PAD
+Sh "~" R 1.6 1.4 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 3.2 -1.8
+$EndPAD
+$PAD
+Sh "~" R 1.6 1.4 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -3.2 -1.75
+$EndPAD
+$PAD
+Sh "~" R 1.9 1.9 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 1.2 0
+$EndPAD
+$PAD
+Sh "~" R 1.9 1.9 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -1.2 0
+$EndPAD
+$PAD
+Sh "~" O 0.9 1.6 0 0 0
+Dr 0.5 0 0 O 0.5 1.2
+At STD N 00E0FFFF
+Ne 0 ""
+Po 3.3 0
+$EndPAD
+$PAD
+Sh "~" O 0.9 1.6 0 0 0
+Dr 0.5 0 0 O 0.5 1.2
+At STD N 00E0FFFF
+Ne 0 ""
+Po -3.3 0
+$EndPAD
+$EndMODULE USB_MINI_B
+$MODULE USB_MINI_B_s
+Po 0 0 0 15 5569081C 00000000 ~~
+Li USB_MINI_B_s
+Cd SAM USB Mini-B 5-pin SMD connector
+Kw USB, Mini-B, connector
+Sc 0
+AR /54A87A25
+Op 0 0 0
+T0 -3 -5 1.016 1.016 0 0.2032 N V 21 N "CON2"
+T1 4 -5 1.016 1.016 0 0.2032 N I 21 N "USB MICRO"
+DS -2.4 1.45 2.4 1.45 0.2 21
+$PAD
+Sh "3" R 0.4 2 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 0 -2.35
+$EndPAD
+$PAD
+Sh "4" R 0.4 2 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 0.65 -2.35
+$EndPAD
+$PAD
+Sh "5" R 0.4 2 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 1.3 -2.35
+$EndPAD
+$PAD
+Sh "2" R 0.4 2 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -0.65 -2.35
+$EndPAD
+$PAD
+Sh "1" R 0.4 2 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -1.25 -2.35
+$EndPAD
+$PAD
+Sh "~" R 1.6 1.4 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 3.2 -1.8
+$EndPAD
+$PAD
+Sh "~" R 1.6 1.4 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -3.2 -1.75
+$EndPAD
+$PAD
+Sh "~" R 1.9 1.9 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 1.2 0
+$EndPAD
+$PAD
+Sh "~" R 1.9 1.9 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -1.2 0
+$EndPAD
+$PAD
+Sh "~" O 0.9 1.6 0 0 0
+Dr 0.5 0 0 O 0.5 1.2
+At STD N 00E0FFFF
+Ne 0 ""
+Po 3.3 0
+$EndPAD
+$PAD
+Sh "~" O 0.9 1.6 0 0 0
+Dr 0.5 0 0 O 0.5 1.2
+At STD N 00E0FFFF
+Ne 0 ""
+Po -3.3 0
+$EndPAD
+$EndMODULE USB_MINI_B_s
 $MODULE ammeter
 Po 0 0 0 15 5529788C 00000000 ~~
 Li ammeter
@@ -402,13 +768,13 @@ Po -6.1 0
 $EndPAD
 $EndMODULE bourns_encoder
 $MODULE bourns_knob
-Po 0 0 0 15 53CDDB9E 00000000 ~~
+Po 0 0 0 15 557317D3 00000000 ~~
 Li bourns_knob
 Sc 0
 AR /53750AFE
 Op 0 0 0
-T0 -9.5 -0.5 1 1 0 0.15 N V 21 N "R2"
-T1 10 -0.5 1 1 0 0.15 N V 21 N "50K"
+T0 -7.075 -4.28 1 1 0 0.15 N V 21 N "R2"
+T1 6.858 -4.185996 1 1 0 0.15 N V 21 N "100K"
 DS -8 7 8 7 0.3 21
 DS 8 7 8 -3 0.3 21
 DS 8 -3 -8 -3 0.3 21
@@ -417,7 +783,7 @@ $PAD
 Sh "1" C 2 2 0 0 0
 Dr 1 0 0
 At STD N 00E0FFFF
-Ne 2 "N-0000016"
+Ne 3 "N-000009"
 Po -3.75 3.3
 $EndPAD
 $PAD
@@ -431,7 +797,7 @@ $PAD
 Sh "3" C 2 2 0 0 0
 Dr 1 0 0
 At STD N 00E0FFFF
-Ne 3 "N-0000017"
+Ne 2 "N-0000010"
 Po 1.25 3.3
 $EndPAD
 $PAD
@@ -446,14 +812,14 @@ Sh "" O 3 4 0 0 0
 Dr 2 0 0 O 2 3.5
 At STD N 00E0FFFF
 Ne 0 ""
-Po 6.1 0
+Po 5.588 0
 $EndPAD
 $PAD
 Sh "" O 3 4 0 0 0
 Dr 2 0 0 O 2 3.5
 At STD N 00E0FFFF
 Ne 0 ""
-Po -6.1 0
+Po -5.588 0
 $EndPAD
 $EndMODULE bourns_knob
 $MODULE bourns_potentiometer
