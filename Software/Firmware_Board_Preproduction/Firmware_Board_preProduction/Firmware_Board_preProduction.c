@@ -47,17 +47,17 @@ void (*mode_pointer)(void) = &mode_time; //assigns the mode_pointer initially to
 #define test_low 0
 #define test_high 13
 
-#define cal_hours_low 14
-#define cal_hours_high 64
+#define time_low 14
+#define time_high 64
 
-#define cal_minutes_low 65
-#define cal_minutes_high 128
+#define warble_low 65
+#define warble_high 128
 
-#define warble_low 129
-#define warble_high 191
+#define cal_hours_low 129
+#define cal_hours_high 215
 
-#define time_low 192
-#define time_high 255
+#define cal_minutes_low 216
+#define cal_minutes_high 255
 
 #define MODE_SELECT_POWER PA0
 #define MODE_SELECT_INPUT PA1
@@ -66,12 +66,151 @@ void (*mode_pointer)(void) = &mode_time; //assigns the mode_pointer initially to
 #define MINUTES_OUT PA7
 #define HOURS_OUT PB2
 
+void mode_test(){
+	
+	//rotation_accumulator = 0; // dump the contents of the quadrature input accumulator, it is not used in this mode
+	
+	if (ADCH > test_high){
+		mode_pointer = &mode_cal_hours;
+		mode_cal_hours();
+	}
+	else{
+		OCR0A +=10 ; // cycles the registers
+		OCR0B +=10 ;
+	}
+	
+	return;
+}
+
+void mode_time(){
+	if (ADCH < time_low){
+		mode_pointer = &mode_test;
+		mode_test();
+	}
+	else if(ADCH > time_high){
+		mode_pointer = &mode_warble;
+		mode_warble();
+	}
+	else{
+		
+		
+		
+		if(scans_remaining>7){
+			OCR0B=cal_hours;
+			OCR0A=cal_minutes;
+			return;
+		}
+		if(scans_remaining==7)
+		{
+			OCR0B=0;
+			OCR0A=0;
+			return;
+		}
+		
+		tell_time();
+		
+		timer_interrupts += 60*rotation_accumulator ;
+		
+	}
+
+	return;
+}
+
+void mode_warble(){
+	
+	static uint8_t warble_count = 0;
+	static bool isOdd = true;
+	static bool minFlag = false;
+	static bool hourFlag = false;
+	
+	
+	if (ADCH < warble_low){
+		OCR1B = (unsigned long)TIMER_TICKS_PER_INTERRUPT + 1; //sets OCR1B	to a point that won't be reached on exiting mode
+		
+		mode_pointer = &mode_time;
+		mode_time();
+	}
+	else if (ADCH > warble_high){
+		OCR1B = (unsigned long)TIMER_TICKS_PER_INTERRUPT + 1; //sets OCR1B	to a point that won't be reached on exiting mode
+		
+		mode_pointer = &mode_cal_hours;
+		mode_cal_hours();
+	}
+	else{
+		if(scans_remaining>5){  //will point both meters straight up while entering this mode.
+			OCR0B=cal_hours/2;
+			OCR0A=cal_minutes/2;
+			return;
+		}
+		if(scans_remaining==5)  //then it flashes the meters, and then it tells time.
+		{
+			OCR0B=cal_hours;
+			OCR0A=cal_minutes;
+			return;
+		}
+		
+		if (hourFlag){
+			OCR0B += 127;
+		}
+		if (minFlag){
+			OCR0A += 127;
+		}
+		if (!hourFlag && !minFlag){
+			tell_time();
+		}
+		hourFlag = false;
+		minFlag = false;
+		
+		
+		if (warble_count==0){   //3,5,8 from the fibonaci sequeuence, multiplied by 2 to get 6,10,16
+			if((timer_interrupts % 6) == 0){
+				warble_count++;
+				isOdd = !isOdd; // toggles which meter to flip
+			}
+			if((timer_interrupts % 10) == 0){
+				warble_count++;
+			}
+			if((timer_interrupts % 16) == 0){
+				warble_count++;
+				isOdd = !isOdd;  // toggles which meter to flip
+			}
+			
+			if (warble_count >= 2){
+				
+				OCR1B = 5000;
+				
+				minFlag = true;
+				hourFlag = true;
+				
+			}
+			else if (warble_count >=1){
+				OCR1B = 5000;
+				
+				if (isOdd){
+					minFlag = true;
+				}
+				else{
+					hourFlag = true;
+				}
+			}
+			
+		}
+		else{
+			warble_count = 0;
+			OCR1B = TIMER_TICKS_PER_INTERRUPT + 1;
+			
+		}
+		
+	}
+	
+	return;
+}
 
 void mode_cal_hours(){
 		
 	if (ADCH < cal_hours_low){
-		mode_pointer = &mode_test;
-		mode_test();
+		mode_pointer = &mode_warble;
+		mode_warble();
 	}
 	else if (ADCH > cal_hours_high){
 		mode_pointer = &mode_cal_minutes;
@@ -103,10 +242,6 @@ void mode_cal_minutes(){
 		mode_pointer = &mode_cal_hours;
 		mode_cal_hours();
 	}
-	else if (ADCH > cal_minutes_high){
-		mode_pointer = &mode_warble;
-		mode_warble();
-	}
 	else{
 		OCR0B = 0;
 		OCR0A = cal_minutes; //by dividing by 2, pointer is calibrated on the 6.
@@ -126,145 +261,6 @@ void mode_cal_minutes(){
 	
 	return;
 }
-
-void mode_warble(){
-		
-	static uint8_t warble_count = 0;
-	static bool isOdd = true;
-	static bool minFlag = false;
-	static bool hourFlag = false;
-		
-	
-	if (ADCH < warble_low){
-		OCR1B = (unsigned long)TIMER_TICKS_PER_INTERRUPT + 1; //sets OCR1B	to a point that won't be reached on exiting mode
-		
-		mode_pointer = &mode_cal_minutes;
-		mode_cal_minutes();
-	}
-	else if (ADCH > warble_high){
-		OCR1B = (unsigned long)TIMER_TICKS_PER_INTERRUPT + 1; //sets OCR1B	to a point that won't be reached on exiting mode
-		
-		mode_pointer = &mode_time;
-		mode_time();
-	}
-	else{
-		if(scans_remaining>5){  //will point both meters straight up while entering this mode.
-			OCR0B=cal_hours/2;
-			OCR0A=cal_minutes/2;
-			return;
-		}
-		if(scans_remaining==5)  //then it flashes the meters, and then it tells time.
-		{
-			OCR0B=cal_hours;
-			OCR0A=cal_minutes;
-			return;
-		}
-		
-		if (hourFlag){
-			OCR0B += 127;
-		}
-		if (minFlag){
-			OCR0A += 127;
-		}
-		if (!hourFlag && !minFlag){
-			tell_time();
-		}
-		hourFlag = false;
-		minFlag = false;
-		
-				
-		if (warble_count==0){   //3,5,8 from the fibonaci sequeuence, multiplied by 2 to get 6,10,16
-				if((timer_interrupts % 6) == 0){
-					warble_count++;
-					isOdd = !isOdd; // toggles which meter to flip
-				}
-				if((timer_interrupts % 10) == 0){
-					warble_count++;
-				}
-				if((timer_interrupts % 16) == 0){
-					warble_count++;
-					isOdd = !isOdd;  // toggles which meter to flip
-				}
-		
-				if (warble_count >= 2){
-					
-					OCR1B = 5000;	
-			
-					minFlag = true;
-					hourFlag = true;
-					
-				}
-				else if (warble_count >=1){
-					OCR1B = 5000;
-		
-					if (isOdd){
-						minFlag = true;
-					}
-					else{
-						hourFlag = true;
-					}
-				}
-	
-		}
-		else{
-			warble_count = 0;
-			OCR1B = TIMER_TICKS_PER_INTERRUPT + 1;	
-				
-		}
-		
-	}
-	
-	return;
-}
-
-void mode_time(){
-	if (ADCH < time_low){
-		mode_pointer = &mode_warble;
-		mode_warble();
-	}
-	else{
-		
-	
-		
-		if(scans_remaining>6){
-			OCR0B=cal_hours;
-			OCR0A=cal_minutes;
-			return;
-		}
-		if(scans_remaining==6)
-		{
-			OCR0B=0;
-			OCR0A=0;
-			return;
-		}
-		
-		tell_time();
-		
-		timer_interrupts += 60*rotation_accumulator ;		
-		
-	}
-
-	
-	return;
-}
-
-
-void mode_test(){
-	
-	//rotation_accumulator = 0; // dump the contents of the quadrature input accumulator, it is not used in this mode
-	
-	if (ADCH > test_high){
-		mode_pointer = &mode_cal_hours;
-		mode_cal_hours();
-	}
-	else{
-		OCR0A +=10 ; // cycles the registers
-		OCR0B +=10 ;
-	}
-	
-	return;
-}
-
 
 
 void tell_time(){
@@ -466,7 +462,7 @@ int main (void)
 			//the status of scans_remaining will change the interrupt behavior
 			//of ISR timer1B. timer1B is used to poll the knobs more often
 			//and also to trigger twitch behavior more often in warble mode
-			if (abs( (int)ADCH - (int)last_reading ) < 4){   //if NO CHANGE
+			if (abs( (int)ADCH - (int)last_reading ) < 5){   //if NO CHANGE
 				if (scans_remaining==0 ){
 					if (mode_pointer != &mode_warble){						  //don't fuck with OCR1B in warble mode
 						OCR1B = (unsigned long)TIMER_TICKS_PER_INTERRUPT + 1; //no change, no scans left, sets OCR1B	to a point that won't be reached

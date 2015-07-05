@@ -5,7 +5,7 @@
     <ProjectVersion>6.2</ProjectVersion>
     <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
     <ProjectGuid>{1611ce35-2090-4773-9301-82eb81bb7572}</ProjectGuid>
-    <avrdevice>ATtiny44</avrdevice>
+    <avrdevice>ATtiny24</avrdevice>
     <avrdeviceseries>none</avrdeviceseries>
     <OutputType>Executable</OutputType>
     <Language>C</Language>
@@ -37,7 +37,8 @@
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
-    <avrtool>com.atmel.avrdbg.tool.ispmk2</avrtool>
+    <avrtool>
+    </avrtool>
     <avrtoolinterface>ISP</avrtoolinterface>
     <com_atmel_avrdbg_tool_ispmk2>
       <ToolOptions>
