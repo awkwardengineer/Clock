@@ -10,39 +10,39 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   id="svg2985"
+   width="1200"
+   height="628"
+   id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   width="2000"
-   height="1224"
-   sodipodi:docname="clock ad 1.png"
-   inkscape:export-filename="C:\Users\sfeller\Google Drive\Clock\Photos\Retouch\splash with text.png"
-   inkscape:export-xdpi="54"
-   inkscape:export-ydpi="54">
+   sodipodi:docname="clock ad 1.svg"
+   inkscape:export-filename="C:\Users\sfeller\Dropbox\Clock\Photos\Facebook\clock ad 5.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
   <sodipodi:namedview
+     id="base"
      pagecolor="#ffffff"
      bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="817.09357"
+     inkscape:cy="321.67822"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
      inkscape:window-width="1366"
      inkscape:window-height="706"
-     id="namedview2987"
-     showgrid="false"
-     inkscape:zoom="0.34558824"
-     inkscape:cx="942.55806"
-     inkscape:cy="656.6823"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg2985"
      showguides="true"
      inkscape:guide-bbox="true" />
   <metadata
-     id="metadata2991">
+     id="metadata7">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -53,216 +53,171 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <defs
-     id="defs2989">
-    <marker
-       style="overflow:visible"
-       id="TriangleInS"
-       refX="0.0"
-       refY="0.0"
-       orient="auto"
-       inkscape:stockid="TriangleInS">
-      <path
-         transform="scale(-0.2)"
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
-         id="path4104" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="TriangleInM"
-       refX="0.0"
-       refY="0.0"
-       orient="auto"
-       inkscape:stockid="TriangleInM">
-      <path
-         transform="scale(-0.4)"
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
-         id="path4101" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="DiamondS"
-       refX="0.0"
-       refY="0.0"
-       orient="auto"
-       inkscape:stockid="DiamondS">
-      <path
-         transform="scale(0.2)"
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none"
-         d="M 0,-7.0710768 L -7.0710894,0 L 0,7.0710589 L 7.0710462,0 L 0,-7.0710768 z "
-         id="path4050" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="DotS"
-       refX="0.0"
-       refY="0.0"
-       orient="auto"
-       inkscape:stockid="DotS">
-      <path
-         transform="scale(0.2) translate(7.4, 1)"
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;marker-end:none"
-         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
-         id="path4032" />
-    </marker>
-    <marker
-       inkscape:stockid="DotM"
-       orient="auto"
-       refY="0.0"
-       refX="0.0"
-       id="DotM"
-       style="overflow:visible">
-      <path
-         id="path4029"
-         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;marker-end:none"
-         transform="scale(0.4) translate(7.4, 1)" />
-    </marker>
-    <marker
-       inkscape:stockid="DotL"
-       orient="auto"
-       refY="0.0"
-       refX="0.0"
-       id="DotL"
-       style="overflow:visible">
-      <path
-         id="path4026"
-         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;marker-end:none"
-         transform="scale(0.8) translate(7.4, 1)" />
-    </marker>
-    <marker
-       inkscape:stockid="DotMO"
-       orient="auto"
-       refY="0.0"
-       refX="0.0"
-       id="DotMO"
-       style="overflow:visible">
-      <path
-         id="path4599"
-         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
-         style="marker-end:none;fill-rule:evenodd;marker-start:none;stroke:#ffffff;stroke-width:1.0pt;fill:#ffffff"
-         transform="scale(0.4) translate(7.4, 1)" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="DotS-1"
-       refX="0"
-       refY="0"
-       orient="auto"
-       inkscape:stockid="DotS">
-      <path
-         transform="matrix(0.2,0,0,0.2,1.48,0.2)"
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none;marker-end:none"
-         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
-         id="path4032-7"
-         inkscape:connector-curvature="0" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="TriangleInSZ"
-       refX="0.0"
-       refY="0.0"
-       orient="auto"
-       inkscape:stockid="TriangleInSZ">
-      <path
-         transform="scale(-0.2)"
-         style="marker-start:none;stroke:#ffffff;stroke-width:1.0pt;fill:#ffffff;fill-rule:evenodd"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
-         id="path5637" />
-    </marker>
-    <marker
-       style="overflow:visible"
-       id="TriangleInSu"
-       refX="0.0"
-       refY="0.0"
-       orient="auto"
-       inkscape:stockid="TriangleInSu">
-      <path
-         transform="scale(-0.2)"
-         style="marker-start:none;stroke:#ffffff;stroke-width:1.0pt;fill:#ffffff;fill-rule:evenodd"
-         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
-         id="path5640" />
-    </marker>
-    <clipPath
-       clipPathUnits="userSpaceOnUse"
-       id="clipPath4180">
-      <rect
-         style="opacity:0.1;fill:#000000;fill-opacity:1;stroke:#ff0000;stroke-width:2.25;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
-         id="rect4182"
-         width="1997.75"
-         height="1046.2008"
-         x="1.125"
-         y="114.67419" />
-    </clipPath>
-  </defs>
-  <image
-     y="0"
-     x="0"
-     id="image4175"
-     xlink:href="file:///C:/Users/sfeller/Dropbox/Clock/Photos/Retouched/splash%201.JPG"
-     height="1224"
-     width="2000"
-     clip-path="url(#clipPath4180)"
-     inkscape:export-filename="C:\Users\sfeller\Dropbox\Clock\Photos\Facebook\clock ad 1.png"
-     inkscape:export-xdpi="54.060818"
-     inkscape:export-ydpi="54.060818" />
-  <flowRoot
-     xml:space="preserve"
-     id="flowRoot2995"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.8;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Futura Lt BT;-inkscape-font-specification:Futura Lt BT"
-     transform="translate(-847.1416,116.73399)"
-     inkscape:transform-center-x="-28.645347"
-     inkscape:transform-center-y="20.460962"
-     inkscape:export-filename="C:\Users\sfeller\Dropbox\Clock\Photos\Facebook\clock ad 1.png"
-     inkscape:export-xdpi="54.060818"
-     inkscape:export-ydpi="54.060818"><flowRegion
-       id="flowRegion2997"><rect
-         id="rect2999"
-         width="2421.1736"
-         height="142.64081"
-         x="636.33594"
-         y="49.540771"
-         style="fill:#ffffff" /></flowRegion><flowPara
-       style="font-size:100px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;font-family:Futura Book;-inkscape-font-specification:Futura Book;opacity:0.90000000000000002"
-       id="flowPara3003">Analog Voltmeter Clock</flowPara><flowPara
-       style="font-size:100px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;text-anchor:middle;fill:#e6e6e6;font-family:Futura;-inkscape-font-specification:Futura Bold"
-       id="flowPara3005" /></flowRoot>  <flowRoot
-     xml:space="preserve"
-     id="flowRoot3085"
-     style="font-size:50px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:-3px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans Condensed Light;-inkscape-font-specification:Open Sans Condensed Light"><flowRegion
-       id="flowRegion3087"><rect
-         id="rect3089"
-         width="312.51065"
-         height="54.978722"
-         x="321.1915"
-         y="34.723408" /></flowRegion><flowPara
-       id="flowPara3091"
-       style="-inkscape-font-specification:Lobster Two;font-family:Lobster Two;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal">the</flowPara></flowRoot>  <text
-     xml:space="preserve"
-     style="font-size:50px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:-3px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Open Sans Condensed Light;-inkscape-font-specification:Open Sans Condensed Light;opacity:0.9"
-     x="314.55319"
-     y="198.08511"
-     id="text3093"
-     sodipodi:linespacing="125%"
-     inkscape:export-filename="C:\Users\sfeller\Dropbox\Clock\Photos\Facebook\clock ad 1.png"
-     inkscape:export-xdpi="54.060818"
-     inkscape:export-ydpi="54.060818"><tspan
-       sodipodi:role="line"
-       id="tspan3095"
-       x="314.55319"
-       y="198.08511"
-       style="font-size:75px;font-style:oblique;font-variant:normal;font-weight:bold;font-stretch:normal;letter-spacing:0px;fill:#ffffff;fill-opacity:1;font-family:Lobster Two;-inkscape-font-specification:Lobster Two Bold Oblique;opacity:0.9">The</tspan></text>
-  <flowRoot
-     xml:space="preserve"
-     id="flowRoot4184"
-     style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Open Sans Condensed Light;font-style:normal;font-weight:normal;font-size:50px;line-height:125%;letter-spacing:-3px;word-spacing:0px;-inkscape-font-specification:Open Sans Condensed Light;font-stretch:normal;font-variant:normal;text-anchor:middle;text-align:center"><flowRegion
-       id="flowRegion4186"><rect
-         id="rect4188"
-         width="2326.468"
-         height="1264.5106"
-         x="-182.29787"
-         y="20.255322" /></flowRegion><flowPara
-       id="flowPara4190"></flowPara></flowRoot></svg>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-424.36217)">
+    <image
+       y="423.89917"
+       x="0"
+       id="image3130"
+       xlink:href="file:///C:/Users/sfeller/Dropbox/Clock/Photos/Retouched/fb2.JPG"
+       height="628.46301"
+       width="1200" />
+    <image
+       y="389.20016"
+       x="-1565.835"
+       id="image3004"
+       xlink:href="file:///C:/Users/sfeller/Dropbox/Clock/Photos/Retouched/fb1.JPG"
+       height="627.87549"
+       width="1200" />
+    <text
+       xml:space="preserve"
+       style="font-size:120px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:-3px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Futura Book;-inkscape-font-specification:Futura Book"
+       x="389.91888"
+       y="300.80869"
+       id="text3007"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="397.41888"
+         y="300.80869"
+         id="tspan3011"
+         style="font-size:30px;letter-spacing:15px">MODEL: AWK-105</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:120px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:-3px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Futura Book;-inkscape-font-specification:Futura Book"
+       x="1289.7091"
+       y="261.75916"
+       id="text3007-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="1292.2091"
+         y="261.75916"
+         style="font-size:50px;letter-spacing:5px"
+         id="tspan3109">Analog</tspan><tspan
+         sodipodi:role="line"
+         x="1292.2091"
+         y="324.25912"
+         style="font-size:50px;letter-spacing:5px"
+         id="tspan3135">Voltmeter</tspan><tspan
+         sodipodi:role="line"
+         x="1292.2091"
+         y="386.75912"
+         style="font-size:50px;letter-spacing:5px"
+         id="tspan3137">Clock</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:120px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:-3px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Futura Book;-inkscape-font-specification:Futura Book"
+       x="1315.1527"
+       y="438.64825"
+       id="text3007-1-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="1315.1527"
+         y="438.64825"
+         id="tspan3011-7-0"
+         style="font-size:30px;letter-spacing:15px" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:120px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:-3px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Futura Book;-inkscape-font-specification:Futura Book"
+       x="997.94958"
+       y="355.49902"
+       id="text3057"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3059"
+         x="997.94958"
+         y="355.49902"
+         style="font-size:30px;font-style:oblique;font-variant:normal;font-weight:normal;font-stretch:normal;letter-spacing:0px;font-family:Lobster Two;-inkscape-font-specification:Lobster Two Oblique">The</tspan></text>
+    <image
+       y="-164.59323"
+       x="1058.2406"
+       id="image3090"
+       xlink:href="file:///C:/Users/sfeller/Dropbox/Clock/Photos/Facebook/kickstarter_funded.png"
+       height="243.82764"
+       width="254.98312"
+       transform="matrix(0.85983972,0.51056405,-0.51056405,0.85983972,0,0)" />
+    <image
+       y="447.38745"
+       x="1534.5283"
+       id="image3119"
+       xlink:href="file:///C:/Users/sfeller/Dropbox/Clock/Photos/Facebook/kickstarter_logo.png"
+       height="256.36548"
+       width="256.36548" />
+    <text
+       xml:space="preserve"
+       style="font-size:120px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:-3px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Futura Book;-inkscape-font-specification:Futura Book"
+       x="1507.7335"
+       y="777.77856"
+       id="text3007-1-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="1510.2335"
+         y="777.77856"
+         style="font-size:50px;letter-spacing:5px"
+         id="tspan3109-0">Analog</tspan><tspan
+         sodipodi:role="line"
+         x="1510.2335"
+         y="840.27856"
+         style="font-size:50px;letter-spacing:5px"
+         id="tspan3135-1">Voltmeter</tspan><tspan
+         sodipodi:role="line"
+         x="1510.2335"
+         y="902.77856"
+         style="font-size:50px;letter-spacing:5px"
+         id="tspan3137-2">Clock</tspan></text>
+    <g
+       id="g3028"
+       transform="matrix(0.59881807,0.15225065,-0.15225065,0.59881807,1742.2119,443.38265)">
+      <g
+         id="g3306"
+         transform="matrix(0.7350669,0,0,0.7350669,-472.02072,349.12212)">
+        <flowRoot
+           xml:space="preserve"
+           id="flowRoot3494"
+           style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff0000;fill-opacity:1;stroke:none;font-family:GothicI;-inkscape-font-specification:GothicI"
+           transform="translate(87.392278,912.5669)"><flowRegion
+             id="flowRegion3496"><rect
+               id="rect3498"
+               width="392.94934"
+               height="92.934029"
+               x="61.619305"
+               y="-16.172646"
+               style="fill:#ff0000" /></flowRegion><flowPara
+             id="flowPara3500"
+             style="font-size:30px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;letter-spacing:10px;fill:#ff0000;font-family:Futura Medium;-inkscape-font-specification:Futura Medium">AWKWARD</flowPara></flowRoot>        <flowRoot
+           transform="matrix(0.96916514,-0.24641211,0.24641211,0.96916514,65.493493,850.35955)"
+           style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:GothicI;-inkscape-font-specification:GothicI"
+           id="flowRoot3486"
+           xml:space="preserve"><flowRegion
+             id="flowRegion3488"><rect
+               y="82.822304"
+               x="17.172594"
+               height="172.73608"
+               width="463.66"
+               id="rect3490" /></flowRegion><flowPara
+             style="font-size:90px;font-style:oblique;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Lobster Two;-inkscape-font-specification:Lobster Two Bold Oblique"
+             id="flowPara3492">Engineer</flowPara></flowRoot>        <rect
+           style="fill:none;stroke:#ff0000;stroke-width:3.30268598;stroke-miterlimit:4;stroke-dasharray:none"
+           id="rect3502"
+           width="243.44676"
+           height="48.992397"
+           x="135.36043"
+           y="882.15149" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:120px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:-3px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Futura Book;-inkscape-font-specification:Futura Book"
+       x="1127.5743"
+       y="260.39771"
+       id="text3007-1-3-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="1130.0743"
+         y="260.39771"
+         style="font-size:55px;letter-spacing:5px;opacity:0.8"
+         id="tspan3137-2-8">Analog Voltmeter Clock</tspan></text>
+  </g>
+</svg>
