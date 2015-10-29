@@ -1,3 +1,7 @@
+*.MOV
+*.mp4
+~$*
+Production Planning/*
 Electrical/Board Design/clock-cache.lib
 Software/Learning AtmelStudio/Blinkie/Blinkie.atsln
 Software/Learning AtmelStudio/Blinkie/Blinkie.atsuo
@@ -56,3 +60,5 @@ Electrical/Board Design/clock.bak
 Software/Firmware_Board1/Firmware_Board1/Debug/*.*
 Media Campaign/Video/*.*
 Software/Firmware_Board1/Firmware_Board1/Debug/Makefile
+Media Campaign/kickstarter special requests.txt
+Production Planning/costed parts list.xlsx
