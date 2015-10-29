@@ -1,7 +1,8 @@
-PCBNEW-LibModule-V1  6/6/2015 12:03:15 PM
+PCBNEW-LibModule-V1  10/4/2015 12:14:15 PM
 # encoding utf-8
 Units mm
 $INDEX
+4_40_SCREW
 AA_Battery_Clip_THRU_HOLE_BK-92
 AA_battery_clip
 AA_battery_clip_single
@@ -21,6 +22,24 @@ bourns_knob
 bourns_potentiometer
 pin_array_3x2
 $EndINDEX
+$MODULE 4_40_SCREW
+Po 0 0 0 15 5611500F 00000000 ~~
+Li 4_40_SCREW
+Cd Connecteurs 1 pin
+Kw CONN DEV
+Sc 0
+AR /561138B9
+Op 0 0 0
+T0 2.54 -3.175 1.72974 1.08712 0 0.27178 N V 21 N "P7"
+T1 0 -2.54 1.524 1.016 0 0.254 N I 21 N "CONN_1"
+$PAD
+Sh "1" C 5.08 5.08 0 0 0
+Dr 3.2512 0 0
+At STD N 00E0FFFF
+Ne 1 "N-0000025"
+Po 0 0
+$EndPAD
+$EndMODULE 4_40_SCREW
 $MODULE AA_Battery_Clip_THRU_HOLE_BK-92
 Po 0 0 0 15 5568FF65 00000000 ~~
 Li AA_Battery_Clip_THRU_HOLE_BK-92
@@ -783,7 +802,7 @@ $PAD
 Sh "1" C 2 2 0 0 0
 Dr 1 0 0
 At STD N 00E0FFFF
-Ne 3 "N-000009"
+Ne 2 "N-0000010"
 Po -3.75 3.3
 $EndPAD
 $PAD
@@ -797,7 +816,7 @@ $PAD
 Sh "3" C 2 2 0 0 0
 Dr 1 0 0
 At STD N 00E0FFFF
-Ne 2 "N-0000010"
+Ne 3 "N-0000011"
 Po 1.25 3.3
 $EndPAD
 $PAD
