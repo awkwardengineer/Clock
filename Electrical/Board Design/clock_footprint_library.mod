@@ -1,4 +1,4 @@
-PCBNEW-LibModule-V1  10/4/2015 12:14:15 PM
+PCBNEW-LibModule-V1  11/1/2015 12:48:02 PM
 # encoding utf-8
 Units mm
 $INDEX
@@ -13,6 +13,7 @@ SIL-6_s
 SMD_CRYSTAL
 SMD_CRYSTAL_SMALL
 SOT23
+TE-connectivity-2
 TO92-INVERT
 USB_MINI_B
 USB_MINI_B_s
@@ -491,6 +492,57 @@ Of 0 0 0
 Ro 0 0 180
 $EndSHAPE3D
 $EndMODULE SOT23
+$MODULE TE-connectivity-2
+Po 0 0 0 15 56365044 00000000 ~~
+Li TE-connectivity-2
+Sc 0
+AR 
+Op 0 0 0
+T0 -9.652 -6.604 1 1 0 0.15 N V 21 N "TE-connectivity-2"
+T1 8.636 -6.604 1 1 0 0.15 N V 21 N "VAL**"
+$PAD
+Sh "~" R 2.4 3.3 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -4.25 0.1
+$EndPAD
+$PAD
+Sh "1" R 0.9 3.3 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po -0.75 -5
+$EndPAD
+$PAD
+Sh "2" R 0.9 3.3 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 0.75 -5
+$EndPAD
+$PAD
+Sh "~" R 2.4 3.3 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 4.25 -0.2
+$EndPAD
+$PAD
+Sh "~" C 0.8 0.8 0 0 0
+Dr 0.8 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -2.25 0
+$EndPAD
+$PAD
+Sh "~" C 0.8 0.8 0 0 0
+Dr 0.8 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 2.25 0
+$EndPAD
+$EndMODULE TE-connectivity-2
 $MODULE TO92-INVERT
 Po 0 0 0 15 55346DBB 00000000 ~~
 Li TO92-INVERT
