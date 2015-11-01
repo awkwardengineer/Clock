@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by PcbNew date = 6/6/2015 12:02:52 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 11/1/2015 1:40:02 PM
 
 BeginCmp
 TimeStamp = /53B41CBB;
@@ -75,6 +75,20 @@ TimeStamp = /54A89CEC;
 Reference = C7;
 ValeurCmp = 1uF;
 IdModule  = C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5632DAAC;
+Reference = C8;
+ValeurCmp = .01uF;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /56363CC8;
+Reference = C9;
+ValeurCmp = 10uF;
+IdModule  = SM0805;
 EndCmp
 
 BeginCmp
@@ -169,6 +183,20 @@ IdModule  = SIL-2;
 EndCmp
 
 BeginCmp
+TimeStamp = /55DB835E;
+Reference = P5;
+ValeurCmp = CONN_2;
+IdModule  = TE-connectivity-2;
+EndCmp
+
+BeginCmp
+TimeStamp = /55DB834E;
+Reference = P6;
+ValeurCmp = CONN_2;
+IdModule  = TE-connectivity-2;
+EndCmp
+
+BeginCmp
 TimeStamp = /53750C74;
 Reference = Q1;
 ValeurCmp = FET_N;
@@ -179,6 +207,20 @@ BeginCmp
 TimeStamp = /53750C83;
 Reference = Q2;
 ValeurCmp = FET_P;
+IdModule  = SOT23;
+EndCmp
+
+BeginCmp
+TimeStamp = /56365843;
+Reference = Q3;
+ValeurCmp = FET_N;
+IdModule  = SOT23;
+EndCmp
+
+BeginCmp
+TimeStamp = /5636518F;
+Reference = Q4;
+ValeurCmp = FET_N;
 IdModule  = SOT23;
 EndCmp
 
@@ -248,14 +290,14 @@ EndCmp
 BeginCmp
 TimeStamp = /53764271;
 Reference = R10;
-ValeurCmp = 130K;
+ValeurCmp = 51K;
 IdModule  = SM0805;
 EndCmp
 
 BeginCmp
 TimeStamp = /5376426B;
 Reference = R11;
-ValeurCmp = 130K;
+ValeurCmp = 51K;
 IdModule  = SM0805;
 EndCmp
 
@@ -284,6 +326,13 @@ BeginCmp
 TimeStamp = /53365237;
 Reference = R15;
 ValeurCmp = 220;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /55DB8286;
+Reference = R16;
+ValeurCmp = 0K;
 IdModule  = SM0805;
 EndCmp
 
@@ -320,6 +369,13 @@ TimeStamp = /54A87F96;
 Reference = U2;
 ValeurCmp = MCP1702T-1502E/TO;
 IdModule  = TO92-INVERT;
+EndCmp
+
+BeginCmp
+TimeStamp = /56365D00;
+Reference = U3;
+ValeurCmp = MCP1702T-1502E/CB;
+IdModule  = SOT23;
 EndCmp
 
 BeginCmp
