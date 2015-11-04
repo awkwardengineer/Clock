@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 11/1/2015 1:40:02 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 11/4/2015 10:51:24 AM
 
 BeginCmp
 TimeStamp = /53B41CBB;
@@ -127,6 +127,13 @@ IdModule  = SIL-2;
 EndCmp
 
 BeginCmp
+TimeStamp = /563A21FE;
+Reference = D4;
+ValeurCmp = DIODE;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
 TimeStamp = /53743847;
 Reference = DS1;
 ValeurCmp = AMMETER;
@@ -197,6 +204,20 @@ IdModule  = TE-connectivity-2;
 EndCmp
 
 BeginCmp
+TimeStamp = /56397AE8;
+Reference = P7;
+ValeurCmp = CONN_2;
+IdModule  = TE-connectivity-2;
+EndCmp
+
+BeginCmp
+TimeStamp = /563A17FC;
+Reference = P8;
+ValeurCmp = CONN_2;
+IdModule  = SIL-2;
+EndCmp
+
+BeginCmp
 TimeStamp = /53750C74;
 Reference = Q1;
 ValeurCmp = FET_N;
@@ -220,6 +241,13 @@ EndCmp
 BeginCmp
 TimeStamp = /5636518F;
 Reference = Q4;
+ValeurCmp = FET_N;
+IdModule  = SOT23;
+EndCmp
+
+BeginCmp
+TimeStamp = /56397533;
+Reference = Q5;
 ValeurCmp = FET_N;
 IdModule  = SOT23;
 EndCmp
@@ -309,7 +337,7 @@ IdModule  = SM0805;
 EndCmp
 
 BeginCmp
-TimeStamp = /537644A8;
+TimeStamp = /563A153C;
 Reference = R13;
 ValeurCmp = 220;
 IdModule  = SM0805;
@@ -347,7 +375,7 @@ BeginCmp
 TimeStamp = /533652ED;
 Reference = SP1;
 ValeurCmp = SPEAKER;
-IdModule  = SIL-2;
+IdModule  = SMT_BUZZER;
 EndCmp
 
 BeginCmp
@@ -372,7 +400,7 @@ IdModule  = TO92-INVERT;
 EndCmp
 
 BeginCmp
-TimeStamp = /56365D00;
+TimeStamp = /56366E7E;
 Reference = U3;
 ValeurCmp = MCP1702T-1502E/CB;
 IdModule  = SOT23;
