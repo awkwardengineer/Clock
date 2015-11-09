@@ -37,7 +37,7 @@ $Descr USLedger 17000 11000
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "4 nov 2015"
+Date "9 nov 2015"
 Rev ""
 Comp ""
 Comment1 ""
@@ -950,7 +950,7 @@ F 1 "100K" H 14650 4850 50  0000 C CNN
 F 2 "~" H 14650 4850 60  0000 C CNN
 F 3 "~" H 14650 4850 60  0000 C CNN
 	1    14650 4850
-	0    1    1    0   
+	0    1    -1   0   
 $EndComp
 Text Notes 12000 5500 2    79   ~ 0
 ALARM SET SWITCH
@@ -1622,4 +1622,21 @@ Connection ~ 10500 7400
 Wire Wire Line
 	10500 8000 10500 8100
 Connection ~ 10500 8100
+$Comp
+L C C10
+U 1 1 5640BA9C
+P 3600 1750
+F 0 "C10" H 3600 1850 40  0000 L CNN
+F 1 "1uF" H 3606 1665 40  0000 L CNN
+F 2 "~" H 3638 1600 30  0000 C CNN
+F 3 "~" H 3600 1750 60  0000 C CNN
+	1    3600 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3600 1550 3600 1400
+Connection ~ 3600 1400
+Wire Wire Line
+	3600 1950 3600 2100
+Connection ~ 3600 2100
 $EndSCHEMATC
