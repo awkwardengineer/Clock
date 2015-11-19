@@ -1,4 +1,4 @@
-PCBNEW-LibModule-V1  11/9/2015 10:41:09 AM
+PCBNEW-LibModule-V1  11/11/2015 9:46:17 PM
 # encoding utf-8
 Units mm
 $INDEX
@@ -6,6 +6,7 @@ $INDEX
 AA_Battery_Clip_THRU_HOLE_BK-92
 AA_battery_clip
 AA_battery_clip_single
+BREAK_HOLE
 CRYSTAL
 ISPheader
 SIL-6
@@ -132,6 +133,24 @@ Ne 1 "N-000006"
 Po 0 8.255
 $EndPAD
 $EndMODULE AA_battery_clip_single
+$MODULE BREAK_HOLE
+Po 0 0 0 15 5643B37B 00000000 ~~
+Li BREAK_HOLE
+Cd Connecteurs 1 pin
+Kw CONN DEV
+Sc 0
+AR 
+Op 0 0 0
+T0 -5.08 -2.54 1.72974 1.08712 0 0.27178 N I 21 N "BREAK_TAB"
+T1 3.81 -2.54 1.524 1.016 0 0.254 N I 21 N "Val**"
+$PAD
+Sh "" C 1.397 1.397 0 0 0
+Dr 0.8128 0 0
+At HOLE N 00E0FFFF
+Ne 0 ""
+Po 0 0
+$EndPAD
+$EndMODULE BREAK_HOLE
 $MODULE CRYSTAL
 Po 0 0 0 15 537E49F6 00000000 ~~
 Li CRYSTAL
@@ -522,13 +541,17 @@ Ro 0 0 180
 $EndSHAPE3D
 $EndMODULE SOT23
 $MODULE TE-connectivity-2
-Po 0 0 0 15 56365044 00000000 ~~
+Po 0 0 0 15 5643EF61 00000000 ~~
 Li TE-connectivity-2
 Sc 0
-AR 
+AR /55DB834E
 Op 0 0 0
-T0 -9.652 -6.604 1 1 0 0.15 N V 21 N "TE-connectivity-2"
-T1 8.636 -6.604 1 1 0 0.15 N V 21 N "VAL**"
+T0 -6.985 -6.35 1 1 0 0.15 N V 21 N "P6"
+T1 5.08 -6.35 1 1 0 0.15 N I 21 N "CONN_2"
+DS 2.54 -6.35 5.08 -6.35 0.2 21
+DS 5.08 -6.35 5.08 -2.54 0.2 21
+DS -5.08 -2.54 -5.08 -6.35 0.2 21
+DS -5.08 -6.35 -2.54 -6.35 0.2 21
 $PAD
 Sh "~" R 2.4 3.3 0 0 0
 Dr 0 0 0
@@ -540,14 +563,14 @@ $PAD
 Sh "1" R 0.9 3.3 0 0 0
 Dr 0 0 0
 At SMD N 00888000
-Ne 0 ""
+Ne 1 "+5V"
 Po -0.75 -5
 $EndPAD
 $PAD
 Sh "2" R 0.9 3.3 0 0 0
 Dr 0 0 0
 At SMD N 00888000
-Ne 0 ""
+Ne 2 "N-0000028"
 Po 0.75 -5
 $EndPAD
 $PAD

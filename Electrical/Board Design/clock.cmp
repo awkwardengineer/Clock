@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 11/9/2015 11:24:57 AM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 11/11/2015 9:44:12 PM
 
 BeginCmp
 TimeStamp = /53B41CBB;
@@ -222,6 +222,13 @@ TimeStamp = /563A17FC;
 Reference = P8;
 ValeurCmp = CONN_2;
 IdModule  = SIL-2;
+EndCmp
+
+BeginCmp
+TimeStamp = /5643F12B;
+Reference = P9;
+ValeurCmp = CONN_2;
+IdModule  = TE-connectivity-2;
 EndCmp
 
 BeginCmp
