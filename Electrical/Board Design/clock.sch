@@ -37,7 +37,7 @@ $Descr USLedger 17000 11000
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "4 nov 2015"
+Date "12 nov 2015"
 Rev ""
 Comp ""
 Comment1 ""
@@ -950,7 +950,7 @@ F 1 "100K" H 14650 4850 50  0000 C CNN
 F 2 "~" H 14650 4850 60  0000 C CNN
 F 3 "~" H 14650 4850 60  0000 C CNN
 	1    14650 4850
-	0    1    1    0   
+	0    1    -1   0   
 $EndComp
 Text Notes 12000 5500 2    79   ~ 0
 ALARM SET SWITCH
@@ -1429,12 +1429,12 @@ $EndComp
 $Comp
 L +5V #PWR034
 U 1 1 5636582A
-P 13400 7050
-F 0 "#PWR034" H 13400 7140 20  0001 C CNN
-F 1 "+5V" H 13400 7140 30  0000 C CNN
-F 2 "" H 13400 7050 60  0000 C CNN
-F 3 "" H 13400 7050 60  0000 C CNN
-	1    13400 7050
+P 13400 7000
+F 0 "#PWR034" H 13400 7090 20  0001 C CNN
+F 1 "+5V" H 13400 7090 30  0000 C CNN
+F 2 "" H 13400 7000 60  0000 C CNN
+F 3 "" H 13400 7000 60  0000 C CNN
+	1    13400 7000
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1622,4 +1622,52 @@ Connection ~ 10500 7400
 Wire Wire Line
 	10500 8000 10500 8100
 Connection ~ 10500 8100
+$Comp
+L C C10
+U 1 1 5640BA9C
+P 3600 1750
+F 0 "C10" H 3600 1850 40  0000 L CNN
+F 1 "1uF" H 3606 1665 40  0000 L CNN
+F 2 "~" H 3638 1600 30  0000 C CNN
+F 3 "~" H 3600 1750 60  0000 C CNN
+	1    3600 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3600 1550 3600 1400
+Connection ~ 3600 1400
+Wire Wire Line
+	3600 1950 3600 2100
+Connection ~ 3600 2100
+$Comp
+L CONN_2 P9
+U 1 1 5643F12B
+P 11500 5750
+F 0 "P9" V 11450 5750 40  0000 C CNN
+F 1 "CONN_2" V 11550 5750 40  0000 C CNN
+F 2 "" H 11500 5750 60  0000 C CNN
+F 3 "" H 11500 5750 60  0000 C CNN
+	1    11500 5750
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	11850 5850 12050 5850
+Wire Wire Line
+	12050 5850 12050 6050
+Wire Wire Line
+	12050 6050 12200 6050
+Connection ~ 12200 6050
+Wire Wire Line
+	11850 5650 12000 5650
+Wire Wire Line
+	12000 5650 12000 4750
+Wire Wire Line
+	12000 4750 12200 4750
+Connection ~ 12200 4750
+Text Notes 14050 7800 0    60   ~ 0
+TE connector
+Text Notes 15700 7800 0    60   ~ 0
+TE connector
+Text Notes 11250 6000 0    60   ~ 0
+TE connector
 $EndSCHEMATC
