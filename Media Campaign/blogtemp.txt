@@ -1,0 +1,31 @@
+abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklm
+
+
+
+Hi everyone!
+
+Here's what's been going on with AwkwardEngineer. After shipping the Analog Voltmeter Clock to Kickstarter backers, it was time to work on continuing sales and clearing out the inventory we had in stock and really work on more marketing.
+
+Read on for pretty analytics graphs!
+
+The chart below shows the relative volumes of web traffic and sales this past month or two. As an engineer, marketing might be hard for me, but I do like annotated graphs!
+
+
+Here's a few things we learned about marketing along the way.
+
+-Google and Facebook ads are really tough. I'd have to pay for 150+ clicks on a facebook ad to sell one clock... not a viable strategy. Since then, multiple people have told me that the little guy can't compete against the army of data analysts fine tuning their ad pricing for big brands.
+
+-Content marketing and permission marketing, i.e. writing blog posts about stuff I like and sharing it is really fun for me. It drives traffic, it drove the pre-Kickstarter campaign, and I think it's best for keeping in touch with all our customers, i.e. you guys!
+
+-Blog traffic from large blogs (and getting selected to appear in the Popular Mechanics print magazine's gift guide!) really drives sales well. It follows a pattern of a neat little impulse response with exponential decay. You can't be blog worthy forever, so we'll be looking to get into retail stores when their next tradeshow/buying cycle starts up again after Christmas.
+
+-The large sales spike at the end cleared inventory, so we're now taking preorders for the next batch at a 30% discount. Use discount code PRESALE at checkout. Sheet metal cases will head to the paint shop this week and the circuit boards are on order. The rest of the parts are on hand, so we expect to ship in January, if not sooner.
+
+
+Bonus: The Nerd Clock Makers Guild
+
+I had a chance to Skype with Philippe Chretien, inventor of the Fibonacci Clock, about his Kickstarter campaign. He's an inventor, loves making things, and is a kindrid spirit. Together we have unofficially formed the self proclaimed Nerd Clock Makers Guild :-).
+
+Like my Clock, he uses some Arduino compatible electronics inside, and a really unique, interesting case that uses the values of the Fibonacci sequence to tell time.
+
+He was kind enough to offer a discount for us to pass on to you, use code ##### at checkout.
