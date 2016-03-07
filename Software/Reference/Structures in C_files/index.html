@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!-- saved from url=(0145)https://s0.2mdn.net/ads/richmedia/studio/pv2/39614175/20151031075559870/index.html?e=69&renderingType=2&leftOffset=0&topOffset=0&c=xtDa13M9Gp&t=1 -->
+<html lang="en" class="wf-roboto-n3-active wf-roboto-n7-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<title>Google Tangram</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="webfont.js"></script>
+	<link rel="stylesheet" href="css"><script>
+		WebFont.load({
+			google: {
+				families: ["Roboto:300,700"]
+			}
+		});
+	</script>
+
+	<style type="text/css">
+		html {
+ 			-webkit-font-smoothing: antialiased;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			-webkit-font-smoothing: antialiased;
+		}
+
+		@media
+		only screen and (-webkit-min-device-pixel-ratio: 1.25),
+		only screen and ( min-device-pixel-ratio: 1.25),
+		only screen and ( min-resolution: 200dpi),
+		only screen and ( min-resolution: 1.25dppx)
+		{
+		   -webkit-font-smoothing: subpixel-antialiased;
+		}
+
+		div {
+			margin: 0;
+			padding: 0;
+			position: absolute;
+		}
+
+		#mainHolder {
+			border: 1px solid #000000;
+			width: 320px;
+			height: 50px;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			background: #ffffff;
+			cursor: pointer;
+			overflow: hidden;
+		    -webkit-touch-callout: none;
+		    -webkit-user-select: none;
+		    -khtml-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+		}
+
+		#endBG {
+			width: 320px;
+			height: 50px;
+			background: #d94236;
+			opacity: 0;
+		}
+
+		.copyTextStart {
+			left: 10px;
+			opacity: 1;
+			color: #777777;
+			font-family: 'Roboto', sans-serif;
+			font-weight: 300;
+			font-size: 22px;
+			width: 410px;
+		}
+
+		.copyTextEnd {
+			opacity: 0;
+			left: 10px;
+			color: #ffffff;
+			font-family: 'Roboto', sans-serif;
+			font-weight: 300;
+			font-size: 22px;
+			width: 410px;
+		}
+
+		.copyTextCTA {
+			opacity: 0;
+			color: #5383d3;
+			font-family: 'Roboto', sans-serif;
+			font-weight: 700;
+			font-size: 13px;
+			top: 13px;
+  			text-align: center;
+			position: relative;
+		}
+
+		#buttonLabelHolder {
+		    right: 46px;
+		    top: 7px;
+		    width: 111px;
+		    height: 40px;
+		}
+		#copyA0, #copyB0, #copyC0 {
+			top: 9px;
+		}
+
+		#copyA1, #copyB1, #copyC1 {
+			top: 23px;
+		}
+
+		#copyA2, #copyB2, #copyC2 {
+			top: 16px;
+		}
+
+		#copyA0, #copyA1, #copyA2, #copyB0, #copyB1, #copyB2 {
+			opacity: 0;
+		}
+
+        #clickLayer {
+            width: 320px;
+            height: 50px;
+        }
+        
+        /* replay icon image embedded as base64 text URI */
+        #buttonReplay {
+            right: 0px;
+            top: 0px;
+            width: 20px;
+            height: 20px;
+            background-repeat: no-repeat;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAMAAAAolt3jAAAAOVBMVEUAAAD///////////////////////////////////////////////////////////////////////8KOjVvAAAAEnRSTlMAp/oar5bk3cA8BOjBgIJgPTvtUe5tAAAAXElEQVQI12WOWw7AIAgEF1GrrfbB/Q/bDWmjifNDBgIsSJUcslSgU/ZkoUkLlk6jJovKotGM+liE010lqNu1EeAomDGZZJn67qD+l8H2/DcrvlRFClPtwMh8Y+UFVFgCqqTBXkEAAAAASUVORK5CYII=);
+            background-position: center center;
+            opacity: 0;
+            display: none;
+/*		    -ms-transform-origin: 15.5px 15.5px;
+		    -webkit-transform-origin: 15.5px 15.5px;
+		    transform-origin: 15.5px 15.5px;*/
+		    -ms-transform: scale(0.75);
+		    -webkit-transform: scale(0.75);
+		    transform: scale(0.75);
+        }        
+        
+	</style>
+<link rel="stylesheet" type="text/css" href="loadsprites_bar_chart.css"></head>
+
+<body>
+
+	<div id="mainHolder">
+		<div id="dummyDiv"></div>
+        
+        <!-- Attach all icon animation sprites here -->
+		<div id="iconHolder"><div id="arrowCont" style="transform: matrix(1, 0, 0, 1, 0, -19);"><div id="arrow0" class="sprite arrow0" style="opacity: 1; transform: matrix(1, 0, 0, 1, 550, 24);"></div><div id="arrow1" class="sprite arrow1" style="opacity: 1; transform: matrix(1, 0, 0, 1, 569, 24);"></div><div id="arrow2" class="sprite arrow2" style="opacity: 1; transform: matrix(1, 0, 0, 1, 559, 42);"></div><div id="arrow3" class="sprite arrow3" style="opacity: 1; transform: matrix(1, 0, 0, 1, 569, 42);"></div><div id="arrow4" class="sprite arrow4" style="opacity: 1; transform: matrix(1, 0, 0, 1, 559, 41);"></div><div id="arrow5" class="sprite arrow5" style="opacity: 1; transform: matrix(1, 0, 0, 1, 559, 70);"></div><div id="arrow6" class="sprite arrow6" style="opacity: 1; transform: matrix(1, 0, 0, 1, 559, 80);"></div><div id="arrow7" class="sprite arrow7" style="opacity: 1; transform: matrix(1, 0, 0, 1, 559, 89);"></div></div><div id="boxG"></div><div id="obj0" class="sprite obj0" style="opacity: 1; transform: matrix(1, 0, 0, 1, 480, 70);"></div><div id="obj1" class="sprite obj1" style="opacity: 1; transform: matrix(1, 0, 0, 1, 480, 70);"></div><div id="obj2" class="sprite obj2" style="opacity: 1; transform: matrix(1, 0, 0, 1, 490, 70);"></div><div id="obj3" class="sprite obj3" style="opacity: 1; transform: matrix(1, 0, 0, 1, 480, 80);"></div><div id="square0" class="sprite square0" style="opacity: 1; transform: matrix(1, 0, 0, 1, 520, 41);"></div><div id="square1" class="sprite square1" style="opacity: 1; transform: matrix(1, 0, 0, 1, 520, 41);"></div><div id="square2" class="sprite square2" style="opacity: 1; transform: matrix(1, 0, 0, 1, 520, 41);"></div><div id="square3" class="sprite square3" style="opacity: 1; transform: matrix(1, 0, 0, 1, 530, 70);"></div><div id="square4" class="sprite square4" style="opacity: 1; transform: matrix(1, 0, 0, 1, 520, 80);"></div></div>
+
+        <!-- Copy Text Batch 1 -->
+        <div id="copyA0" class="copyTextStart" style="font-size: 11px; opacity: 0;">Wish you knew if your</div>
+        <div id="copyA1" class="copyTextStart" style="font-size: 11px; opacity: 0;">ads were working?</div>
+        <div id="copyA2" class="copyTextStart" style="font-size: 11px; opacity: 0;"></div>
+
+        <!-- Copy Text Batch 2 -->
+        <div id="copyB0" class="copyTextStart" style="font-size: 11px; opacity: 1;">With AdWords, you can check</div>
+        <div id="copyB1" class="copyTextStart" style="font-size: 11px; opacity: 1;">your success at any time.</div>
+        <div id="copyB2" class="copyTextStart" style="font-size: 11px; opacity: 1;"></div>
+        
+		<div id="googleLogoColored" class="logoColored" style="opacity: 1;"><img src="logo_colored.svg"></div>
+
+		<!-- tangram flocking shapes go here -->
+		<div id="shapeHolder" style="transform: matrix(1, 0, 0, 1, 0, 0);"><div id="shape0" class="sprite triangle1" style="transform: matrix(1, 0, 0, 1, -15, -15);"></div><div id="shape1" class="sprite triangle3" style="transform: matrix(1, 0, 0, 1, -15, -15);"></div><div id="shape2" class="sprite parallelogram" style="transform: matrix(0, -1, 1, 0, 75, 15);"></div><div id="shape3" class="sprite diamond" style="transform: matrix(1, 0, 0, 1, 135, -15);"></div><div id="shape4" class="sprite triangle1" style="transform: matrix(0, 1, -1, 0, 225, -15);"></div><div id="shape5" class="sprite triangle3" style="transform: matrix(0, 1, -1, 0, 225, -15);"></div><div id="shape6" class="sprite triangle2" style="transform: matrix(0, 1, -1, 0, 285, -15);"></div><div id="shape7" class="sprite parallelogram" style="transform: matrix(0, 1, -1, 0, 345, -15);"></div><div id="shape8" class="sprite triangle1" style="transform: matrix(0, -1, 1, 0, -15, 45);"></div><div id="shape9" class="sprite parallelogram" style="transform: matrix(0, 1, -1, 0, 135, 15);"></div><div id="shape10" class="sprite triangle1" style="transform: matrix(0, -1, 1, 0, 105, 45);"></div><div id="shape11" class="sprite triangle1" style="transform: matrix(0, -1, 1, 0, 225, 45);"></div><div id="shape12" class="sprite triangle2" style="transform: matrix(-1, 0, 0, -1, 315, 75);"></div></div>
+
+		<!-- solid background -->
+		<div id="endBG" style="opacity: 1; background-color: rgb(15, 157, 88);"></div>
+
+        <!-- Copy Text Batch 3 -->
+		<div id="copyC0" class="copyTextEnd" style="font-size: 11px; opacity: 1;">Try advertising you</div>
+		<div id="copyC1" class="copyTextEnd" style="font-size: 11px; opacity: 1;">can measure.</div>
+		<div id="copyC2" class="copyTextEnd" style="font-size: 11px; opacity: 1;"></div>
+
+        <!-- CTA Button -->
+		<div id="ctaParallelogram" class="sprite ctaPara" style="opacity: 0; top: -2px; right: 25px;"></div>
+		<div id="ctaTriangleLeft" class="sprite ctaTriLeft" style="opacity: 0; top: -2px; right: 105px;"></div>
+		<div id="ctaTriangleRight" class="sprite ctaTriRight" style="opacity: 0; top: -2px; right: 45px;"></div>
+		<div id="ctaRectangle" class="sprite ctaRect" style="opacity: 1;"></div>
+		<div id="buttonLabelHolder">
+			<div id="buttonLabel" class="copyTextCTA" style="font-size: 9px; opacity: 1;">Get Going Today</div>
+		</div>
+
+		<div id="googleLogoWhite" class="logoWhite" style="opacity: 1;"><img src="logo_white.svg"></div>
+        
+        <div id="clickLayer"></div>
+        <div id="buttonReplay" style="display: block; opacity: 1;"></div>
+	</div>
+
+	<!-- GSAP -->
+	<script src="TweenMax.min.js"></script>
+	<!-- Studio Enabler -->
+	<script src="Enabler_01_88.js"></script>
+<!--
+ * Dynamic Content Enable code for Profile: 1050764
+ *
+ * The following code initializes the following dynamic variables for
+ * development testing and live serving of Fields associated to the above profile
+-->
+
+<!-- DynamicContent Start: HTML5 invocation code. -->
+<script type="text/javascript">
+
+// Dynamic Content variables and sample values
+    Enabler.setProfileId(1050764);
+    var devDynamicContent = {};
+
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1= [{}];
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0]._id = 0;
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Unique_ID = 1;
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Ad_Group_Dimension = 20622665592;
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Ad_Group_Name = "AW - US RH and GA - no AW sign up flow";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Message = "price_nocommitment";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Creative_Target = "r1";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Reporting_Label = "300x250_20622665592_us_price_nocommitment_ggt";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].text_1 = "Think you don\'t have a|marketing budget?";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].text_2 = "Show ads on Google on any budget,|with no long-term commitments.";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].text_3 = "Ads that work and|work with your budget.";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].fontsize = "12|12|12|9";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].CTA_Text = "Get Going Today";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].BG_Color = "#df4432";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].CSS_Name = "loadsprites_square_tiles.css";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].JS_Name = "icon_square_tiles.js";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Start_Time_Text_2 = 2.0;
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Start_Time_Icon_Animation = 0.0;
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Start_Time_Wipe = 5.0;
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Exit_URL = {};
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Exit_URL.Url = "https://www.google.com/adwords/?channel=gdn-ef&sourceid=awo&subid=";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Sub_ID = "us-en-gdn-aw-r-tgm15";
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Active = true;
+    devDynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Default = false;
+    Enabler.setDevDynamicContent(devDynamicContent);
+
+</script>
+
+<!--
+ * You may access the variables in the following manner
+ * AFTER the Studio Enabler is initialized.
+ * var Unique_ID = dynamicContent.Q315_Google_Tangram_Feed__US_Sheet1[0].Unique_ID;
+ * Note: be sure to use "dynamicContent", not "devDynamicContent"
+-->
+
+	<script src="main.js"></script>
+
+
+<script type="text/javascript" src="icon_bar_chart.js"></script></body></html>
