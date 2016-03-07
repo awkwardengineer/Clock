@@ -1,0 +1,83 @@
+var sas = sas || {};
+sas.utils = sas.utils || {};
+if (!sas.utils.cdns) {
+  sas.utils.cdns = {
+    "http:" : "http://ak-ns.sascdn.com",
+    "https:" : "https://ec-ns.sascdn.com"
+  }
+}
+
+var sas=sas||{};sas.utils=sas.utils||{};sas.events=sas.events||{};sas.rev=sas.rev||20110214;(function(){if(!sas.utils.cdns){sas.utils.cdns={"http:":"http://ak-ns.sascdn.com","https:":"https://ec-ns.sascdn.com"}}else{if(!sas.utils.cdns["http:"]||sas.utils.cdns["http:"].length==0){sas.utils.cdns["http:"]="http://ak-ns.sascdn.com"}if(!sas.utils.cdns["https:"]||sas.utils.cdns["https:"].length==0){sas.utils.cdns["https:"]="https://ec-ns.sascdn.com"}}var e=function(){};sas.utils.getIEVersion=function(){var g=navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);return g?parseInt(g[1]):undefined};sas.events.addEvent=function(h,g,i){if(!h||!g||!i){return}if(h.attachEvent){h.attachEvent("on"+g,i)}else{if(h.addEventListener){h.addEventListener(g,i,false)}}return{removeEvent:function(){if(h.detachEvent){h.detachEvent("on"+g,i)}else{if(h.removeEventListener){h.removeEventListener(g,i,false)}}}}};sas.events.addLoadEvent=function(h,l){if(!h||!l){return}var g="load";var i=function(){return true};var k=sas.utils.getIEVersion();if(k<11||h==document){g="readystatechange";i=function(){if(!h.readyState||h.readyState=="complete"||h.readyState=="loaded"||h.readyState==4){return true}}}var j=sas.events.addEvent(h,g,function(){if(i()){j.removeEvent();l.apply(this,arguments)}})};sas.utils.Latch=function(n){n=n||[];var m=[];var l={};var k=n;var h=false;for(var j=0;j<k.length;j++){l[n[j]]={}}var o=function(){if(h){return}for(var p in l){if(!l[p].status){return}}h=true;var r=g();for(var q=0;q<m.length;q++){m[q].apply(this,r)}};var g=function(){var q=[];for(var p=0;p<k.length;p++){q.push(l[k[p]].result)}return q};this.notify=function(p,i){if(!l[p]){return}else{l[p].status=true;l[p].result=i;o()}};this.addListener=function(i){if(i!=null){h?i():m.push(i)}};o()};sas.utils._libs=sas.utils._libs||{};var b=function(h,g){if(h.charAt(h.length-1)=="/"){h=h.slice(0,-1)}if(g.charAt(0)=="/"){g=g.slice(1)}return h+"/"+g};var c=function(h){if(typeof h==="string"){h=[h]}var k=(document.location.protocol=="https:");var g=k?sas.utils.cdns["https:"]:(sas.utils.cdns[document.location.protocol]||sas.utils.cdns["http:"]);for(var j=0;j<h.length;j++){h[j]=b(g,h[j])}return h};sas.utils.loadLinkCdn=function(g){g=c(g);for(var h=0;h<g.length;h++){a(g[h],true)}};sas.utils.loadScriptCdn=function(g,h){g=c(g);sas.utils.loadScript(g,h)};var f=Math.floor(Math.random()*1000000);var d=1;sas.utils._callbacks=sas.utils._callbacks||{};var a=function(k,h,g,j){var l=(h?"link":"script")+"-"+f+"-"+d++;var i=document.createElement(h?"link":"script");i.id=l;i.setAttribute("type",h?"text/css":"text/javascript");i.setAttribute(h?"href":"src",k);if(h){i.setAttribute("rel","stylesheet")}if(!h&&g){i.setAttribute("async","true")}sas.utils._libs[k]={loaded:false,callbacks:[]};if(j!=null){sas.utils._libs[k].callbacks.push(j)}sas.utils._callbacks[l]=(function(m){return function(){sas.utils._libs[m].loaded=true;for(var n=0;n<sas.utils._libs[m].callbacks.length;n++){sas.utils._libs[m].callbacks[n]()}}})(k);if(h||g){document.getElementsByTagName("head")[0].appendChild(i);sas.events.addLoadEvent(document.getElementById(l),sas.utils._callbacks[l])}else{document.write(i.outerHTML);document.write("<script type='text/javascript'>(function() { sas.utils._callbacks['"+l+"'](); })();<\/script>")}};sas.utils.loadScript=function(h,j){j=j||{};j.async=j.async==null?true:j.async;var l=j.onLoad||e;if(typeof h==="string"){h=[h]}var m=new sas.utils.Latch(h);m.addListener(l);for(var k=0;k<h.length;k++){var n=h[k];var g=(function(i){return function(){m.notify(i)}})(n);if(!sas.utils._libs[n]){a(n,false,j.async,g)}else{if(sas.utils._libs[n].loaded){m.notify(n)}else{sas.utils._libs[n].callbacks.push(g)}}}}})();
+
+(function() {
+
+var tag = document.getElementById('sas_35718');
+if (!tag) {
+  document.write("<div id='sas_35718'></div>");
+} else {
+  /* Pre-create something in the DOM to have the sas_loadHandler to work */
+  var d = document.createElement("div");
+  d.style.display = "none";
+  tag.appendChild(d);
+}
+
+var sas = window.sas;
+// used to detect ajax call for pubj
+var isAsync = window.sas_ajax || false;
+
+// Config 
+var config = {
+        id: 5092956,
+        formatId: 35718,
+        tagId: "sas_35718",
+        instanceIndex: 1,
+        customScript: '',
+        forcedIframeWidth: 0,
+        forcedIframeHeight: 0,
+        oba: 0,
+        creatives:
+        [{
+          id: '15103433',
+          type: 0,
+          url: '',
+          countUrl: '',
+          clickUrl: 'https://adclick.g.doubleclick.net/aclk?sa=L&ai=C1EFV6kusVvjTN5ObhAT40IVgv87vnwjfi-KKowLAjbcBEAEgAGDJlu6IhKTsD4IBF2NhLXB1Yi03MTMzMzk1Nzc4MjAxMDI5yAEJqAMBqgSkAU_Q3zOcw2wx9S99hj_exDtj203glwjG2fiZBlxC1eW7hmhAWZ4tvMuNEfzasqy-1pa7um1nSLanDyDzY9TpkXKHOrnOjbxYyKcuiiPIHRr-iWsHBhyHNvbI9xocCSejbGUCxaVZ1SZn_0S6IFc2_g54i-CZr62KFl_xQZi1tGyHujxCwBrT2t-P2O6AaMTXHL0q5giCbKrbbZ8qSRkspNIyWVjugAa2oJSHmqnAhb8BoAYh2AcA&num=1&sig=AOD64_168kRE5A4swwG0aHjSLhjrxdfdpA&client=ca-pub-7133395778201029&adurl=http%3A%2F%2Fvid-ft9-us.adhigh.net%2Fp%2Fclick%3Fb%3DH4sIAAAAAAAAAHVUz4sURxitHte4MWBOORmwL8oKnZ6u310amJ3sDolZZ2eXWTN7MGx6ZjuzHeeX3T2O5hC8e5BAQMg5kIMgnkRPigf_APHmv-AhCF5CyKbqdTaEQPrw-qvv-96rV1Xd9fEP5-59-fDNN0sPGlseWa3tPj175-0uIRcPynJ2oV5fLBZhOS-neZaMitk0m5ThYDquD2b5dJgn43E2GdYHe0WZzwflPE-L8KAce4SQ43ct7J6zQOzwWLJ_k6x6V1fePb971Q6vdNc9LyC_12yV2vrptWar2-p0vlts7_XWd241i3Z3EV25vi10lLz49OXgj-e_WKXTn5DDwz9fEa9Gaj_TiMkooJHWzKJkIpAikoHR0rixoBZjSoOYSZuNqeuNeWyRM-2QAwUDcqDTiKULIc2lE1G0ikGFOFfIKGp1JYA5cNNIhYpxYWxBQU0jBDWGjBFAx4hhw7iiiCIgA0qgAmrbaFxCKeHCKhsDwYRHQSkQfMqBUKHopzqQzIBEQWJRYEylwtDNMEUMFebyRkCXV8iRgRZHp3GdRlZVSFb92E4jNbDKu1hgP4Xkdlp7PhbgVLrNMEq7BEoCWeVCN43REbAiQ0455wLOFTQUZtRYrVKIqyo86IqEFVWrw2EICGuG_pgBoRPDga4ysGBgoVqvcXnNwTLox3GKimuk_fqbn3W-apH_fRq_HQX6x80nv84eY3DsxoLW7N-wVJTzvue58MR6q7ux09myX_x_nkP7EDJqT7_PRqOkLsPIX-llk_3povA3d3wV8ot-r9NT4rzfnM1GaS_tb2RlXXIdcuWvbHyx074c-KPsWup_ng6uTc_7awf5dJzWRRxGIZNKhEb73eTbJM_-ZlkPJ9rN3b21rTZ-6-NZ0qfGWYNj2DqlOQ2U3Q_74lrYzBIhtdcN9tHX9v2osYquM43buBluNBx6R2vy_lnmSeKtkeX0ZjK21gvy4SiZDOfJMPX7SZENCrI8yso0t1cSeb-fDrPJJM0L8l6RuXZycj8pE7-8NbPM5aPLiyw1N7uXyAf_urhw-dhLrxXex6TPtl_85Pz9BWBIlwIUBQAA%26s%3Dadx%26l%3Dhttps://www5.smartadserver.com/click?imgid=15103433&insid=5092956&pgid=599520&uid=4879755818508125442&tgt=%3b%24dt%3d1t%3b%24dma%3d506%3b%24hc&systgt=%24qc%3d4799583%3b%24ql%3dmedium%3b%24qpc%3d02139%3b%24qpp%3d617%3b%24qt%3d152_2114_28473t%3b%24dma%3d506%3b%24b%3d16470%3b%24o%3d11063%3b%24sh%3d768%3b%24sw%3d1280&go=',
+          clickTarget: '_blank',
+          width: '300',
+          height: '250',
+          pixelRatio: '1',
+          altText: '',
+          creativeScript: '<scr'+'ipt>\r\n'+'window.hiro = {\r\n'+'allowCookies : 0,\r\n'+'};\r\n'+'( function () {\r\n'+'    \r\n'+'    // replace here:\r\n'+'    var consoleID = \'theoceansociety\';\r\n'+'    var cms_co = \'theoceansociety\';\r\n'+'    \r\n'+'    // Grab params\r\n'+'    var params = \'\';\r\n'+'    if ( typeof __smart_params_hc !== \'undefined\' ) {\r\n'+'        params = \'&\' + __smart_params_hc;\r\n'+'    }\r\n'+'    \r\n'+'    document.write( \'<scr'+'ipt src=\"https://tos-a.akamaihd.net/JS_Syndiction/scripts/hiro_dynamic_player.js?consoleID=\' + consoleID + \'&cms_co=\' + cms_co + params + \'\"></scr\'+\'ipt>\' );\r\n'+'} () );\r\n'+'</scr'+'ipt>',
+          flashVars: '',
+          version: '',
+          wMode: 'Opaque',
+          backupImage: {
+            id: '15103434',
+            type: 1,
+            url: 'http://tos-a.akamaihd.net/Poster/surfspothawaii_poster_300_250.jpg',
+            clickUrl: 'https://adclick.g.doubleclick.net/aclk?sa=L&ai=C1EFV6kusVvjTN5ObhAT40IVgv87vnwjfi-KKowLAjbcBEAEgAGDJlu6IhKTsD4IBF2NhLXB1Yi03MTMzMzk1Nzc4MjAxMDI5yAEJqAMBqgSkAU_Q3zOcw2wx9S99hj_exDtj203glwjG2fiZBlxC1eW7hmhAWZ4tvMuNEfzasqy-1pa7um1nSLanDyDzY9TpkXKHOrnOjbxYyKcuiiPIHRr-iWsHBhyHNvbI9xocCSejbGUCxaVZ1SZn_0S6IFc2_g54i-CZr62KFl_xQZi1tGyHujxCwBrT2t-P2O6AaMTXHL0q5giCbKrbbZ8qSRkspNIyWVjugAa2oJSHmqnAhb8BoAYh2AcA&num=1&sig=AOD64_168kRE5A4swwG0aHjSLhjrxdfdpA&client=ca-pub-7133395778201029&adurl=http%3A%2F%2Fvid-ft9-us.adhigh.net%2Fp%2Fclick%3Fb%3DH4sIAAAAAAAAAHVUz4sURxitHte4MWBOORmwL8oKnZ6u310amJ3sDolZZ2eXWTN7MGx6ZjuzHeeX3T2O5hC8e5BAQMg5kIMgnkRPigf_APHmv-AhCF5CyKbqdTaEQPrw-qvv-96rV1Xd9fEP5-59-fDNN0sPGlseWa3tPj175-0uIRcPynJ2oV5fLBZhOS-neZaMitk0m5ThYDquD2b5dJgn43E2GdYHe0WZzwflPE-L8KAce4SQ43ct7J6zQOzwWLJ_k6x6V1fePb971Q6vdNc9LyC_12yV2vrptWar2-p0vlts7_XWd241i3Z3EV25vi10lLz49OXgj-e_WKXTn5DDwz9fEa9Gaj_TiMkooJHWzKJkIpAikoHR0rixoBZjSoOYSZuNqeuNeWyRM-2QAwUDcqDTiKULIc2lE1G0ikGFOFfIKGp1JYA5cNNIhYpxYWxBQU0jBDWGjBFAx4hhw7iiiCIgA0qgAmrbaFxCKeHCKhsDwYRHQSkQfMqBUKHopzqQzIBEQWJRYEylwtDNMEUMFebyRkCXV8iRgRZHp3GdRlZVSFb92E4jNbDKu1hgP4Xkdlp7PhbgVLrNMEq7BEoCWeVCN43REbAiQ0455wLOFTQUZtRYrVKIqyo86IqEFVWrw2EICGuG_pgBoRPDga4ysGBgoVqvcXnNwTLox3GKimuk_fqbn3W-apH_fRq_HQX6x80nv84eY3DsxoLW7N-wVJTzvue58MR6q7ux09myX_x_nkP7EDJqT7_PRqOkLsPIX-llk_3povA3d3wV8ot-r9NT4rzfnM1GaS_tb2RlXXIdcuWvbHyx074c-KPsWup_ng6uTc_7awf5dJzWRRxGIZNKhEb73eTbJM_-ZlkPJ9rN3b21rTZ-6-NZ0qfGWYNj2DqlOQ2U3Q_74lrYzBIhtdcN9tHX9v2osYquM43buBluNBx6R2vy_lnmSeKtkeX0ZjK21gvy4SiZDOfJMPX7SZENCrI8yso0t1cSeb-fDrPJJM0L8l6RuXZycj8pE7-8NbPM5aPLiyw1N7uXyAf_urhw-dhLrxXex6TPtl_85Pz9BWBIlwIUBQAA%26s%3Dadx%26l%3Dhttps://www5.smartadserver.com/click?imgid=15103434&insid=5092956&pgid=599520&uid=4879755818508125442&tgt=%3b%24dt%3d1t%3b%24dma%3d506%3b%24hc&systgt=%24qc%3d4799583%3b%24ql%3dmedium%3b%24qpc%3d02139%3b%24qpp%3d617%3b%24qt%3d152_2114_28473t%3b%24dma%3d506%3b%24b%3d16470%3b%24o%3d11063%3b%24sh%3d768%3b%24sw%3d1280&go=',
+            clickTarget: '_blank',
+            width: '300',
+            height: '250',
+            altText: ''
+          }
+        }]
+      };
+
+if(sas.utils.getIEVersion() < 10 && !isAsync){
+// IE9- require full script injection in sync case.
+  
+  
+  
+  sas.banner.render(config, {async: isAsync});
+}
+else{
+  sas.utils.loadScriptCdn("/diff/templates/js/sas/sas-browser.js", { async: isAsync, onLoad: function() {
+    sas.utils.loadScriptCdn("/diff/templates/js/sas/sas-dom.js", { async: isAsync, onLoad: function() {
+    sas.utils.loadScriptCdn("/diff/templates/js/banner/sas-banner-2.2.js", { async: isAsync, onLoad: function() {
+      sas.banner.render(config, {async: isAsync});
+    }});
+  }});
+}});
+}
+})();

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://www.tutorialspoint.com/cprogramming/c_structures.htm -->
+<html class=" js no-touch csstransforms3d csstransitions" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Basic -->
+<meta charset="utf-8">
+<title>Structures in C</title>
+<meta name="description" content="Structures in C - Learn ANSI, GNU and K/R standard of C programming language with simple and easy examples covering basic C, language basics, literals, data types, functions, loops, arrays, pointers, structures, input and output, memory management, pre-processors, directives etc.">
+<meta name="keywords" content="C, tutorial, beginners, programming, ANSI, simple, examples, language basics, literals, data types, functions, loops, arrays, pointers, structures, input and output, memory management, pre-processors, directives.">
+<!--<base href="http://www.tutorialspoint.com/">--><base href=".">
+<link rel="shortcut icon" href="http://www.tutorialspoint.com/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="fb:app_id" content="471319149685276">
+<meta property="og:site_name" content="www.tutorialspoint.com">
+<meta name="robots" content="index, follow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="author" content="tutorialspoint.com">
+<script src="./Structures in C_files/ca-pub-7133395778201029.js"></script><script type="text/javascript" src="./Structures in C_files/script-min-v4.js"></script>
+<link rel="stylesheet" href="./Structures in C_files/style-min.css">
+<!-- Head Libs -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/theme/css/ie8.css">
+<![endif]-->
+<style>
+pre.prettyprint.tryit {min-height:37px; background: #eee url(/cprogramming/images/try-it.jpg) top right no-repeat !important}div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #c96a14 url(/images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #c96a14 !important;}
+.submenu-item{ border-bottom: 2px solid #c96a14 !important; border-top: 2px solid #c96a14 !important }
+</style>
+<script>
+$(document).ready(function() {
+  $('input[name="q"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+</head>
+<body onload="prettyPrint()" class="sticky-menu-active" style="padding-top: 111px;">
+<div class="wrapLoader">
+   <div class="imgLoader">
+      <img src="./Structures in C_files/loading-cg.gif" alt="" width="70" height="70">
+   </div>
+</div>
+<header>
+   <div class="container">			
+      <h1 class="logo logo-sticky-active">
+      <a href="http://www.tutorialspoint.com/index.htm" title="tutorialspoint">
+      <img alt="tutorialspoint" src="./Structures in C_files/logo.png" style="height: 40px; width: 137px; display: inline-block; top: 28px;">
+      </a>
+      </h1>			
+      <div class="search" id="searchBar">
+         <form method="get" class="searchform" name="searchform" action="http://www.google.com/search" target="_blank">
+            <input type="hidden" name="sitesearch" value="www.tutorialspoint.com">
+            <div class="input-group">
+               <input type="text" class="form-control search" name="q" autocomplete="off" placeholder="Search your tutorials..." onfocus="if (this.value == &#39;Search your tutorials...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search your tutorials...&#39;;}">
+               <input value="FORID:11" name="cof" type="hidden">
+               <input type="hidden" name="ie" value="ISO-8859-1">
+               <span class="input-group-btn"> <button class="btn btn-default" type="submit" onclick="javascript:void(0);"><i class="icon icon-search"></i></button> </span>
+            </div>
+         </form>
+      </div>
+      <nav>
+         <ul class="nav nav-pills nav-top">
+            <li style="background: #F9EC18;     -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; border:1px solid #d6d6d6"> <a href="http://www.tutorialspoint.com/about/current_projects.htm"><i class="icon icon-gears"></i> &nbsp;Project Work</a> </li>
+            <li> <a href="http://www.tutorialspoint.com/shared-tutorials.php"><i class="icon icon-user"></i> &nbsp;Shared</a> </li>
+            <li> <a href="http://www.tutorialspoint.com/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>
+            <li> <a href="http://www.tutorialspoint.com/questions_and_answers.htm"><i class="fa fa-question"></i> &nbsp;Quizzes</a> </li>
+            <li class="top-icons" style="display:none;">
+              <ul class="social-icons">
+              <li class="facebook"><a href="https://www.facebook.com/tutorialspointindia" target="_blank" data-placement="bottom" title="tutorialspoint @ Facebook">Facebook</a></li>
+              <li class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" data-placement="bottom" title="tutorialspoint @ Google+">Google+</a></li>
+              <li class="twitter"><a href="http://www.twitter.com/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Twitter">Twitter</a></li>
+              <li class="linkedin"><a href="http://www.linkedin.com/company/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Linkedin">Linkedin</a></li>
+              <li class="rss"><a href="http://feeds.feedburner.com/SharedTutorials" target="_blank" data-placement="bottom" title="tutorialspoint RSS">RSS</a></li>
+              </ul>
+           </li>
+         </ul>
+      </nav>
+         <!-- search code here  --> 
+      <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 5431px!important"> <i class="icon icon-bars"></i> </button>
+   </div>
+   <div class="navbar nav-main">
+      <div class="container">
+         <nav class="nav-main mega-menu">
+            <ul class="nav nav-pills nav-main" id="mainMenu">
+               <li class="dropdown no-sub-menu"> <a class="dropdown" href="http://www.tutorialspoint.com/index.htm"><i class="icon icon-home"></i> Home</a> </li>   
+               <li class="dropdown" id="liTL"><a class="dropdown" href="javascript:void(0);"><span class="tut-lib"> Tutorials Library  <i class="fa-caret-down"></i></span></a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="http://www.tutorialspoint.com/codingground.htm"><i class="fa-code"></i> Coding Ground </a> </li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.send18.com/" target="_blank"><i class="fa fa-send"></i>  Send18</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="http://www.tutorialspoint.com/online_file_conversion.htm"><i class="icon icon-refresh"></i>  Conversion</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="http://www.tutorialspoint.com/online_dev_tools.htm"><span class="dev-tools-menu">  Dev Tools</span></a></li>
+            </ul>
+         </nav>
+         <div class="submenu-item sub-main-menu" id="top-sub-menu"></div>
+      </div>
+   </div>	
+</header>
+<div style="clear:both;"></div>
+<div role="main" class="main">
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+<aside class="sidebar">
+<div class="mini-logo">
+<img src="./Structures in C_files/c-mini-logo.jpg" alt="CProgramming Tutorial">
+</div>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">C Programming Tutorial</li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/index.htm">C - Home</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_overview.htm">C - Overview</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_environment_setup.htm">C - Environment Setup</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_program_structure.htm">C - Program Structure</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_basic_syntax.htm">C - Basic Syntax</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_data_types.htm">C - Data Types</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_variables.htm">C - Variables</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_constants.htm">C - Constants</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_storage_classes.htm">C - Storage Classes</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_operators.htm">C - Operators</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_decision_making.htm">C - Decision Making</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_loops.htm">C - Loops</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_functions.htm">C - Functions</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_scope_rules.htm">C - Scope Rules</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_arrays.htm">C - Arrays</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_pointers.htm">C - Pointers</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_strings.htm">C - Strings</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_structures.htm" style="background-color: rgb(214, 214, 214);">C - Structures</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_unions.htm">C - Unions</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_bit_fields.htm">C - Bit Fields</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_typedef.htm">C - Typedef</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_input_output.htm">C - Input &amp; Output</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_file_io.htm">C - File I/O</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_preprocessors.htm">C - Preprocessors</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_header_files.htm">C - Header Files</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_type_casting.htm">C - Type Casting</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_error_handling.htm">C - Error Handling</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_recursion.htm">C - Recursion</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_variable_arguments.htm">C - Variable Arguments</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_memory_management.htm">C - Memory Management</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_command_line_arguments.htm">C - Command Line Arguments</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">C Programming Resources</li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/cprogramming_questions_answers.htm">C -  Questions &amp; Answers</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_quick_guide.htm">C -  Quick Guide</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/c_useful_resources.htm">C - Useful Resources</a></li>
+<li><a href="http://www.tutorialspoint.com/cprogramming/cprogramming_discussion.htm">C - Discussion</a></li>
+</ul>
+<ul class="nav nav-list primary push-bottom left-menu special">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="http://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="http://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</aside>
+</div>
+<!-- PRINTING STARTS HERE -->
+<div class="row">
+<div class="content">
+<div class="col-md-7 middle-col">
+<h1>C - Structures</h1>
+<div class="topgooglead">
+<hr>
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript" src="./Structures in C_files/show_ads.js"> 
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent"><iframe width="468" height="60" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+</div>
+<hr>
+<div class="pre-btn">
+<a href="http://www.tutorialspoint.com/cprogramming/c_strings.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="http://www.tutorialspoint.com/cprogramming/c_unions.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="clearer"></div>
+<hr>
+<p>Arrays allow to define type of variables that can hold several data items of the same kind. Similarly <b>structure</b> is another user defined data type available in C that allows to combine data items of different kinds.</p>
+<p>Structures are used to represent a record. Suppose you want to keep track of your books in a library. You might want to track the following attributes about each book −</p>
+<ul class="list">
+<li>Title</li>
+<li>Author</li>
+<li>Subject</li>
+<li>Book ID</li>
+</ul>
+<h2>Defining a Structure</h2>
+<p>To define a structure, you must use the <b>struct</b> statement. The struct statement defines a new data type, with more than one member. The format of the struct statement is as follows −</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">struct</span><span class="pln"> </span><span class="pun">[</span><span class="pln">structure tag</span><span class="pun">]</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   member definition</span><span class="pun">;</span><span class="pln">
+   member definition</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">...</span><span class="pln">
+   member definition</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln"> </span><span class="pun">[</span><span class="pln">one </span><span class="kwd">or</span><span class="pln"> more structure variables</span><span class="pun">];</span><span class="pln">  </span></pre>
+<p>The <b>structure tag</b> is optional and each member definition is a normal variable definition, such as int i; or float f; or any other valid variable definition. At the end of the structure's definition, before the final semicolon, you can specify one or more structure variables but it is optional. Here is the way you would declare the Book structure −</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">char</span><span class="pln">  title</span><span class="pun">[</span><span class="lit">50</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">char</span><span class="pln">  author</span><span class="pun">[</span><span class="lit">50</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">char</span><span class="pln">  subject</span><span class="pun">[</span><span class="lit">100</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">int</span><span class="pln">   book_id</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln"> book</span><span class="pun">;</span><span class="pln">  </span></pre>
+<h2>Accessing Structure Members</h2>
+<p>To access any member of a structure, we use the <b>member access operator (.)</b>. The member access operator is coded as a period between the structure variable name and the structure member that we wish to access. You would use the keyword <b>struct</b> to define variables of structure type. The following example shows how to use a structure in a program −</p>
+<pre class="prettyprint notranslate tryit prettyprinted" style="cursor: default;"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdio.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string.h&gt;</span><span class="pln">
+ 
+</span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">char</span><span class="pln">  title</span><span class="pun">[</span><span class="lit">50</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">char</span><span class="pln">  author</span><span class="pun">[</span><span class="lit">50</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">char</span><span class="pln">  subject</span><span class="pun">[</span><span class="lit">100</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">int</span><span class="pln">   book_id</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+ 
+</span><span class="kwd">int</span><span class="pln"> main</span><span class="pun">(</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">;</span><span class="pln">        </span><span class="com">/* Declare Book1 of type Book */</span><span class="pln">
+   </span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">;</span><span class="pln">        </span><span class="com">/* Declare Book2 of type Book */</span><span class="pln">
+ 
+   </span><span class="com">/* book 1 specification */</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">title</span><span class="pun">,</span><span class="pln"> </span><span class="str">"C Programming"</span><span class="pun">);</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">author</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Nuha Ali"</span><span class="pun">);</span><span class="pln"> 
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">subject</span><span class="pun">,</span><span class="pln"> </span><span class="str">"C Programming Tutorial"</span><span class="pun">);</span><span class="pln">
+   </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">book_id </span><span class="pun">=</span><span class="pln"> </span><span class="lit">6495407</span><span class="pun">;</span><span class="pln">
+
+   </span><span class="com">/* book 2 specification */</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">title</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Telecom Billing"</span><span class="pun">);</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">author</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Zara Ali"</span><span class="pun">);</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">subject</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Telecom Billing Tutorial"</span><span class="pun">);</span><span class="pln">
+   </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">book_id </span><span class="pun">=</span><span class="pln"> </span><span class="lit">6495700</span><span class="pun">;</span><span class="pln">
+ 
+   </span><span class="com">/* print Book1 info */</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book 1 title : %s\n"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">title</span><span class="pun">);</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book 1 author : %s\n"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">author</span><span class="pun">);</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book 1 subject : %s\n"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">subject</span><span class="pun">);</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book 1 book_id : %d\n"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">book_id</span><span class="pun">);</span><span class="pln">
+
+   </span><span class="com">/* print Book2 info */</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book 2 title : %s\n"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">title</span><span class="pun">);</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book 2 author : %s\n"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">author</span><span class="pun">);</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book 2 subject : %s\n"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">subject</span><span class="pun">);</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book 2 book_id : %d\n"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">book_id</span><span class="pun">);</span><span class="pln">
+
+   </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>When the above code is compiled and executed, it produces the following result −</p>
+<pre class="result notranslate">Book 1 title : C Programming
+Book 1 author : Nuha Ali
+Book 1 subject : C Programming Tutorial
+Book 1 book_id : 6495407
+Book 2 title : Telecom Billing
+Book 2 author : Zara Ali
+Book 2 subject : Telecom Billing Tutorial
+Book 2 book_id : 6495700
+</pre>
+<h2>Structures as Function Arguments</h2>
+<p>You can pass a structure as a function argument in the same way as you pass any other variable or pointer.</p>
+<pre class="prettyprint notranslate tryit prettyprinted" style="cursor: default;"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdio.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string.h&gt;</span><span class="pln">
+ 
+</span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">char</span><span class="pln">  title</span><span class="pun">[</span><span class="lit">50</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">char</span><span class="pln">  author</span><span class="pun">[</span><span class="lit">50</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">char</span><span class="pln">  subject</span><span class="pun">[</span><span class="lit">100</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">int</span><span class="pln">   book_id</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+
+</span><span class="com">/* function declaration */</span><span class="pln">
+</span><span class="kwd">void</span><span class="pln"> printBook</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> book </span><span class="pun">);</span><span class="pln">
+
+</span><span class="kwd">int</span><span class="pln"> main</span><span class="pun">(</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">;</span><span class="pln">        </span><span class="com">/* Declare Book1 of type Book */</span><span class="pln">
+   </span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">;</span><span class="pln">        </span><span class="com">/* Declare Book2 of type Book */</span><span class="pln">
+ 
+   </span><span class="com">/* book 1 specification */</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">title</span><span class="pun">,</span><span class="pln"> </span><span class="str">"C Programming"</span><span class="pun">);</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">author</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Nuha Ali"</span><span class="pun">);</span><span class="pln"> 
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">subject</span><span class="pun">,</span><span class="pln"> </span><span class="str">"C Programming Tutorial"</span><span class="pun">);</span><span class="pln">
+   </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">book_id </span><span class="pun">=</span><span class="pln"> </span><span class="lit">6495407</span><span class="pun">;</span><span class="pln">
+
+   </span><span class="com">/* book 2 specification */</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">title</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Telecom Billing"</span><span class="pun">);</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">author</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Zara Ali"</span><span class="pun">);</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">subject</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Telecom Billing Tutorial"</span><span class="pun">);</span><span class="pln">
+   </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">book_id </span><span class="pun">=</span><span class="pln"> </span><span class="lit">6495700</span><span class="pun">;</span><span class="pln">
+ 
+   </span><span class="com">/* print Book1 info */</span><span class="pln">
+   printBook</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book1</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+
+   </span><span class="com">/* Print Book2 info */</span><span class="pln">
+   printBook</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book2</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+
+   </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">void</span><span class="pln"> printBook</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> book </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book title : %s\n"</span><span class="pun">,</span><span class="pln"> book</span><span class="pun">.</span><span class="pln">title</span><span class="pun">);</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book author : %s\n"</span><span class="pun">,</span><span class="pln"> book</span><span class="pun">.</span><span class="pln">author</span><span class="pun">);</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book subject : %s\n"</span><span class="pun">,</span><span class="pln"> book</span><span class="pun">.</span><span class="pln">subject</span><span class="pun">);</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book book_id : %d\n"</span><span class="pun">,</span><span class="pln"> book</span><span class="pun">.</span><span class="pln">book_id</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>When the above code is compiled and executed, it produces the following result −</p>
+<pre class="result notranslate">Book title : C Programming
+Book author : Nuha Ali
+Book subject : C Programming Tutorial
+Book book_id : 6495407
+Book title : Telecom Billing
+Book author : Zara Ali
+Book subject : Telecom Billing Tutorial
+Book book_id : 6495700
+</pre>
+<h2>Pointers to Structures</h2>
+<p>You can define pointers to structures in the same way as you define pointer to any other variable −</p>
+<pre class="result notranslate">struct Books *struct_pointer;
+</pre>
+<p>Now, you can store the address of a structure variable in the above defined pointer variable. To find the address of a structure variable, place the '&amp;'; operator before the structure's name as follows −</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">struct_pointer </span><span class="pun">=</span><span class="pln"> </span><span class="pun">&amp;</span><span class="typ">Book1</span><span class="pun">;</span></pre>
+<p>To access the members of a structure using a pointer to that structure, you must use the → operator as follows −</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="pln">struct_pointer</span><span class="pun">-&gt;</span><span class="pln">title</span><span class="pun">;</span></pre>
+<p>Let us re-write the above example using structure pointer.</p>
+<pre class="prettyprint notranslate tryit prettyprinted" style="cursor: default;"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdio.h&gt;</span><span class="pln">
+</span><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string.h&gt;</span><span class="pln">
+ 
+</span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">char</span><span class="pln">  title</span><span class="pun">[</span><span class="lit">50</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">char</span><span class="pln">  author</span><span class="pun">[</span><span class="lit">50</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">char</span><span class="pln">  subject</span><span class="pun">[</span><span class="lit">100</span><span class="pun">];</span><span class="pln">
+   </span><span class="kwd">int</span><span class="pln">   book_id</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+
+</span><span class="com">/* function declaration */</span><span class="pln">
+</span><span class="kwd">void</span><span class="pln"> printBook</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> </span><span class="pun">*</span><span class="pln">book </span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">int</span><span class="pln"> main</span><span class="pun">(</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">;</span><span class="pln">        </span><span class="com">/* Declare Book1 of type Book */</span><span class="pln">
+   </span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">;</span><span class="pln">        </span><span class="com">/* Declare Book2 of type Book */</span><span class="pln">
+ 
+   </span><span class="com">/* book 1 specification */</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">title</span><span class="pun">,</span><span class="pln"> </span><span class="str">"C Programming"</span><span class="pun">);</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">author</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Nuha Ali"</span><span class="pun">);</span><span class="pln"> 
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">subject</span><span class="pun">,</span><span class="pln"> </span><span class="str">"C Programming Tutorial"</span><span class="pun">);</span><span class="pln">
+   </span><span class="typ">Book1</span><span class="pun">.</span><span class="pln">book_id </span><span class="pun">=</span><span class="pln"> </span><span class="lit">6495407</span><span class="pun">;</span><span class="pln">
+
+   </span><span class="com">/* book 2 specification */</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">title</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Telecom Billing"</span><span class="pun">);</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">author</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Zara Ali"</span><span class="pun">);</span><span class="pln">
+   strcpy</span><span class="pun">(</span><span class="pln"> </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">subject</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Telecom Billing Tutorial"</span><span class="pun">);</span><span class="pln">
+   </span><span class="typ">Book2</span><span class="pun">.</span><span class="pln">book_id </span><span class="pun">=</span><span class="pln"> </span><span class="lit">6495700</span><span class="pun">;</span><span class="pln">
+ 
+   </span><span class="com">/* print Book1 info by passing address of Book1 */</span><span class="pln">
+   printBook</span><span class="pun">(</span><span class="pln"> </span><span class="pun">&amp;</span><span class="typ">Book1</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+
+   </span><span class="com">/* print Book2 info by passing address of Book2 */</span><span class="pln">
+   printBook</span><span class="pun">(</span><span class="pln"> </span><span class="pun">&amp;</span><span class="typ">Book2</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+
+   </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">void</span><span class="pln"> printBook</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> </span><span class="typ">Books</span><span class="pln"> </span><span class="pun">*</span><span class="pln">book </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book title : %s\n"</span><span class="pun">,</span><span class="pln"> book</span><span class="pun">-&gt;</span><span class="pln">title</span><span class="pun">);</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book author : %s\n"</span><span class="pun">,</span><span class="pln"> book</span><span class="pun">-&gt;</span><span class="pln">author</span><span class="pun">);</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book subject : %s\n"</span><span class="pun">,</span><span class="pln"> book</span><span class="pun">-&gt;</span><span class="pln">subject</span><span class="pun">);</span><span class="pln">
+   printf</span><span class="pun">(</span><span class="pln"> </span><span class="str">"Book book_id : %d\n"</span><span class="pun">,</span><span class="pln"> book</span><span class="pun">-&gt;</span><span class="pln">book_id</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>When the above code is compiled and executed, it produces the following result −</p>
+<pre class="result notranslate">Book title : C Programming
+Book author : Nuha Ali
+Book subject : C Programming Tutorial
+Book book_id : 6495407
+Book title : Telecom Billing
+Book author : Zara Ali
+Book subject : Telecom Billing Tutorial
+Book book_id : 6495700
+</pre>
+<h2>Bit Fields</h2>
+<p>Bit Fields allow the packing of data in a structure. This is especially useful when memory or data storage is at a premium. Typical examples include −</p>
+<ul class="list">
+<li><p>Packing several objects into a machine word. e.g. 1 bit flags can be compacted.</p></li>
+<li><p>Reading external file formats -- non-standard file formats could be read in, e.g., 9-bit integers.</p></li>
+</ul>
+<p>C allows us to do this in a structure definition by putting :bit length after the variable. For example −</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="kwd">struct</span><span class="pln"> packed_struct </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> f1</span><span class="pun">:</span><span class="lit">1</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> f2</span><span class="pun">:</span><span class="lit">1</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> f3</span><span class="pun">:</span><span class="lit">1</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> f4</span><span class="pun">:</span><span class="lit">1</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> type</span><span class="pun">:</span><span class="lit">4</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> my_int</span><span class="pun">:</span><span class="lit">9</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln"> pack</span><span class="pun">;</span></pre>
+<p>Here, the packed_struct contains 6 members: Four 1 bit flags f1..f3, a 4-bit type and a 9-bit my_int.</p>
+<p>C automatically packs the above bit fields as compactly as possible, provided that the maximum length of the field is less than or equal to the integer word length of the computer. If this is not the case, then some compilers may allow memory overlap for the fields while others would store the next field in the next word.</p>
+<hr>
+<div class="pre-btn">
+<a href="http://www.tutorialspoint.com/cprogramming/c_strings.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="print-btn center">
+<a href="http://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank"><i class="icon icon-print big-font"></i> Print</a>
+</div>
+<div class="nxt-btn">
+<a href="http://www.tutorialspoint.com/cprogramming/c_unions.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<hr>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div class="bottomadtag">Advertisements</div>
+<script type="text/javascript"><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="./Structures in C_files/show_ads.js">
+</script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:400px;margin:0;padding:0;position:relative;visibility:visible;width:580px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:400px;margin:0;padding:0;position:relative;visibility:visible;width:580px;background-color:transparent"><iframe width="580" height="400" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3" id="rightbar">
+<div class="simple-ad">
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;http://www.facebook.com/sharer.php?u=&#39; + &#39;http://www.tutorialspoint.com/cprogramming/c_structures.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Structures in C_files/facebookIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;http://twitter.com/share?url=&#39; + &#39;http://www.tutorialspoint.com/cprogramming/c_structures.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Structures in C_files/twitterIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.linkedin.com/cws/share?url=&#39; + &#39;http://www.tutorialspoint.com/cprogramming/c_structures.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Structures in C_files/linkedinIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://plus.google.com/share?url=http://www.tutorialspoint.com/cprogramming/c_structures.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Structures in C_files/googlePlusIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;http://www.stumbleupon.com/submit?url=http://www.tutorialspoint.com/cprogramming/c_structures.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Structures in C_files/StumbleUponIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;http://reddit.com/submit?url=http://www.tutorialspoint.com/cprogramming/c_structures.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=656,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Structures in C_files/reddit.jpg" alt="img">
+</a>
+</div>
+<div class="rightgooglead">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="./Structures in C_files/show_ads.js">
+</script><ins id="aswift_2_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+</div>
+<div class="rightgooglead">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 600;
+google_ad_format = "300x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="./Structures in C_files/show_ads.js">
+</script><ins id="aswift_3_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_3_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="600" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+</div>
+<div class="rightgooglead">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-2537027957187252";
+/* Right Side Ad */
+google_ad_slot = "right_side_ad";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript" src="./Structures in C_files/show_ads.js">
+</script><ins id="aswift_4_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_4_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-copyright">
+<div class="container">
+<div class="row">
+<div class="col-md-1">
+<a href="http://www.tutorialspoint.com/index.htm" class="logo"> <img alt="Tutorials Point" class="img-responsive" src="./Structures in C_files/logo-footer.png"> </a>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <nav id="sub-menu">
+      <ul>
+         <li><a href="http://www.tutorialspoint.com/about/tutorials_writing.htm">Write for us</a></li>
+         <li><a href="http://www.tutorialspoint.com/about/faq.htm">FAQ's</a></li>
+         <li><a href="http://www.tutorialspoint.com/about/about_helping.htm">Helping</a></li>
+         <li><a href="http://www.tutorialspoint.com/about/contact_us.htm">Contact</a></li>
+      </ul>
+   </nav>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12">
+<p>© Copyright 2016. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <div class="news-group">
+      <input type="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsletter" onfocus="if (this.value == &#39;Enter email for newsletter...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Enter email for newsletter...&#39;;}">
+      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnemail" type="submit" onclick="javascript:void(0);">go</button> </span>
+      <div id="newsresponse"></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Libs -->
+<script type="text/javascript" src="./Structures in C_files/custom-min.js"></script><a class="scroll-to-top visible" href="http://www.tutorialspoint.com/#" id="scrollToTop"><i class="icon icon-chevron-up icon-white"></i></a>
+<script src="./Structures in C_files/urchin.js">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+$('.pg-icon').click(function(){
+   $('.wrapLoader').show();
+});
+</script>
+<script type="text/javascript" src="./Structures in C_files/jquery.colorbox-min.js"></script>
+<script type="text/javascript">
+   var tryit = new $.TryIt('/cprogramming/try_cprogramming.php');
+   tryit.compile();
+</script><div id="source" style="display:none;">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+ 
+struct Books {
+   char  title[50];
+   char  author[50];
+   char  subject[100];
+   int   book_id;
+};
+ 
+int main( ) {
+
+   struct Books Book1;        /* Declare Book1 of type Book */
+   struct Books Book2;        /* Declare Book2 of type Book */
+ 
+   /* book 1 specification */
+   strcpy( Book1.title, "C Programming");
+   strcpy( Book1.author, "Nuha Ali"); 
+   strcpy( Book1.subject, "C Programming Tutorial");
+   Book1.book_id = 6495407;
+
+   /* book 2 specification */
+   strcpy( Book2.title, "Telecom Billing");
+   strcpy( Book2.author, "Zara Ali");
+   strcpy( Book2.subject, "Telecom Billing Tutorial");
+   Book2.book_id = 6495700;
+ 
+   /* print Book1 info */
+   printf( "Book 1 title : %s\n", Book1.title);
+   printf( "Book 1 author : %s\n", Book1.author);
+   printf( "Book 1 subject : %s\n", Book1.subject);
+   printf( "Book 1 book_id : %d\n", Book1.book_id);
+
+   /* print Book2 info */
+   printf( "Book 2 title : %s\n", Book2.title);
+   printf( "Book 2 author : %s\n", Book2.author);
+   printf( "Book 2 subject : %s\n", Book2.subject);
+   printf( "Book 2 book_id : %d\n", Book2.book_id);
+
+   return 0;
+}</div><div id="supportsource" style="display:none;"></div><div id="utilsource" style="display:none;"></div><div id="extrasource" style="display:none;"></div><div id="inputs" style="display:none;"></div><div id="filename" style="display:none;"></div>
+
+
+<div class="autocomplete-suggestions "></div><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div></body></html>
