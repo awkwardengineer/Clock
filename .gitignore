@@ -68,3 +68,5 @@ Marketing/*
 "Production Planning/*"
 Software/Alarm_Clock_Firmware/Alarm_Clock_Firmware/Alarm_Clock_Firmware.componentinfo.xml
 *.cproj
+*.cproj
+Software/Alarm_Clock_Firmware/Alarm_Clock_Firmware/Alarm_Clock_Firmware.cproj
