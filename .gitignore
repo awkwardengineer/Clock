@@ -70,5 +70,6 @@ Software/Alarm_Clock_Firmware/Alarm_Clock_Firmware/Alarm_Clock_Firmware.componen
 * .cproj
 Software/Alarm_Clock_Firmware/alarm_flash_test/Release
 Software/Alarm_Clock_Firmware/Alarm_Clock_Firmware/Release
+Software/Alarm_Clock_Firmware/Alarm_Clock_Firmware/Debug
 *.cproj
 Software/Alarm_Clock_Firmware/alarm_flash_test/alarm_flash_test.componentinfo.xml
