@@ -22,7 +22,7 @@ struct State{
 	bool isAlarmSet;
 	bool isAlarmSounding;
 	bool isUIActive;
-	bool isAlarmSwitchOn;
+	bool isAlarmSwitchNewlyOn;
 	
 };
 
@@ -82,7 +82,7 @@ int main(void)
 	state.cal_minutes = INITIAL_MINUTES_CAL;
 	state.isAlarmSet = false;
 	state.isUIActive = false;
-	state.isAlarmSwitchOn = false;
+	state.isAlarmSwitchNewlyOn = false;
 	
 	state.isAlarmSounding = true;  //for my test, the alarm will automagically sound
 	
