@@ -1,10 +1,9 @@
 /*
- * alarm_switch_test.c
+ * cal_test.c
  *
- * Created: 3/13/2016 10:13:29 PM
+ * Created: 3/19/2016 11:48:59 AM
  * Author : awkwardengineer
  */ 
-
 
 
 #include <avr/io.h>
@@ -12,6 +11,10 @@
 #include <stdbool.h>
 #include "..\shared\alarm_config.c"
 #include "..\shared\alarm_helpers.c"
+
+volatile int ISR_accumulator = 0;
+
+enum Mode {MODE_TEST, MODE_CAL_HOURS, MODE_CAL_MINUTES, MODE_WARBLE, MODE_TIME, MODE_ALARM};
 
 struct State{
 	unsigned long numTicks;
@@ -22,6 +25,10 @@ struct State{
 	
 	uint8_t cal_hours;
 	uint8_t cal_minutes;
+	
+	int rotation_accumulator;
+	
+	enum Mode mode;
 	
 	bool isAlarmSet;
 	bool isAlarmSounding;
@@ -35,7 +42,7 @@ void pollInputs(struct State *state){
 	state->newPotReading = pollPot();
 }
 
-void processInputs(struct State *state){
+void processPolledInputs(struct State *state){
 	static bool wasSwitchReleased = false;
 	
 		if (state->newPotReading > SWITCH_ENGAGE_POINT)
@@ -66,10 +73,17 @@ void processInputs(struct State *state){
 			}
 			
 		}
+		
+		if (state->newPotReading > SWITCH_ENGAGE_POINT){
+			state->mode = MODE_CAL_HOURS;
+		}
+		else{
+			state->mode = MODE_CAL_MINUTES;
+		}
 	
 	
 	
-		/*	
+	/*	
 	if the knob moved, set isUIActive
 	
 	if isUIActive  (should also be settable by encoder interrupt)
@@ -84,9 +98,72 @@ void processInputs(struct State *state){
 	*/
 }
 
-void updateMeters(struct State *state){
+void processEncoderInputs(struct State *state){
+	//MODE_TEST, MODE_CAL_HOURS, MODE_CAL_MINUTES,MODE_WARBLE, MODE_TIME, MODE_ALARM
 	
+	switch(state->mode){
+		case MODE_TEST:
+			
+			break;
+		
+		case MODE_CAL_HOURS:
+			state->cal_hours += state->rotation_accumulator;
+			
+			break;
+			
+		case MODE_CAL_MINUTES:
+			state->cal_minutes += state->rotation_accumulator;
+			
+			break;
+		
+		case MODE_WARBLE:
+			
+			break;
+			
+		case MODE_TIME:
+			state->numTicks += 60 * state->rotation_accumulator;
+			
+			break;
+		
+		case MODE_ALARM:
+			state->alarmTimeInTicks += 60*state->rotation_accumulator;
+			
+			break;
+	}
+	
+	state->rotation_accumulator = 0;
 }
+
+void updateMeters(struct State *state){
+	switch(state->mode){
+		case MODE_TEST:
+		
+		break;
+		
+		case MODE_CAL_HOURS:
+			setMinutesMeter(0);
+			setHoursMeter(state->cal_hours);
+			break;
+		
+		case MODE_CAL_MINUTES:
+			setMinutesMeter(state->cal_minutes);
+			setHoursMeter(0);
+		break;
+		
+		case MODE_WARBLE:
+		
+		break;
+		
+		case MODE_TIME:
+		 
+		break;
+		
+		case MODE_ALARM:
+		 
+		break;
+	}
+}
+
 
 void updateLEDs(struct State *state){
 	if (state->isAlarmSounding){
@@ -132,6 +209,30 @@ void updateSpeaker(struct State *state){
 
 
 ISR (PCINT0_vect){
+		//much of this code is modified from makeatronics.blogspot.com
+		//the idea was to create a clever sort of "grey code" lookup table
+		//wherethe previous state is left shifted two bits and added to the most recent
+		//state, creating a 4 bit grey code. the code then shows the encoder direction,
+		//or 0, if it was an illegal "grey code" state.
+
+		//the static keyword allows the table to persist within the scope of the ISR
+		//from one ISR call to the next
+		//static int8_t lookup_table[] = {0,-1,1,0,1,0,0,-1,-1,0,0,1,0,1,-1,0}; //saving the original table in a comment
+		static int8_t lookup_table[] = {0,-1,1,0,0,0,0,0,0,0,0,0,0,0,0,0};  //trying to limit the to one tick per four counts
+		static uint8_t grey_code = 0;
+		
+		uint8_t input_status;
+		
+		//the inputs were on QUAD_INT1 and QUAD_INT2  (PA2 and 3), so we mask off the other inputs and then shift
+		//the bits to the right
+		input_status = (PINA & 0b00001100) >> 2;   //PINA is Port Input A register
+
+		grey_code = grey_code << 2 ;  //move the old grey code over two bits
+		grey_code = grey_code | input_status ; //concatenates the current input status onto the old grey code
+		grey_code = grey_code & 0b00001111; // masks off the high bits to throw the old grey shifted over grey code away
+
+		ISR_accumulator += lookup_table[grey_code];
+		
 }
 
 ISR (TIM1_COMPB_vect){	
@@ -148,11 +249,7 @@ ISR (TIM1_OVF_vect){
 	if (timer_interrupts > THIRTY_SIX_HOURS){
 		timer_interrupts -= TWELVE_HOURS ;
 	}
-	
-	time_to_check_knob = true;*/
-	
-	//PORTA ^= (1 << PA0);  //toggles LED on PBA/pin13   //on the breadboard, there was an LED on this pin, but it has been removed on the PCB
-	
+	*/
 }
 
 int main(void)
@@ -170,22 +267,30 @@ int main(void)
 	state.isAlarmSet = false;
 	state.isUIActive = false;
 	state.isAlarmSwitchNewlyOn = false;
+	state.mode = MODE_TIME;
 	
 	state.isAlarmSounding = false;  	
 	
     while (1) 
     {
+		//emptying ISRs
+		
+		state.rotation_accumulator += ISR_accumulator;
+		ISR_accumulator = 0;
 		
 		
 		pollInputs(&state);
-		processInputs(&state);
+		processPolledInputs(&state);
+		processEncoderInputs(&state);
 		
-		updateMeters(&state);
 		updateLEDs(&state);
 		updateSpeaker(&state);
+		updateMeters(&state);
 
 		sleep_cpu();
 	}
 		
 }
+
+
 

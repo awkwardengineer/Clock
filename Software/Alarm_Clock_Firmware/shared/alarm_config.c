@@ -30,7 +30,8 @@
 #define ALARM_BUZZER PA5
 #define PM_LIGHT PA6
 
-
+#define HOURS_PWM OCR0B
+#define MINS_PWM OCR0A
   
  
  /**********************************
@@ -41,7 +42,13 @@
 #define TIMER_PRESCALER 1
 #define TIMER_TICKS_PER_INTERRUPT 32767
 #define TWELVE_HOURS 43200 // 12hours * 60 min * 60 sec = 43200
+#define TWENTY_FOUR_HOURS 86400
 #define THIRTY_SIX_HOURS 129600 // 36 hours * 60 min * 60 sec - 129000 timer ticks
+#define AMPM_LINE 86400 // 24 hrs * 60 min * 60 sec
+#define FIVE_OCLOCK_SOMEWHERE 61200 //5pm in seconds
+//12 - 24 hrs is am
+//24 - 36 hrs is pm
+
 
  // conversion = 32768hz / TIMER_PRESCALER / TIMER_TICKS_PER_INTERRUPT = 1 timer interrupts/sec
 
@@ -55,7 +62,14 @@
  /**********************************
  * constants for knob "mode" positions
  ***********************************/
+
+#define SWITCH_ENGAGE_POINT 128
  
+/*
+**************************
+*the following were the original knob position settings from the plain
+*AWK-105 clock. they are here for reference, but will need to be updated.
+**************************
 #define test_low 0
 #define test_high 13
 
@@ -70,6 +84,20 @@
 
 #define cal_minutes_low 216
 #define cal_minutes_high 255
+*/
+
+#define POS_test 6
+#define POS_time 25
+#define POS_alarm 50
+#define POS_warble 75
+#define POS_hours 100
+#define POS_minutes 128
+#define POS_testh 134
+#define POS_timeh 150
+#define POS_alarmh 175
+#define POS_warbleh 200
+#define POS_hoursh 225
+#define POS_minutesh 255
 
 
 void indicator_init();
