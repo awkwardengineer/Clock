@@ -73,3 +73,14 @@ Software/Alarm_Clock_Firmware/Alarm_Clock_Firmware/Release
 Software/Alarm_Clock_Firmware/Alarm_Clock_Firmware/Debug
 *.cproj
 Software/Alarm_Clock_Firmware/alarm_flash_test/alarm_flash_test.componentinfo.xml
+*.hex
+*.xml
+*.o
+*.d
+*.eep
+*.elf
+*.mk
+*.map
+*.lss
+*.srec
+Makefile
