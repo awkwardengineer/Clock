@@ -38,7 +38,7 @@ int powerOnSelfTest(){
 	}
 }
 
-void pollInputs(struct State *state){
+void pollInputs(struct State *state){   
 	/*
 	//pseudo code follows
 	static uiActiveCounter
