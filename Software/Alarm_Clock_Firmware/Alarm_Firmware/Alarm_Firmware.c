@@ -13,7 +13,8 @@
 #include "..\shared\alarm_helpers.c"
 
 volatile int ISR_accumulator = 0;
-volatile bool isISR_ticked = false;
+volatile int ISR_ticks = 0;
+volatile bool ISR_ticked = false;
 
 enum Mode {MODE_TEST, MODE_CAL_HOURS, MODE_CAL_MINUTES, MODE_WARBLE, MODE_TIME, MODE_ALARM};
 
@@ -21,8 +22,7 @@ struct State{
 	unsigned long numTicks;
 	unsigned long alarmTimeInTicks;
 	
-	uint8_t oldPotReading;
-	uint8_t newPotReading;
+	uint8_t potReading;
 	
 	uint8_t cal_hours;
 	uint8_t cal_minutes;
@@ -34,73 +34,88 @@ struct State{
 	bool isAlarmSet;
 	bool isAlarmSounding;
 	bool isUIActive;
-	bool isAlarmSwitchNewlyOn;
+	bool isAlarmSwitchOn;
+	
+	bool isJustEnteredMode;
 	
 };
 
 void pollInputs(struct State *state){
 	
-	state->newPotReading = pollPot();
+	state->potReading = pollPot();
+}
+
+void pollInputsWithCapSense(struct State *state){
+	struct PotAndCap potAndCap;
+	
+	potAndCap = pollPotWithCapSense();
+	state->potReading = potAndCap.pot;
+	
+	if (potAndCap.cap < CAP_SENSE_THRESHOLD)
+	{
+		state->isAlarmSwitchOn = true ; //
+	}
+	else{
+		state->isAlarmSwitchOn = false;
+	}
 }
 
 void processPolledInputs(struct State *state){
-	static bool wasSwitchReleased = false;
-	
-		if (state->newPotReading > SWITCH_ENGAGE_POINT)
-		{
-			
-			if (wasSwitchReleased){
-				state->isAlarmSwitchNewlyOn = true ; //
-			}
-			else{
-				state->isAlarmSwitchNewlyOn = false ;
-			}
+		static int oldPotReading;
+		static bool isAlarmLatched = false;
+		static enum Mode lastMode = MODE_TIME;
 		
-			wasSwitchReleased = false;
-		}
-		else{
-			wasSwitchReleased = true;
-			state->isAlarmSwitchNewlyOn = false;
+		//If the pot moved, the UI should be active		
+		if ((int)state->potReading - oldPotReading > 5 ||
+			(int)state->potReading - oldPotReading < -5){
+			state->isUIActive = true;
 		}
 		
-	
-		if (state->isAlarmSwitchNewlyOn){
-			
-			if (state->isAlarmSounding){
+		oldPotReading = state->potReading;
+		
+		//if the switch is on, and the latch is not set, this is a new trigger
+		if (state->isAlarmSwitchOn &&
+			!isAlarmLatched){
+				
+				isAlarmLatched = true; //set a latch so it has to be turned off
+				
+				if (state->isAlarmSounding){
 					state->isAlarmSounding = false ; //if alarm is sounding, turn it off
 					state->isAlarmSet = false;
 				}
-			else{
-				state->isAlarmSet = !state->isAlarmSet; //otherwise, toggle the alarm set status
-			}
-			
+				else{
+					state->isAlarmSet = !state->isAlarmSet; //otherwise, toggle the alarm set status
+						
+						chirp();
+
+				}		
 		}
 		
-		/*#define POS_test 6    //listed here for reference
-		#define POS_time 25
-		#define POS_alarm 50
-		#define POS_warble 75
-		#define POS_hours 100
-		#define POS_minutes 128
-		#define POS_testh 134
-		#define POS_timeh 150
-		#define POS_alarmh 175
-		#define POS_warbleh 200
-		#define POS_hoursh 225
-		#define POS_minutesh 255*/
-		if (state->newPotReading < POS_test){ state->mode = MODE_TEST;}
-		else if (state->newPotReading < POS_time){state->mode = MODE_TIME;}
-		else if (state->newPotReading < POS_alarm){state->mode = MODE_ALARM;}
-		else if (state->newPotReading < POS_warble){state->mode = MODE_WARBLE;}
-		else if (state->newPotReading < POS_hours){state->mode = MODE_CAL_HOURS;}
-		else if (state->newPotReading < POS_minutes){state->mode = MODE_CAL_MINUTES;}
-		else if (state->newPotReading < POS_testh){ state->mode = MODE_TEST;}
-		else if (state->newPotReading < POS_timeh){state->mode = MODE_TIME;}
-		else if (state->newPotReading < POS_alarmh){state->mode = MODE_ALARM;}
-		else if (state->newPotReading < POS_warbleh){state->mode = MODE_WARBLE;}
-		else if (state->newPotReading < POS_hoursh){state->mode = MODE_CAL_HOURS;}
-		else if (state->newPotReading < POS_minutesh){state->mode = MODE_CAL_MINUTES;}
+		if (!state->isAlarmSwitchOn){isAlarmLatched = false;} 
+		
+
+		
+		/* for reference:
+		#define POS_test 10
+		#define POS_time 50
+		#define POS_alarm 100
+		#define POS_warble 150
+		#define POS_hours 200
+		#define POS_minutes 255*/
 	
+		if (state->potReading < POS_test){ state->mode = MODE_TEST;}
+		else if (state->potReading < POS_time){state->mode = MODE_TIME;}
+		else if (state->potReading < POS_alarm){state->mode = MODE_ALARM;}
+		else if (state->potReading < POS_warble){state->mode = MODE_WARBLE;}
+		else if (state->potReading < POS_hours){state->mode = MODE_CAL_HOURS;}
+		else {state->mode = MODE_CAL_MINUTES;}
+	
+		if (state->mode != lastMode){
+			state->isJustEnteredMode = true;
+			chirp();
+		}
+		
+		lastMode = state->mode;
 	/*	
 	if the knob moved, set isUIActive
 	
@@ -169,7 +184,16 @@ void processEncoderInputs(struct State *state){
 }
 
 void updateMeters(struct State *state){
+	static int newModeCounter = 0;
 	
+	if (state->isJustEnteredMode){
+		state->isJustEnteredMode = false;
+		newModeCounter = 8;
+	}
+	
+	if (newModeCounter > 0){
+		newModeCounter--;
+	}
 	
 	switch(state->mode){
 		case MODE_TEST:
@@ -178,18 +202,48 @@ void updateMeters(struct State *state){
 			break;
 		
 		case MODE_TIME:
-			setMinutesMeter(calcMinsFromTics(state->numTicks, state->cal_minutes));
-			setHoursMeter(calcHoursFromTics(state->numTicks, state->cal_hours));
+			if (newModeCounter > 3){
+				setMinutesMeter(state->cal_minutes);
+				setHoursMeter(state->cal_hours);
+			}
+			else if (newModeCounter > 0){
+				setMinutesMeter(0);
+				setHoursMeter(0);
+			}
+			else{
+				setMinutesMeter(calcMinsFromTics(state->numTicks, state->cal_minutes));
+				setHoursMeter(calcHoursFromTics(state->numTicks, state->cal_hours));
+			}
 			break;
 		
 		case MODE_ALARM:
-			setMinutesMeter(calcMinsFromTics(state->alarmTimeInTicks, state->cal_minutes));
-			setHoursMeter(calcHoursFromTics(state->alarmTimeInTicks, state->cal_hours));
+			if (newModeCounter > 2){
+				setMinutesMeter(0);
+				setHoursMeter(0);
+			}
+			else if (newModeCounter > 0){
+				setMinutesMeter(state->cal_minutes);
+				setHoursMeter(state->cal_hours);
+			}
+			else{
+				setMinutesMeter(calcMinsFromTics(state->alarmTimeInTicks, state->cal_minutes));
+				setHoursMeter(calcHoursFromTics(state->alarmTimeInTicks, state->cal_hours));
+			}
 			break;
 			
 		case MODE_WARBLE:
-			setMinutesMeter(192);
-			setHoursMeter(192);
+			if (newModeCounter > 2){
+				setMinutesMeter(state->cal_minutes / 2);
+				setHoursMeter(state->cal_hours / 2 );
+			}
+			else if (newModeCounter > 0){
+				setMinutesMeter(state->cal_minutes);
+				setHoursMeter(0);
+			}
+			else{
+				setMinutesMeter(calcMinsFromTics(state->numTicks, state->cal_minutes));
+				setHoursMeter(calcHoursFromTics(state->numTicks, state->cal_hours));
+			}
 			break;
 		
 		case MODE_CAL_HOURS:
@@ -249,8 +303,8 @@ void updateSpeaker(struct State *state){
 	
 	if(state->isAlarmSounding){
 	
-		if ((state->numTicks - lastBeepTime) >= 1){ //only run if it's been long enough (length of beep)
-			lastBeepTime = state->numTicks;
+	//	if ((state->numTicks - lastBeepTime) >= 1){ //only run if it's been long enough (length of beep)
+	//		lastBeepTime = state->numTicks;
 	
 	
 			if (isBeeping){
@@ -263,7 +317,10 @@ void updateSpeaker(struct State *state){
 				setBuzzerOn();
 				isBeeping = true;
 			}
-		}
+	//	}
+	}
+	else{
+		setBuzzerOff();
 	}	
 }
 
@@ -298,7 +355,7 @@ void shouldAlarmSound(struct State *state){
 		isLatchReleased = false;
 	}
 	
-	if (state->numTicks - state->alarmTimeInTicks > 60){ isLatchReleased = true;}
+	if ((state->numTicks - state->alarmTimeInTicks) > 60){ isLatchReleased = true;}
 	
 }
 
@@ -333,24 +390,13 @@ ISR (TIM1_COMPB_vect){
 }
 
 ISR (TIM1_OVF_vect){
-	isISR_ticked = true;
+	ISR_ticks++;
+	ISR_ticked= true;
 	//THIS ISR IS CALLLED WHEN THE 16 BIT TIMER HITS IT'S MATCH POINT
-	
-	//volatile variable was defined in main()
-	/*timer_interrupts += 1;  //in Compare Timer and Clear Mode, the register should have the number of Timer ticks
-	if (timer_interrupts < TWELVE_HOURS){
-		timer_interrupts += TWELVE_HOURS ; //prevents zero rollover bug
-	}
-	if (timer_interrupts > THIRTY_SIX_HOURS){
-		timer_interrupts -= TWELVE_HOURS ;
-	}
-	*/
 }
 
 int main(void)
 {
-
-
 	struct State state;
 	
 	init_all();
@@ -361,10 +407,12 @@ int main(void)
 	state.cal_minutes = INITIAL_MINUTES_CAL;
 	state.isAlarmSet = false;
 	state.isUIActive = false;
-	state.isAlarmSwitchNewlyOn = false;
+	state.isAlarmSwitchOn = false;
 	state.mode = MODE_TIME;
 	
 	state.isAlarmSounding = false;  	
+	
+	//struct PotAndCap myCapSense;
 	
     while (1) 
     {
@@ -375,23 +423,40 @@ int main(void)
 		state.rotation_accumulator += ISR_accumulator;
 		ISR_accumulator = 0;
 		
-		if (isISR_ticked){
-			isISR_ticked = false;
-			state.numTicks += 1;
 		
+		//myCapSense = pollPotWithCapSense();
+		
+		//setHoursMeter(myCapSense.pot);
+		//setMinutesMeter(myCapSense.cap);
+		
+		
+		if (ISR_ticked){
+			ISR_ticked = false;
+			
+			//once a second
+			if (ISR_ticks % 4 == 0){
+				state.numTicks += 1;
+				handleTimeRollover(&state);
+			}
+		
+			//4x per second
+					
 			shouldAlarmSound(&state);  //this should run early to ensure it doesn't miss a time overlap
 			
-			pollInputs(&state);
+			pollInputsWithCapSense(&state);
 			processPolledInputs(&state);
+			
 		}
-
-		processEncoderInputs(&state);
-		
-		handleTimeRollover(&state);
 		
 		updateLEDs(&state);
 		updateSpeaker(&state);
+
+		processEncoderInputs(&state);
+		
 		updateMeters(&state);
+		
+
+		//*/
 
 		sleep_cpu();
 	}

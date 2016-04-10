@@ -91,13 +91,8 @@ void processPolledInputs(struct State *state){
 		else if (state->newPotReading < POS_alarm){state->mode = MODE_ALARM;}
 		else if (state->newPotReading < POS_warble){state->mode = MODE_WARBLE;}
 		else if (state->newPotReading < POS_hours){state->mode = MODE_CAL_HOURS;}
-		else if (state->newPotReading < POS_minutes){state->mode = MODE_CAL_MINUTES;}
-		else if (state->newPotReading < POS_testh){ state->mode = MODE_TEST;}
-		else if (state->newPotReading < POS_timeh){state->mode = MODE_TIME;}
-		else if (state->newPotReading < POS_alarmh){state->mode = MODE_ALARM;}
-		else if (state->newPotReading < POS_warbleh){state->mode = MODE_WARBLE;}
-		else if (state->newPotReading < POS_hoursh){state->mode = MODE_CAL_HOURS;}
-		else if (state->newPotReading < POS_minutesh){state->mode = MODE_CAL_MINUTES;}
+		else if (state->newPotReading <= POS_minutes){state->mode = MODE_CAL_MINUTES;}
+		
 	
 	/*	
 	if the knob moved, set isUIActive

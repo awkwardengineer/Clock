@@ -40,7 +40,11 @@
  
 #define F_CPU 32768 //default internal clock speed, actual speed will be changed to 32.768 clock crystal
 #define TIMER_PRESCALER 1
-#define TIMER_TICKS_PER_INTERRUPT 32767
+
+//#define TIMER_TICKS_PER_INTERRUPT 32767
+#define TIMER_TICKS_PER_INTERRUPT 8191
+//#define TIMER_TICKS_PER_INTERRUPT 4095
+
 #define TWELVE_HOURS 43200 // 12hours * 60 min * 60 sec = 43200
 #define TWENTY_FOUR_HOURS 86400
 #define THIRTY_SIX_HOURS 129600 // 36 hours * 60 min * 60 sec - 129000 timer ticks
@@ -63,7 +67,7 @@
  * constants for knob "mode" positions
  ***********************************/
 
-#define SWITCH_ENGAGE_POINT 128
+#define CAP_SENSE_THRESHOLD 20
  
 /*
 **************************
@@ -86,18 +90,13 @@
 #define cal_minutes_high 255
 */
 
-#define POS_test 6
-#define POS_time 25
-#define POS_alarm 50
-#define POS_warble 75
-#define POS_hours 100
-#define POS_minutes 128
-#define POS_testh 134
-#define POS_timeh 150
-#define POS_alarmh 175
-#define POS_warbleh 200
-#define POS_hoursh 225
-#define POS_minutesh 255
+#define POS_test 10
+#define POS_time 50
+#define POS_alarm 100
+#define POS_warble 150
+#define POS_hours 200
+#define POS_minutes 255
+
 
 
 void indicator_init();
@@ -170,7 +169,7 @@ void timer_init()
 	
 	
 	OCR1A = TIMER_TICKS_PER_INTERRUPT; // will trigger Timer1A every __ sec or so. 1A needs to be the larger number, as that does the actual Clear Timer on Compare
-	OCR1B = TIMER_TICKS_PER_INTERRUPT / 2;
+	//OCR1B = TIMER_TICKS_PER_INTERRUPT / 2;
 	
 	TCCR1A |= (1<<WGM11)|(1<<WGM10);					//set WGM to 0b1111 for fastpwm with OCR1A as the top
 	TCCR1B |= (1<<WGM13)|(1<<WGM12)|(1 << CS10);;		//set WGM to 0b1111 for fastpwm with OCR1A as the top
