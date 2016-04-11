@@ -42,7 +42,7 @@
 #define TIMER_PRESCALER 1
 
 //#define TIMER_TICKS_PER_INTERRUPT 32767
-#define TIMER_TICKS_PER_INTERRUPT 8191
+#define TIMER_TICKS_PER_INTERRUPT 8191  //4Hz interrupt rate
 //#define TIMER_TICKS_PER_INTERRUPT 4095
 
 #define TWELVE_HOURS 43200 // 12hours * 60 min * 60 sec = 43200
@@ -50,6 +50,7 @@
 #define THIRTY_SIX_HOURS 129600 // 36 hours * 60 min * 60 sec - 129000 timer ticks
 #define AMPM_LINE 86400 // 24 hrs * 60 min * 60 sec
 #define FIVE_OCLOCK_SOMEWHERE 61200 //5pm in seconds
+#define NINE_AM 118800// 9*60min*60sec + 86400 
 //12 - 24 hrs is am
 //24 - 36 hrs is pm
 

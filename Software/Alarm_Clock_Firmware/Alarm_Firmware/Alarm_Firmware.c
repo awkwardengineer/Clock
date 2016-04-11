@@ -27,6 +27,8 @@ struct State{
 	uint8_t cal_hours;
 	uint8_t cal_minutes;
 	
+	uint8_t warbleLevel;
+	
 	int rotation_accumulator;
 	
 	enum Mode mode;
@@ -37,6 +39,7 @@ struct State{
 	bool isAlarmSwitchOn;
 	
 	bool isJustEnteredMode;
+	bool isJustBooted;
 	
 };
 
@@ -69,6 +72,7 @@ void processPolledInputs(struct State *state){
 		if ((int)state->potReading - oldPotReading > 5 ||
 			(int)state->potReading - oldPotReading < -5){
 			state->isUIActive = true;
+			//state->isJustBooted = false;
 		}
 		
 		oldPotReading = state->potReading;
@@ -130,11 +134,10 @@ void processPolledInputs(struct State *state){
 		set a long timer interrupt
 	*/
 }
-
+//state->isJustBooted = false;
 void processEncoderInputs(struct State *state){
 	//MODE_TEST, MODE_CAL_HOURS, MODE_CAL_MINUTES,MODE_WARBLE, MODE_TIME, MODE_ALARM
 	int holder;
-
 	
 	switch(state->mode){
 		case MODE_TEST:
@@ -143,16 +146,26 @@ void processEncoderInputs(struct State *state){
 			
 		case MODE_TIME:
 			state->numTicks += 60 * state->rotation_accumulator;
-		
+			
+			if (state->rotation_accumulator != 0){
+				state->isJustBooted = false;
+			}
 			break;
 			
 		case MODE_ALARM:
-		state->alarmTimeInTicks += 60*state->rotation_accumulator;
-				
-				break;
+			state->alarmTimeInTicks += 60*state->rotation_accumulator;				
+			break;
 				
 		case MODE_WARBLE:
-		
+			
+			holder = (int)state->warbleLevel;
+			holder -= state->rotation_accumulator;
+			
+			if (holder > 5){holder = 5;}
+			if (holder < 1){holder = 1;}
+			
+			state->warbleLevel = holder;
+			
 			break;
 				
 		case MODE_CAL_HOURS:
@@ -173,11 +186,6 @@ void processEncoderInputs(struct State *state){
 			state->cal_minutes = (uint8_t)holder;
 			
 			break;
-		
-
-		
-		
-
 	}
 	
 	state->rotation_accumulator = 0;
@@ -188,7 +196,7 @@ void updateMeters(struct State *state){
 	
 	if (state->isJustEnteredMode){
 		state->isJustEnteredMode = false;
-		newModeCounter = 8;
+		newModeCounter = 10;
 	}
 	
 	if (newModeCounter > 0){
@@ -202,11 +210,11 @@ void updateMeters(struct State *state){
 			break;
 		
 		case MODE_TIME:
-			if (newModeCounter > 3){
+			if (newModeCounter > 4){
 				setMinutesMeter(state->cal_minutes);
 				setHoursMeter(state->cal_hours);
 			}
-			else if (newModeCounter > 0){
+			else if (newModeCounter > 3){
 				setMinutesMeter(0);
 				setHoursMeter(0);
 			}
@@ -217,32 +225,98 @@ void updateMeters(struct State *state){
 			break;
 		
 		case MODE_ALARM:
-			if (newModeCounter > 2){
-				setMinutesMeter(0);
-				setHoursMeter(0);
-			}
-			else if (newModeCounter > 0){
-				setMinutesMeter(state->cal_minutes);
-				setHoursMeter(state->cal_hours);
-			}
-			else{
-				setMinutesMeter(calcMinsFromTics(state->alarmTimeInTicks, state->cal_minutes));
-				setHoursMeter(calcHoursFromTics(state->alarmTimeInTicks, state->cal_hours));
-			}
+			setMinutesMeter(calcMinsFromTics(state->alarmTimeInTicks, state->cal_minutes));
+			setHoursMeter(calcHoursFromTics(state->alarmTimeInTicks, state->cal_hours));
+			
+			if (newModeCounter == 9 ){ setAlarmLightOff();}
+			else if (newModeCounter == 8 ){ setAlarmLightOn();}
+			else if (newModeCounter == 7 ){ setAlarmLightOff();}
+			else if (newModeCounter == 6 ){ setAlarmLightOn();}
+			else if (newModeCounter == 5 ){ setAlarmLightOff();}
+			else if (newModeCounter == 4 ){ setAlarmLightOn();}
+			else if (newModeCounter == 3 ){ setAlarmLightOff();}
+			else if (newModeCounter == 0){newModeCounter = 10;}
+			else{}
 			break;
 			
 		case MODE_WARBLE:
-			if (newModeCounter > 2){
-				setMinutesMeter(state->cal_minutes / 2);
-				setHoursMeter(state->cal_hours / 2 );
+			if (newModeCounter > 6){
+				setMinutesMeter(state->cal_minutes);
+				setHoursMeter(0);	
+			}
+			else if (newModeCounter > 3){
+				setHoursMeter(state->cal_hours);
+				setMinutesMeter(0);
 			}
 			else if (newModeCounter > 0){
 				setMinutesMeter(state->cal_minutes);
 				setHoursMeter(0);
 			}
 			else{
+				//this is where the warbling happens
+				
+				static uint8_t warble_tics = 0;
+				static bool isOdd = true;
+				static bool minFlag = false;
+				static bool hoursFlag = false;
+				int direction = 128;
+				
+				int numTriggers = 0;
+				
+				warble_tics++;
+				
 				setMinutesMeter(calcMinsFromTics(state->numTicks, state->cal_minutes));
 				setHoursMeter(calcHoursFromTics(state->numTicks, state->cal_hours));
+				
+				if (warble_tics % 3 == 0){
+					direction = -32;	
+				}
+				else{
+					direction = 128;
+				}
+				
+				if (hoursFlag){
+					HOURS_PWM += direction;
+					hoursFlag = false;
+				}
+				if (minFlag){
+					MINS_PWM += direction;
+					minFlag = false;
+				}
+				
+				
+				//started out as 3,5,8 as the pseudorandom generators,
+				//multiplied by 2 to get 6,10,16
+				//multiplied again by 3/2 to get 9,15,24
+				//trying by 2 for 12,20,32
+				if (warble_tics % (3 * state->warbleLevel) == 0){
+					numTriggers++;
+					isOdd = !isOdd;
+				}
+				if (warble_tics % (5 * state->warbleLevel) == 0){
+					numTriggers++;
+				}
+				if (warble_tics % (8 * state->warbleLevel) == 0){
+					numTriggers++;
+					isOdd = !isOdd;
+				}
+				
+				if (numTriggers == 3){
+					//least likely, sets up full wiggle
+					newModeCounter = 10;
+				}
+				if (numTriggers == 2){
+					//wiggles both
+					hoursFlag = true;
+					minFlag = true;
+				}
+				if (numTriggers == 1){
+					//wiggles one
+					if (isOdd)     { hoursFlag = true;}
+					else           { minFlag = true;}
+				}
+				
+				
 			}
 			break;
 		
@@ -265,23 +339,32 @@ void updateMeters(struct State *state){
 
 void updateLEDs(struct State *state){
 	//in alarm mode, the AM PM light reflects whether the alarm is set for AM or PM
-	if (state->mode == MODE_ALARM){
-		if (state->alarmTimeInTicks >= AMPM_LINE){
-			setPMLightOn();
-		}
-		else{
-			setPMLightOff();
-		}
+	static bool flashOnBoot=true;
+	
+	if(state->isJustBooted){
+		if(flashOnBoot){setPMLightOn();
+						flashOnBoot=false;}
+		else           {setPMLightOff();
+						flashOnBoot=true;}
 	}
 	else{
-		if (state->numTicks >= AMPM_LINE){   //in all other modes, the AM PM light reflects AM and PM
-			setPMLightOn();
+		if (state->mode == MODE_ALARM){
+			if (state->alarmTimeInTicks >= AMPM_LINE){
+				setPMLightOn();
+			}
+			else{
+				setPMLightOff();
+			}
 		}
 		else{
-			setPMLightOff();
+			if (state->numTicks >= AMPM_LINE){   //in all other modes, the AM PM light reflects AM and PM
+				setPMLightOn();
+			}
+			else{
+				setPMLightOff();
+			}
 		}
 	}
-	
 	
 	if (state->isAlarmSounding){
 		return;//relinquish control and do nothing if alarm is sounding
@@ -395,6 +478,48 @@ ISR (TIM1_OVF_vect){
 	//THIS ISR IS CALLLED WHEN THE 16 BIT TIMER HITS IT'S MATCH POINT
 }
 
+void plainClockLoop(struct State *state){
+}
+
+void alarmClockLoop(struct State *state){
+	while (1) 
+    {
+		//************
+		//*emptying ISRs
+		//*************
+		
+		state->rotation_accumulator += ISR_accumulator;
+		ISR_accumulator = 0;		
+		
+		if (ISR_ticked){
+			ISR_ticked = false;
+			
+			//once a second
+			if (ISR_ticks % 4 == 0){
+				state->numTicks += 1;
+				handleTimeRollover(state);
+			}
+		
+			//4x per second
+					
+			shouldAlarmSound(state);  //this should run early to ensure it doesn't miss a time overlap
+			
+			pollInputsWithCapSense(state);
+			processPolledInputs(state);
+			
+		}
+		
+		updateLEDs(state);
+		updateSpeaker(state);
+
+		processEncoderInputs(state);
+		
+		updateMeters(state);
+
+		sleep_cpu();
+	}
+}
+
 int main(void)
 {
 	struct State state;
@@ -402,63 +527,27 @@ int main(void)
 	init_all();
 		
 	state.numTicks = FIVE_OCLOCK_SOMEWHERE;
-	state.alarmTimeInTicks = FIVE_OCLOCK_SOMEWHERE;
+	state.alarmTimeInTicks = NINE_AM;
 	state.cal_hours = INITIAL_HOURS_CAL;
 	state.cal_minutes = INITIAL_MINUTES_CAL;
+	state.warbleLevel = 5;
 	state.isAlarmSet = false;
 	state.isUIActive = false;
 	state.isAlarmSwitchOn = false;
 	state.mode = MODE_TIME;
+	state.isJustBooted = true;
 	
 	state.isAlarmSounding = false;  	
 	
-	//struct PotAndCap myCapSense;
+	struct PotAndCap potAndCap;
 	
-    while (1) 
-    {
-		//************
-		//*emptying ISRs
-		//*************
-		
-		state.rotation_accumulator += ISR_accumulator;
-		ISR_accumulator = 0;
-		
-		
-		//myCapSense = pollPotWithCapSense();
-		
-		//setHoursMeter(myCapSense.pot);
-		//setMinutesMeter(myCapSense.cap);
-		
-		
-		if (ISR_ticked){
-			ISR_ticked = false;
-			
-			//once a second
-			if (ISR_ticks % 4 == 0){
-				state.numTicks += 1;
-				handleTimeRollover(&state);
-			}
-		
-			//4x per second
-					
-			shouldAlarmSound(&state);  //this should run early to ensure it doesn't miss a time overlap
-			
-			pollInputsWithCapSense(&state);
-			processPolledInputs(&state);
-			
-		}
-		
-		updateLEDs(&state);
-		updateSpeaker(&state);
-
-		processEncoderInputs(&state);
-		
-		updateMeters(&state);
-		
-
-		//*/
-
-		sleep_cpu();
+	potAndCap = pollPotWithCapSense();
+	
+	if (potAndCap.cap > CAP_SENSE_THRESHOLD ){
+		alarmClockLoop(&state);
+	}
+	else{
+		plainClockLoop(&state);
 	}
 		
 }
