@@ -13,7 +13,7 @@
 #include "..\shared\alarm_helpers.c"
 
 volatile int ISR_accumulator = 0;
-volatile int ISR_ticks = 0;
+volatile uint16_t ISR_ticks = 0;
 volatile bool ISR_ticked = false;
 
 enum Mode {MODE_TEST, MODE_CAL_HOURS, MODE_CAL_MINUTES, MODE_WARBLE, MODE_TIME, MODE_ALARM};
@@ -134,18 +134,85 @@ void processPolledInputs(struct State *state){
 		set a long timer interrupt
 	*/
 }
-//state->isJustBooted = false;
+
+
+int controlSweep(struct State *state){
+		static long oldnumticks = 0;
+		static int super_accumulator = 0;
+		static int super_accumulator2 = 0;
+		static int super_accumulator3 = 0;
+		static int super_accumulator4 = 0;
+		static int sweep = 0;
+		
+		super_accumulator += state->rotation_accumulator;
+		
+		if (state->isAlarmSounding){
+			sweep = 0;
+			return sweep;
+		}
+		
+		//if in sweep mode and input comes in the other direction, stop sweeping
+		if ((sweep > 0) && 	(state->rotation_accumulator < 0)){
+			sweep = 0;
+			super_accumulator = 0;
+			super_accumulator2 = 0;
+			super_accumulator3 = 0;
+			super_accumulator4 = 0;
+			chirp();
+		}
+		else if ((sweep < 0) && (state->rotation_accumulator > 0)){
+			sweep = 0;
+			super_accumulator = 0;
+			super_accumulator2 = 0;
+			super_accumulator3 = 0;
+			super_accumulator4 = 0;
+			chirp();
+		}
+		
+		int total;
+		total = super_accumulator + super_accumulator2 + super_accumulator3 + super_accumulator4;
+		//if enough turns are accumulated in 1 second, start sweeping
+		if (sweep == 0){
+			if (total > 14){sweep = 600; chirp();}
+			else if (total < -14){sweep = -600; chirp();}
+		}
+		
+		//if you switched modes while sweeping, stop sweeping
+		if (state->isJustEnteredMode){
+			sweep = 0;
+			super_accumulator = 0;
+			super_accumulator2 = 0;
+			super_accumulator3 = 0;
+			super_accumulator4 = 0;
+		}
+		
+		//if the clock has ticked 2 seconds, flush the superaccumulator
+		if (ISR_ticks > oldnumticks ){
+			super_accumulator4 = super_accumulator3;
+			super_accumulator3 = super_accumulator2;
+			super_accumulator2 = super_accumulator;
+			super_accumulator = 0;
+			oldnumticks = ISR_ticks;
+		}
+		
+		return sweep;
+}
+
 void processEncoderInputs(struct State *state){
 	//MODE_TEST, MODE_CAL_HOURS, MODE_CAL_MINUTES,MODE_WARBLE, MODE_TIME, MODE_ALARM
 	int holder;
+	int sweep;
 	
+		
 	switch(state->mode){
 		case MODE_TEST:
 			
 			break;
 			
 		case MODE_TIME:
-			state->numTicks += 60 * state->rotation_accumulator;
+			sweep = controlSweep(state);
+		
+			state->numTicks += 60 * state->rotation_accumulator + sweep;
 			
 			if (state->rotation_accumulator != 0){
 				state->isJustBooted = false;
@@ -153,7 +220,9 @@ void processEncoderInputs(struct State *state){
 			break;
 			
 		case MODE_ALARM:
-			state->alarmTimeInTicks += 60*state->rotation_accumulator;				
+			sweep = controlSweep(state);
+		
+			state->alarmTimeInTicks += 60*state->rotation_accumulator + sweep;				
 			break;
 				
 		case MODE_WARBLE:
@@ -195,7 +264,6 @@ void updateMeters(struct State *state){
 	static int newModeCounter = 0;
 	
 	if (state->isJustEnteredMode){
-		state->isJustEnteredMode = false;
 		newModeCounter = 10;
 	}
 	
@@ -416,10 +484,10 @@ void handleTimeRollover (struct State *state){
 		state->numTicks -= TWENTY_FOUR_HOURS ;
 	}
 	if (state->alarmTimeInTicks < TWELVE_HOURS){
-		state->numTicks += TWENTY_FOUR_HOURS ; //prevents zero rollover bug
+		state->alarmTimeInTicks += TWENTY_FOUR_HOURS ; //prevents zero rollover bug
 	}
 	if (state->alarmTimeInTicks > THIRTY_SIX_HOURS){
-		state->numTicks -= TWENTY_FOUR_HOURS ;
+		state->alarmTimeInTicks -= TWENTY_FOUR_HOURS ;
 	}
 }
 
@@ -508,14 +576,15 @@ void alarmClockLoop(struct State *state){
 			processPolledInputs(state);
 			
 		}
-		
-		updateLEDs(state);
-		updateSpeaker(state);
-
 		processEncoderInputs(state);
 		
-		updateMeters(state);
+		
 
+		updateLEDs(state);
+		updateSpeaker(state);	
+		updateMeters(state);
+		
+		state->isJustEnteredMode = false;
 		sleep_cpu();
 	}
 }
@@ -523,13 +592,15 @@ void alarmClockLoop(struct State *state){
 int main(void)
 {
 	struct State state;
+	struct PotAndCap potAndCap;
 	
-	init_all();
-		
 	state.numTicks = FIVE_OCLOCK_SOMEWHERE;
 	state.alarmTimeInTicks = NINE_AM;
+	
 	state.cal_hours = INITIAL_HOURS_CAL;
 	state.cal_minutes = INITIAL_MINUTES_CAL;
+	state.rotation_accumulator = 0;
+	
 	state.warbleLevel = 5;
 	state.isAlarmSet = false;
 	state.isUIActive = false;
@@ -539,7 +610,9 @@ int main(void)
 	
 	state.isAlarmSounding = false;  	
 	
-	struct PotAndCap potAndCap;
+	
+	
+	init_all();
 	
 	potAndCap = pollPotWithCapSense();
 	
