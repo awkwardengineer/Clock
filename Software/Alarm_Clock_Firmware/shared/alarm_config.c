@@ -44,6 +44,9 @@
 //#define TIMER_TICKS_PER_INTERRUPT 32767
 #define TIMER_TICKS_PER_INTERRUPT 8191  //4Hz interrupt rate
 //#define TIMER_TICKS_PER_INTERRUPT 4095
+#define TICKS_4HZ 8191
+#define TICKS_2HZ 16383
+#define TICKS_1HZ 32767
 
 #define TWELVE_HOURS 43200 // 12hours * 60 min * 60 sec = 43200
 #define TWENTY_FOUR_HOURS 86400
@@ -69,7 +72,8 @@
  ***********************************/
 
 #define CAP_SENSE_THRESHOLD 20
- 
+#define SWITCH_THRESHOLD 64
+#define USB_POWER_THRESHOLD 128
 /*
 **************************
 *the following were the original knob position settings from the plain
@@ -92,11 +96,23 @@
 */
 
 #define POS_test 10
-#define POS_time 50
-#define POS_alarm 100
-#define POS_warble 150
-#define POS_hours 200
-#define POS_minutes 255
+#define POS_minutes 45
+#define POS_hours 97
+#define POS_warble 173
+#define POS_time 225
+#define POS_alarm 255
+
+
+
+#define CLOCK_POS_test 10
+#define CLOCK_POS_minutes 65
+#define CLOCK_POS_hours 129
+#define CLOCK_POS_warble 216
+#define CLOCK_POS_time 255
+
+
+
+
 
 
 
