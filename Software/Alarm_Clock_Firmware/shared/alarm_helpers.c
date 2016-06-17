@@ -201,4 +201,12 @@ void set1HzTicks(void){
 	OCR1A = TICKS_1HZ;
 }
 
+void turnOnTimerB(void){
+	OCR1B = OCR1A /2 ;
+}
+
+void turnOffTimerB(void){
+	OCR1B = OCR1A + 1;
+}
+
 #endif

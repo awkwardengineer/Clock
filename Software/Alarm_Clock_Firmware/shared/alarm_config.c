@@ -186,7 +186,7 @@ void timer_init()
 	
 	
 	OCR1A = TIMER_TICKS_PER_INTERRUPT; // will trigger Timer1A every __ sec or so. 1A needs to be the larger number, as that does the actual Clear Timer on Compare
-	//OCR1B = TIMER_TICKS_PER_INTERRUPT / 2;
+	OCR1B = TIMER_TICKS_PER_INTERRUPT + 1;
 	
 	TCCR1A |= (1<<WGM11)|(1<<WGM10);					//set WGM to 0b1111 for fastpwm with OCR1A as the top
 	TCCR1B |= (1<<WGM13)|(1<<WGM12)|(1 << CS10);;		//set WGM to 0b1111 for fastpwm with OCR1A as the top

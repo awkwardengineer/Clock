@@ -12,6 +12,7 @@
 #include "..\shared\alarm_config.c"
 #include "..\shared\alarm_helpers.c"
 
+
 volatile int ISR_accumulator = 0;
 volatile uint16_t ISR_ticks = 0;
 volatile bool ISR_ticked = false;
@@ -74,12 +75,17 @@ void processAlarmPolledInputs(struct State *state){
 		static bool isAlarmLatched = false;
 		static enum Mode lastMode = MODE_TIME;
 		
+		/*
+		
+		//	this block not needed for Alarm, as it runs at a 4hz loop and is sensitive enough	
+		
 		//If the pot moved, the UI should be active		
 		if ((int)state->potReading - oldPotReading > 5 ||
 			(int)state->potReading - oldPotReading < -5){
 			state->isUIActive = true;
 			//state->isJustBooted = false;
 		}
+		*/
 		
 		oldPotReading = state->potReading;
 		
@@ -140,54 +146,6 @@ void processAlarmPolledInputs(struct State *state){
 		set a long timer interrupt
 	*/
 }
-
-void processClockPolledInputs(struct State *state){
-		static int oldPotReading;
-		static enum Mode lastMode = MODE_TIME;
-		
-		//If the pot moved, the UI should be active		
-		if ((int)state->potReading - oldPotReading > 5 ||
-			(int)state->potReading - oldPotReading < -5){
-			state->isUIActive = true;
-			//state->isJustBooted = false;
-		}
-		
-		oldPotReading = state->potReading;
-		
-			/*	 for reference
-			#define CLOCK_POS_test 10
-			#define CLOCK_POS_minutes 65
-			#define CLOCK_POS_hours 129
-			#define CLOCK_POS_warble 216
-			#define CLOCK_POS_time 255*/
-
-	
-		if (state->potReading < CLOCK_POS_test){ state->mode = MODE_TEST;}
-		else if (state->potReading < CLOCK_POS_minutes){state->mode = MODE_CAL_MINUTES;}
-		else if (state->potReading < CLOCK_POS_hours){state->mode = MODE_CAL_HOURS;}
-		else if (state->potReading < CLOCK_POS_warble){state->mode = MODE_WARBLE;}
-		else {state->mode = MODE_TIME;}
-	
-		if (state->mode != lastMode){
-			state->isJustEnteredMode = true;
-		}
-		
-		lastMode = state->mode;
-	/*	
-	if the knob moved, set isUIActive
-	
-	if isUIActive  (should also be settable by encoder interrupt)
-		uiActiveCounter resets
-	else
-		uiActiveCounter-- until 0
-	
-	if uiActiveCounter is not zero
-		set a short timer interrupt
-	else
-		set a long timer interrupt
-	*/
-}
-
 
 int controlSweep(struct State *state){
 		static long oldnumticks = 0;
@@ -251,7 +209,8 @@ int controlSweep(struct State *state){
 		return sweep;
 }
 
-void processEncoderInputs(struct State *state){
+
+void processAlarmEncoderInputs(struct State *state){
 	//MODE_TEST, MODE_CAL_HOURS, MODE_CAL_MINUTES,MODE_WARBLE, MODE_TIME, MODE_ALARM
 	int holder;
 	int sweep;
@@ -313,6 +272,7 @@ void processEncoderInputs(struct State *state){
 	state->rotation_accumulator = 0;
 }
 
+
 void updateMeters(struct State *state){
 	static int newModeCounter = 0;
 	
@@ -326,8 +286,8 @@ void updateMeters(struct State *state){
 	
 	switch(state->mode){
 		case MODE_TEST:
-			setMinutesMeter(64);
-			setHoursMeter(64);
+			OCR0A += 10;
+			OCR0B += 10;
 			break;
 		
 		case MODE_TIME:
@@ -461,6 +421,7 @@ void updateClockMeters(struct State *state){
 	static int newModeCounter = 3;
 	
 	if (state->isJustEnteredMode){
+		turnOffTimerB(); //timerB makes the loop run faster. it's useful for warble mode, but should be off everywhere else
 		newModeCounter = 4;
 	}
 	
@@ -470,8 +431,8 @@ void updateClockMeters(struct State *state){
 	
 	switch(state->mode){
 		case MODE_TEST:
-		setMinutesMeter(64);
-		setHoursMeter(64);
+			OCR0A += 10;
+			OCR0B += 10;
 		break;
 		
 		case MODE_TIME:
@@ -518,6 +479,7 @@ void updateClockMeters(struct State *state){
 		else if (newModeCounter > 0){
 			setHoursMeter(state->cal_hours);
 			setMinutesMeter(0);
+			turnOnTimerB();			//makes the warbles faster
 		}
 		else{
 			//this is where the warbling happens
@@ -736,7 +698,8 @@ ISR (PCINT0_vect){
 		
 }
 
-ISR (TIM1_COMPB_vect){	
+ISR (TIM1_COMPB_vect){
+	ISR_ticked = ISR_ticked;
 }
 
 ISR (TIM1_OVF_vect){
@@ -745,41 +708,7 @@ ISR (TIM1_OVF_vect){
 	//THIS ISR IS CALLLED WHEN THE 16 BIT TIMER HITS IT'S MATCH POINT
 }
 
-void plainClockLoop(struct State *state){
-	while (1) 
-    {
-		//************
-		//*emptying ISRs
-		//*************
-		
-		state->rotation_accumulator += ISR_accumulator;
-		ISR_accumulator = 0;		
-		
-		if (ISR_ticked){
-			ISR_ticked = false;
-			
-			//Clock loop is at 1 Hz, so modulo 4 is commented out
-			//if (ISR_ticks % 4 == 0){
-				state->numTicks += 1;
-				handleTimeRollover(state);
-			//}
-			
-			pollInputs(state);
-			processClockPolledInputs(state);
-			
-		}
-		
-		processEncoderInputs(state);
 
-		//noLEDs in Clock mode, so commented out
-		//updateLEDs(state);
-		//updateSpeaker(state);	
-		updateClockMeters(state);
-		
-		state->isJustEnteredMode = false;
-		sleep_cpu();
-	}
-}
 
 void alarmClockLoop(struct State *state){
 	while (1) 
@@ -812,7 +741,7 @@ void alarmClockLoop(struct State *state){
 			processAlarmPolledInputs(state);
 			
 		}
-		processEncoderInputs(state);
+		processAlarmEncoderInputs(state);
 		
 		
 
@@ -855,6 +784,221 @@ void powerONST(void){
 		sleep_cpu();
 	}
 }
+
+/*
+int controlClockSweep(struct State *state){
+	static long oldnumticks = 0;
+	static int super_accumulator = 0;
+	static int super_accumulator2 = 0;
+	static int super_accumulator3 = 0;
+	static int super_accumulator4 = 0;
+	static int sweep = 0;
+	
+	super_accumulator += state->rotation_accumulator;
+		
+	//if in sweep mode and input comes in the other direction, stop sweeping
+	if ((sweep > 0) && 	(state->rotation_accumulator < 0)){
+		sweep = 0;
+		turnOffTimerB();
+		super_accumulator = 0;
+		super_accumulator2 = 0;
+		super_accumulator3 = 0;
+		super_accumulator4 = 0;
+		//chirp();   removed chirp from plain Clock
+	}
+	else if ((sweep < 0) && (state->rotation_accumulator > 0)){
+		sweep = 0;
+		turnOffTimerB();
+		super_accumulator = 0;
+		super_accumulator2 = 0;
+		super_accumulator3 = 0;
+		super_accumulator4 = 0;
+		//chirp();    removed chirp from plain Clock
+	}
+	
+	int total;
+	total = super_accumulator + super_accumulator2 + super_accumulator3 + super_accumulator4;
+	//if enough turns are accumulated in 1 second, start sweeping
+	if (sweep == 0){
+		if (total > 14){
+			sweep = 600;
+			turnOnTimerB();
+			//chirp();    removed chirp from plain Clock
+		}
+		else if (total < -14){
+			sweep = -600;
+			turnOnTimerB();
+			//chirp();    removed chirp from plain Clock
+		}
+	}
+	
+	//if you switched modes while sweeping, stop sweeping
+	if (state->isJustEnteredMode){
+		sweep = 0;
+		turnOffTimerB();
+		super_accumulator = 0;
+		super_accumulator2 = 0;
+		super_accumulator3 = 0;
+		super_accumulator4 = 0;
+	}
+	
+	//if the clock has ticked 2 seconds, flush the superaccumulator
+	if (ISR_ticks > oldnumticks ){
+		super_accumulator4 = super_accumulator3;
+		super_accumulator3 = super_accumulator2;
+		super_accumulator2 = super_accumulator;
+		super_accumulator = 0;
+		oldnumticks = ISR_ticks;
+	}
+	
+	return sweep;
+}
+*/
+
+void processClockEncoderInputs(struct State *state){
+	//MODE_TEST, MODE_CAL_HOURS, MODE_CAL_MINUTES,MODE_WARBLE, MODE_TIME, MODE_ALARM
+	int holder;
+	int sweep;
+	
+	
+	switch(state->mode){
+		case MODE_TEST:
+			
+		
+		break;
+		
+		case MODE_TIME:
+			//sweep = controlClockSweep(state);
+			
+			state->numTicks += 60 * state->rotation_accumulator ; // + sweep; no more sweeping in Clock mode
+			
+			if (state->rotation_accumulator != 0){
+				state->isJustBooted = false;
+			}
+			break;
+			
+		case MODE_WARBLE:
+		
+			holder = (int)state->warbleLevel;
+			holder -= state->rotation_accumulator;
+		
+			if (holder > 5){holder = 5;}
+			if (holder < 1){holder = 1;}
+		
+			state->warbleLevel = holder;
+		
+			break;
+		
+		case MODE_CAL_HOURS:
+			holder = (int)state->cal_hours + (int)state->rotation_accumulator;
+			
+			if (holder > 255){holder = 255;}
+			if (holder < 0){holder = 0;}
+			state->cal_hours = (uint8_t)holder;
+			
+			
+			break;
+		
+		case MODE_CAL_MINUTES:
+			holder = (int)state->cal_minutes + (int)state->rotation_accumulator;
+			
+			if (holder > 255){holder = 255;}
+			if (holder < 0){holder = 0;}
+			state->cal_minutes = (uint8_t)holder;
+			
+			break;
+	}
+	
+	state->rotation_accumulator = 0;
+}
+
+void processClockPolledInputs(struct State *state){
+		static int oldPotReading;
+		static enum Mode lastMode = MODE_TIME;
+		
+		//
+		//even at a 1Hz loop, the combination of the knob and user response time is fast enough to not need this
+		//If the pot moved, the UI should be active
+		/*		
+		if ((int)state->potReading - oldPotReading > 5 ||
+			(int)state->potReading - oldPotReading < -5){
+			state->isUIActive = true;
+			//state->isJustBooted = false;
+		}
+		*/
+		
+		oldPotReading = state->potReading;
+		
+			/*	 for reference
+			#define CLOCK_POS_test 10
+			#define CLOCK_POS_minutes 65
+			#define CLOCK_POS_hours 129
+			#define CLOCK_POS_warble 216
+			#define CLOCK_POS_time 255*/
+
+	
+		if (state->potReading < CLOCK_POS_test){ state->mode = MODE_TEST;}
+		else if (state->potReading < CLOCK_POS_minutes){state->mode = MODE_CAL_MINUTES;}
+		else if (state->potReading < CLOCK_POS_hours){state->mode = MODE_CAL_HOURS;}
+		else if (state->potReading < CLOCK_POS_warble){state->mode = MODE_WARBLE;}
+		else {state->mode = MODE_TIME;}
+	
+		if (state->mode != lastMode){
+			state->isJustEnteredMode = true;
+		}
+		
+		lastMode = state->mode;
+	/*	
+	if the knob moved, set isUIActive
+	
+	if isUIActive  (should also be settable by encoder interrupt)
+		uiActiveCounter resets
+	else
+		uiActiveCounter-- until 0
+	
+	if uiActiveCounter is not zero
+		set a short timer interrupt
+	else
+		set a long timer interrupt
+	*/
+}
+
+void plainClockLoop(struct State *state){
+	while (1) 
+    {
+		//************
+		//*emptying ISRs
+		//*************
+		
+		state->rotation_accumulator += ISR_accumulator;
+		ISR_accumulator = 0;		
+		
+		if (ISR_ticked){
+			ISR_ticked = false;
+			
+			//Clock loop is at 1 Hz, so modulo 4 is commented out
+			//if (ISR_ticks % 4 == 0){
+				state->numTicks += 1;
+				handleTimeRollover(state);
+			//}
+			
+			pollInputs(state);
+			processClockPolledInputs(state);
+			
+		}
+		
+		processClockEncoderInputs(state);
+
+		//noLEDs in Clock mode, so commented out
+		//updateLEDs(state);
+		//updateSpeaker(state);	
+		updateClockMeters(state);
+		
+		state->isJustEnteredMode = false;
+		sleep_cpu();
+	}
+}
+
 
 int main(void)
 {
